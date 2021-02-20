@@ -1,16 +1,29 @@
 import { v4 } from "uuid";
-import NavigationLink from "../NavigationLink";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { getNavigation } from "../../../services/contentful/util";
+import styles from "../../../styles/Navigation.module.css";
 
-/**
- * Renders the page's main navigation bar
- */
-const Navigation = ({ data }) => {
-  const { links } = data;
+import NavigationLink from "./NavigationLink";
+
+const Navigation = () => {
+  const [links, setLinks] = useState([]);
+  const path = useRouter().asPath;
+
+  useEffect(() => {
+    (async () => {
+      const nav = await getNavigation();
+      setLinks(nav.fields.links);
+    })();
+  }, []);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul id="nav-links">
-        {links && links.map(link => <NavigationLink key={v4()} data={link} />)}
+        {links &&
+          links.map(link => (
+            <NavigationLink key={v4()} data={link} path={path} />
+          ))}
       </ul>
     </nav>
   );

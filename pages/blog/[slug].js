@@ -1,4 +1,3 @@
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import {
   getBlogPostBySlug,
   getEntriesOfType,
@@ -8,19 +7,18 @@ import {
   transformBlogStaticPaths,
 } from "../../services/transform";
 
-const BlogPost = ({ content }) => {
-  const { title } = content;
+import BlogPostTemplate from "../../components/template/SingleBlogPostTemplate";
+import DefaultLayout from "../../components/module/Body/Default";
+import DefaultHeader from "../../components/module/Header";
 
-  return (
-    <div>
-      <h1>{title}</h1>
-      <section>{documentToReactComponents(content.content)}</section>
-    </div>
-  );
-};
+export default BlogPostTemplate;
+BlogPostTemplate.Header = DefaultHeader;
+BlogPostTemplate.Layout = DefaultLayout;
 
-export default BlogPost;
-
+/**
+ * Fetch all available blog posts
+ * @param {*} ctx
+ */
 export async function getStaticPaths(ctx) {
   const posts = await getEntriesOfType("blogPost");
   return transformBlogStaticPaths(posts);

@@ -1,0 +1,16 @@
+.nav {
+  margin: 0;
+  padding: 0;
+}
+
+.nav > ul {
+  list-style-type: none;
+}
+
+.link {
+  color: black;
+}
+
+.active {
+  font-weight: bold;
+}

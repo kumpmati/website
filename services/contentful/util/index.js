@@ -1,4 +1,5 @@
 import { client } from "../index";
+import { entries } from "../entries";
 
 const queryEntry = async (id, query) => {
   try {
@@ -29,4 +30,8 @@ export const getBlogPostBySlug = async slug => {
     content_type: "blogPost",
     "fields.slug[in]": slug,
   });
+};
+
+export const getNavigation = async () => {
+  return await client.getEntry(entries.navigation);
 };
