@@ -22,14 +22,16 @@ export const transformBlogSummaryData = ({ content, posts }) => {
 export const transformBlogPostData = ({ post }) => {
   return {
     props: {
-      content: post.items[0].fields,
+      content: post.items.length > 0 ? post.items[0].fields : {},
     },
   };
 };
 
-export const transformBlogStaticPaths = posts => {
+export const transformProjectsPageData = ({ content, projects }) => {
   return {
-    paths: posts.items.map(post => `/blog/${post.fields.slug}`),
-    fallback: false,
+    props: {
+      content: content && content.fields,
+      projects: projects.items.length > 0 ? projects.items : [],
+    },
   };
 };

@@ -12,6 +12,5 @@ HomePageTemplate.Layout = DefaultLayout;
 
 export async function getStaticProps(ctx) {
   const content = await getEntry(entries.homePage);
-
   return transformHomePageData({ content });
 }

@@ -1,12 +1,12 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 
-export const renderImageAsset = node => {
+const renderImageAsset = node => {
   const url = node.data.target.fields.file.url;
   return <img src={url} />;
 };
 
-export const richTextRenderOpts = {
+const richTextRenderOpts = {
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: renderImageAsset,
   },

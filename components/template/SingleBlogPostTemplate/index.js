@@ -1,7 +1,10 @@
 import { renderRichText } from "./render";
+import PageNotFoundTemplate from "../PageNotFoundTemplate";
 
-const BlogPost = ({ content }) => {
-  const { title, description, published } = content;
+const SingleBlogPost = ({ content }) => {
+  const { title, description, published, content: body } = content;
+
+  if (!title) return <PageNotFoundTemplate />;
 
   return (
     <article>
@@ -10,9 +13,9 @@ const BlogPost = ({ content }) => {
         <p>{description}</p>
         <p>{new Date(published).toDateString()}</p>
       </section>
-      <section>{renderRichText(content.content)}</section>
+      <section>{renderRichText(body)}</section>
     </article>
   );
 };
 
-export default BlogPost;
+export default SingleBlogPost;

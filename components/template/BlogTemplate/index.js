@@ -2,22 +2,24 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { v4 } from "uuid";
 
 import BlogPostSummary from "../../elements/BlogPostSummary";
+import styles from "../../../styles/Blog.module.css";
 
 const BlogTemplate = ({ content, posts }) => {
   const { title, description } = content;
 
   return (
-    <main>
+    <>
       <section>
-        <h1 id="blog-title">{title}</h1>
-        <div id="blog-description">
-          {documentToReactComponents(description)}
-        </div>
+        <h1 id={styles.title}>{title}</h1>
+        <div id={styles.content}>{documentToReactComponents(description)}</div>
       </section>
       <section>
-        {posts && posts.map(post => <BlogPostSummary data={post} key={v4()} />)}
+        <ul id={styles.posts}>
+          {posts &&
+            posts.map(post => <BlogPostSummary data={post} key={v4()} />)}
+        </ul>
       </section>
-    </main>
+    </>
   );
 };
 
