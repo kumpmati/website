@@ -1,6 +1,7 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { v4 } from "uuid";
 
+import Head from "next/head";
 import BlogPostSummary from "../../elements/BlogPostSummary";
 import styles from "../../../styles/Blog.module.css";
 
@@ -9,6 +10,9 @@ const BlogTemplate = ({ content, posts }) => {
 
   return (
     <>
+      <Head>
+        <title>Matias Kumpulainen | {title}</title>
+      </Head>
       <section>
         <h1 id={styles.title}>{title}</h1>
         <div id={styles.content}>{documentToReactComponents(description)}</div>

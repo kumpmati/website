@@ -18,8 +18,8 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className={styles.nav}>
-      <ul id="nav-links">
+    <nav id={styles.nav}>
+      <ul id={styles.links}>
         {links &&
           links.map(link => (
             <NavigationLink key={v4()} data={link} path={path} />

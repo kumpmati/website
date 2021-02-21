@@ -1,8 +1,9 @@
 import { getEntry } from "../services/contentful/util";
-import { transformHomePageData } from "../services/transform";
 import { entries } from "../services/contentful/entries";
 
 import HomePageTemplate from "../components/template/HomePageTemplate";
+import { transformHomePageData } from "../components/template/HomePageTemplate/transform";
+
 import DefaultLayout from "../components/module/Body/Default";
 import DefaultHeader from "../components/module/Header";
 

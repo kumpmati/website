@@ -1,16 +1,12 @@
 import { client } from "../index";
 import { entries } from "../entries";
 
-const queryEntry = async (id, query) => {
+export const getEntry = async id => {
   try {
-    return await client.getEntry(id, query);
+    return await client.getEntry(id);
   } catch (error) {
     return null;
   }
-};
-
-export const getEntry = async id => {
-  return await queryEntry(id);
 };
 
 export const getEntries = async query => {
@@ -28,6 +24,13 @@ export const getEntriesOfType = async content_type => {
 export const getBlogPostBySlug = async slug => {
   return await client.getEntries({
     content_type: "blogPost",
+    "fields.slug[in]": slug,
+  });
+};
+
+export const getProjectBySlug = async slug => {
+  return await client.getEntries({
+    content_type: "project",
     "fields.slug[in]": slug,
   });
 };

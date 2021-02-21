@@ -1,21 +1,30 @@
+import { useRouter } from "next/router";
 import { renderRichText } from "./render";
-import PageNotFoundTemplate from "../PageNotFoundTemplate";
 
-const SingleBlogPost = ({ content }) => {
-  const { title, description, published, content: body } = content;
+import Head from "next/head";
+import LoadingFallbackTemplate from "../LoadingFallbackTemplate";
 
-  if (!title) return <PageNotFoundTemplate />;
+const SingleBlogPostTemplate = ({ content }) => {
+  const { isFallback } = useRouter();
+  if (isFallback) return <LoadingFallbackTemplate />;
+
+  const { title, description, published } = content;
 
   return (
-    <article>
-      <section>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <p>{new Date(published).toDateString()}</p>
-      </section>
-      <section>{renderRichText(body)}</section>
-    </article>
+    <>
+      <Head>
+        <title>Matias Kumpulainen | {title}</title>
+      </Head>
+      <article>
+        <section>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <p>{new Date(published).toDateString()}</p>
+        </section>
+        <section>{renderRichText(content.content)}</section>
+      </article>
+    </>
   );
 };
 
-export default SingleBlogPost;
+export default SingleBlogPostTemplate;

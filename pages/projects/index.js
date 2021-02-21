@@ -1,9 +1,11 @@
-import ProjectsPageTemplate from "../../components/template/ProjectsPageTemplate";
-import DefaultHeader from "../../components/module/Header";
-import DefaultLayout from "../../components/module/Body/Default";
 import { getEntriesOfType, getEntry } from "../../services/contentful/util";
 import { entries } from "../../services/contentful/entries";
-import { transformProjectsPageData } from "../../services/transform";
+
+import ProjectsPageTemplate from "../../components/template/ProjectsPageTemplate";
+import { transformProjectsPageData } from "../../components/template/ProjectsPageTemplate/transform";
+
+import DefaultHeader from "../../components/module/Header";
+import DefaultLayout from "../../components/module/Body/Default";
 
 export default ProjectsPageTemplate;
 ProjectsPageTemplate.Header = DefaultHeader;

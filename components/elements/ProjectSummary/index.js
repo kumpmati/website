@@ -4,7 +4,6 @@ import Link from "next/link";
 const ProjectSummary = ({ project }) => {
   const { title, slug, description } = project.fields;
 
-  console.log(project.fields);
   return (
     <li className="project-summary">
       <Link href={"/projects/" + slug}>
@@ -12,9 +11,9 @@ const ProjectSummary = ({ project }) => {
           <h2>{title}</h2>
         </a>
       </Link>
-      <p className="project-description">
+      <div className="project-description">
         {documentToReactComponents(description)}
-      </p>
+      </div>
     </li>
   );
 };
