@@ -3,5 +3,6 @@ export const transformHomePageData = ({ content }) => {
     props: {
       content: content && content.fields,
     },
+    revalidate: 60,
   };
 };
