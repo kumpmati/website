@@ -14,8 +14,8 @@ const ProductsPageTemplate = ({ content, projects }) => {
         <title>Matias Kumpulainen | {title}</title>
       </Head>
       <section>
-        <h1>{title}</h1>
-        <div>{documentToReactComponents(body)}</div>
+        <h1 className="page-title">{title}</h1>
+        <div id={styles.content}>{documentToReactComponents(body)}</div>
       </section>
       <section>
         <ul id={styles.projects}>

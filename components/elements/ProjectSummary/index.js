@@ -1,17 +1,19 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Link from "next/link";
 
+import styles from "../../../styles/ProjectSummary.module.css";
+
 const ProjectSummary = ({ project }) => {
   const { title, slug, description } = project.fields;
 
   return (
-    <li className="project-summary">
+    <li>
       <Link href={"/projects/" + slug}>
-        <a>
+        <a className={styles.title}>
           <h2>{title}</h2>
         </a>
       </Link>
-      <div className="project-description">
+      <div className={styles.description}>
         {documentToReactComponents(description)}
       </div>
     </li>

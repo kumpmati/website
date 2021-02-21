@@ -10,9 +10,11 @@ const HomePageTemplate = ({ content }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <h1>{title}</h1>
+      <h1 className="page-title">{title}</h1>
       <Image data={coverImage} />
-      <div>{documentToReactComponents(content.content)}</div>
+      <div className="subtle-text">
+        {documentToReactComponents(content.content)}
+      </div>
     </>
   );
 };

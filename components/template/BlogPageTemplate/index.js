@@ -14,7 +14,7 @@ const BlogTemplate = ({ content, posts }) => {
         <title>Matias Kumpulainen | {title}</title>
       </Head>
       <section>
-        <h1 id={styles.title}>{title}</h1>
+        <h1 className="page-title">{title}</h1>
         <div id={styles.content}>{documentToReactComponents(description)}</div>
       </section>
       <section>

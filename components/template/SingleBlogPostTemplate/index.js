@@ -4,11 +4,13 @@ import { renderRichText } from "./render";
 import Head from "next/head";
 import LoadingFallbackTemplate from "../LoadingFallbackTemplate";
 
+import styles from "../../../styles/SingleBlogPost.module.css";
+
 const SingleBlogPostTemplate = ({ content }) => {
   const { isFallback } = useRouter();
   if (isFallback) return <LoadingFallbackTemplate />;
 
-  const { title, description, published } = content;
+  const { title, published } = content;
 
   return (
     <>
@@ -16,12 +18,11 @@ const SingleBlogPostTemplate = ({ content }) => {
         <title>Matias Kumpulainen | {title}</title>
       </Head>
       <article>
-        <section>
-          <h1>{title}</h1>
-          <p>{description}</p>
+        <h1 className="page-title">{title}</h1>
+        <section id={styles.details}>
           <p>{new Date(published).toDateString()}</p>
         </section>
-        <section>{renderRichText(content.content)}</section>
+        <section id={styles.content}>{renderRichText(content.content)}</section>
       </article>
     </>
   );

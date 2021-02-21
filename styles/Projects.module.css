@@ -1,3 +1,11 @@
+#content {
+  color: var(--text-col-subtler);
+}
+
 #projects {
+  margin-top: 3rem;
   list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1rem;
 }

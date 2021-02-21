@@ -1,0 +1,8 @@
+.title {
+  color: var(--text-col);
+}
+
+.description {
+  margin-left: 1em;
+  color: var(--text-col-subtle);
+}

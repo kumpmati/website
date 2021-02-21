@@ -23,5 +23,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const project = await getProjectBySlug(params.slug);
+  if (project.items.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
   return transformProjectStaticProps({ project });
 }

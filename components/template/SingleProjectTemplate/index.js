@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import LoadingFallbackTemplate from "../LoadingFallbackTemplate";
 
+import styles from "../../../styles/SingleProject.module.css";
+
 const SingleProjectTemplate = ({ project }) => {
   const { isFallback } = useRouter();
   if (isFallback) return <LoadingFallbackTemplate />;
@@ -16,8 +18,10 @@ const SingleProjectTemplate = ({ project }) => {
         <title>Matias Kumpulainen | {title}</title>
       </Head>
       <article>
-        <h1>{title}</h1>
-        <div>{documentToReactComponents(description)}</div>
+        <h1 className="page-title">{title}</h1>
+        <div id={styles.description}>
+          {documentToReactComponents(description)}
+        </div>
         <a href={gitHub} target="_blank" referrerPolicy="no-referrer">
           GitHub
         </a>

@@ -1,8 +1,8 @@
 import { getEntriesOfType, getEntry } from "../../services/contentful/util";
 import { entries } from "../../services/contentful/entries";
 
-import BlogTemplate from "../../components/template/BlogTemplate";
-import { transformBlogSummaryData } from "../../components/template/BlogTemplate/transform";
+import BlogTemplate from "../../components/template/BlogPageTemplate";
+import { transformBlogSummaryData } from "../../components/template/BlogPageTemplate/transform";
 
 import DefaultLayout from "../../components/module/Body/Default";
 import DefaultHeader from "../../components/module/Header";
