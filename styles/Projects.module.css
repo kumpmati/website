@@ -3,9 +3,23 @@
 }
 
 #projects {
-  margin-top: 3rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 90vw;
+  max-width: var(--max-width);
+
+  padding: 0;
+  margin: 3rem 0;
   list-style-type: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
   gap: 1rem;
+}
+
+@media screen and (max-width: 25rem) {
+  #projects {
+    grid-template-columns: 1fr;
+  }
 }

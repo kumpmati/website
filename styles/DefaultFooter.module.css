@@ -1,0 +1,12 @@
+#footer {
+  border-top: 1px solid var(--text-col-subtler);
+  margin: 1rem auto;
+  padding: 1rem 0;
+  max-width: 60rem;
+  width: 80vw;
+}
+
+#links {
+  display: flex;
+  gap: 1.5rem;
+}

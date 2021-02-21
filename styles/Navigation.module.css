@@ -7,9 +7,13 @@
   align-items: center;
   justify-content: flex-end;
 
+  backdrop-filter: invert(1) saturate(0) contrast(2);
+  background-color: rgba(19, 35, 56, 0.9);
+
   position: sticky;
   top: 0;
-  background: linear-gradient(var(--bg-col), transparent);
+
+  z-index: 10;
 }
 
 #links {
@@ -31,13 +35,21 @@
 }
 
 .link > a {
+  color: var(--text-col);
+  text-decoration: none;
   height: 100%;
   display: block;
   border-bottom: 2px solid transparent;
+
+  transition: transform 200ms;
 }
 
 .link:hover > a {
   border-color: var(--text-col-subtle);
+}
+
+.link:active > a {
+  border-color: var(--text-col);
 }
 
 .link.active > a {
@@ -47,4 +59,5 @@
 .clicked > a {
   color: var(--text-col-subtler);
   border-color: var(--text-col-subtler) !important;
+  transform: scale(0.95);
 }

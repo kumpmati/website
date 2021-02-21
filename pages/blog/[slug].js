@@ -11,10 +11,12 @@ import {
 
 import DefaultLayout from "../../components/module/Body/Default";
 import DefaultHeader from "../../components/module/Header";
+import DefaultFooter from "../../components/module/Footer";
 
 export default BlogPostTemplate;
 BlogPostTemplate.Header = DefaultHeader;
 BlogPostTemplate.Layout = DefaultLayout;
+BlogPostTemplate.Footer = DefaultFooter;
 
 export async function getStaticPaths() {
   const posts = await getEntriesOfType("blogPost");

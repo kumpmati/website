@@ -7,7 +7,7 @@ const ProjectSummary = ({ project }) => {
   const { title, slug, description } = project.fields;
 
   return (
-    <li>
+    <li className={styles.container}>
       <Link href={"/projects/" + slug}>
         <a className={styles.title}>
           <h2>{title}</h2>

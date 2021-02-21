@@ -19,7 +19,7 @@ const Navigation = () => {
 
   return (
     <nav id={styles.nav}>
-      <ul id={styles.links}>
+      <ul id={styles.links} className="reveal delay-250ms">
         {links &&
           links.map(link => (
             <NavigationLink key={v4()} data={link} path={path} />

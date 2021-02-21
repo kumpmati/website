@@ -10,7 +10,7 @@ const SingleProjectTemplate = ({ project }) => {
   const { isFallback } = useRouter();
   if (isFallback) return <LoadingFallbackTemplate />;
 
-  const { title, description, gitHub } = project;
+  const { title, description, gitHub, url } = project;
 
   return (
     <>
@@ -22,9 +22,14 @@ const SingleProjectTemplate = ({ project }) => {
         <div id={styles.description}>
           {documentToReactComponents(description)}
         </div>
-        <a href={gitHub} target="_blank" referrerPolicy="no-referrer">
-          GitHub
-        </a>
+        <div id={styles.links}>
+          <a href={url} target="_blank" referrerPolicy="no-referrer">
+            Demo
+          </a>
+          <a href={gitHub} target="_blank" referrerPolicy="no-referrer">
+            GitHub
+          </a>
+        </div>
       </article>
     </>
   );

@@ -4,6 +4,7 @@ import "../styles/globals.css";
 const MyApp = ({ Component, pageProps }) => {
   const Header = Component.Header ? Component.Header : Fragment;
   const Layout = Component.Layout ? Component.Layout : Fragment;
+  const Footer = Component.Footer ? Component.Footer : Fragment;
 
   return (
     <>
@@ -11,6 +12,7 @@ const MyApp = ({ Component, pageProps }) => {
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <Footer />
     </>
   );
 };

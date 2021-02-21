@@ -1,5 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;700&display=swap");
 
+@keyframes reveal-from-bottom {
+  from {
+    opacity: 0;
+    clip-path: inset(50% -50% 50% -50%);
+    transform: translateY(15%) rotate(0deg);
+    transform-origin: left center;
+  }
+  to {
+    clip-path: inset(0 -50% 0 -50%);
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -9,16 +31,24 @@ body {
 
   --text-col: rgb(255, 255, 255);
   --text-col-subtle: rgb(174, 185, 200);
-  --text-col-subtler: rgb(91, 112, 139);
+  --text-col-subtler: rgb(125, 141, 161);
 
+  --link-col: rgb(137, 221, 255);
   --bg-col: rgb(43, 56, 74);
 
-  color: white;
+  --max-width: 95rem;
+
+  color: var(--text-col);
   background-color: var(--bg-col);
 }
 
+body {
+  margin: 0 auto;
+  max-width: var(--max-width);
+}
+
 a {
-  color: inherit;
+  color: var(--link-col);
   text-decoration: none;
 }
 
@@ -27,13 +57,30 @@ a {
 }
 
 .page-title {
-  font-size: 3.5em;
+  font-size: 3.75em;
   margin: 2rem 0;
 
   font-family: "Raleway";
-  font-weight: 100;
+  font-weight: 700;
 
   color: var(--text-col);
+}
+
+.reveal {
+  animation: reveal-from-bottom 1200ms both;
+}
+
+.fade-in {
+  opacity: 0;
+
+  animation: fade-in 500ms both;
+}
+
+.delay-500ms {
+  animation-delay: 500ms;
+}
+.delay-250ms {
+  animation-delay: 250ms;
 }
 
 .subtle-text {
