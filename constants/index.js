@@ -1,1 +1,1 @@
-const PAGE_TITLE = "MK";
+export const PAGE_TITLE = "MK";

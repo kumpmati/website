@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import { PAGE_TITLE } from "../../../constants";
 
 const PageNotFound = () => {
   return (
     <>
       <Head>
-        <title>Matias Kumpulainen | 404</title>
+        <title>{PAGE_TITLE} | 404</title>
       </Head>
       <h1 className="page-title reveal">404 😵</h1>
       <div className="fade-in delay-500ms">

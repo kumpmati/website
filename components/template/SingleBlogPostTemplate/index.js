@@ -5,6 +5,7 @@ import Head from "next/head";
 import LoadingFallbackTemplate from "../LoadingFallbackTemplate";
 
 import styles from "../../../styles/SingleBlogPost.module.css";
+import { PAGE_TITLE } from "../../../constants";
 
 const SingleBlogPostTemplate = ({ content }) => {
   const { isFallback } = useRouter();
@@ -15,7 +16,9 @@ const SingleBlogPostTemplate = ({ content }) => {
   return (
     <>
       <Head>
-        <title>Matias Kumpulainen | {title}</title>
+        <title>
+          {PAGE_TITLE} | {title}
+        </title>
       </Head>
       <article>
         <h1 className="page-title">{title}</h1>

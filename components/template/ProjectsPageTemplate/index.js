@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 import Head from "next/head";
 import ProjectSummary from "../../elements/ProjectSummary";
 import styles from "../../../styles/Projects.module.css";
+import { PAGE_TITLE } from "../../../constants";
 
 const ProductsPageTemplate = ({ content, projects }) => {
   const { title, content: body } = content;
@@ -11,7 +12,9 @@ const ProductsPageTemplate = ({ content, projects }) => {
   return (
     <>
       <Head>
-        <title>Matias Kumpulainen | {title}</title>
+        <title>
+          {PAGE_TITLE} | {title}
+        </title>
       </Head>
       <section>
         <h1 className="page-title">{title}</h1>
