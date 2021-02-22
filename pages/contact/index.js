@@ -4,7 +4,7 @@ import { transformContactPageProps } from "../../components/template/ContactPage
 import DefaultHeader from "../../components/module/Header";
 import DefaultLayout from "../../components/module/Body/Default";
 import { getEntry } from "../../services/contentful/util";
-import { ENTRIES } from "../../services/contentful/entries";
+import { ENTRIES } from "../../constants/entries";
 
 export default ContactPageTemplate;
 ContactPageTemplate.Header = DefaultHeader;

@@ -1,5 +1,5 @@
 import { getEntriesOfType, getEntry } from "../../services/contentful/util";
-import { ENTRIES } from "../../services/contentful/entries";
+import { ENTRIES } from "../../constants/entries";
 
 import ProjectsPageTemplate from "../../components/template/ProjectsPageTemplate";
 import { transformProjectsPageData } from "../../components/template/ProjectsPageTemplate/transform";

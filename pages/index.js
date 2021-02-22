@@ -1,5 +1,5 @@
 import { getEntry } from "../services/contentful/util";
-import { ENTRIES } from "../services/contentful/entries";
+import { ENTRIES } from "../constants/entries";
 
 import HomePageTemplate from "../components/template/HomePageTemplate";
 import { transformHomePageData } from "../components/template/HomePageTemplate/transform";

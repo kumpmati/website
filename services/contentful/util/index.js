@@ -1,5 +1,5 @@
 import { client } from "../index";
-import { ENTRIES } from "../entries";
+import { ENTRIES } from "../../../constants/entries";
 
 export const getEntry = async id => {
   try {
