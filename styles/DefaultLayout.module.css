@@ -1,7 +1,7 @@
 #main {
   margin: 0 auto;
-  max-width: 60rem;
-  width: var(--content-width);
+  max-width: var(--content-width);
+  width: 90vw;
 }
 
 @media all and (max-width: 35rem) {
