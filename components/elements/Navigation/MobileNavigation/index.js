@@ -16,6 +16,7 @@ const MobileNavigation = ({ links, path }) => {
       <div id={styles.mobileNav}>
         <div id={styles.topBar}>
           <button
+            aria-label="Toggle menu"
             id={styles.mobileButton}
             onClick={() => setVisible(v => !v)}
             className={visibleClassName}>

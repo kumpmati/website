@@ -26,10 +26,18 @@ const SingleProjectTemplate = ({ project }) => {
           {documentToReactComponents(description)}
         </div>
         <div id={styles.links}>
-          <a href={url} target="_blank" referrerPolicy="no-referrer">
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            referrerPolicy="no-referrer">
             Demo
           </a>
-          <a href={gitHub} target="_blank" referrerPolicy="no-referrer">
+          <a
+            href={gitHub}
+            target="_blank"
+            rel="noreferrer"
+            referrerPolicy="no-referrer">
             GitHub
           </a>
         </div>
