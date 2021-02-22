@@ -1,5 +1,5 @@
 import { getEntriesOfType, getEntry } from "../../services/contentful/util";
-import { entries } from "../../services/contentful/entries";
+import { ENTRIES } from "../../services/contentful/entries";
 
 import BlogTemplate from "../../components/template/BlogPageTemplate";
 import { transformBlogSummaryData } from "../../components/template/BlogPageTemplate/transform";
@@ -12,7 +12,7 @@ BlogTemplate.Header = DefaultHeader;
 BlogTemplate.Layout = DefaultLayout;
 
 export async function getServerSideProps(ctx) {
-  const content = await getEntry(entries.blogPage);
+  const content = await getEntry(ENTRIES.BLOG_PAGE);
   const posts = await getEntriesOfType("blogPost");
   return transformBlogSummaryData({ content, posts });
 }

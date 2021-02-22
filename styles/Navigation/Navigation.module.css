@@ -1,0 +1,15 @@
+#nav {
+  position: sticky;
+  top: 0;
+
+  margin: 0 auto;
+  padding: 0;
+
+  width: 100vw;
+  height: 4rem;
+
+  backdrop-filter: invert(1) saturate(0) contrast(2);
+  background-color: var(--nav-bg-col);
+
+  z-index: 10;
+}

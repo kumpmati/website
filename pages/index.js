@@ -1,5 +1,5 @@
 import { getEntry } from "../services/contentful/util";
-import { entries } from "../services/contentful/entries";
+import { ENTRIES } from "../services/contentful/entries";
 
 import HomePageTemplate from "../components/template/HomePageTemplate";
 import { transformHomePageData } from "../components/template/HomePageTemplate/transform";
@@ -12,6 +12,6 @@ HomePageTemplate.Header = DefaultHeader;
 HomePageTemplate.Layout = DefaultLayout;
 
 export async function getStaticProps(ctx) {
-  const content = await getEntry(entries.homePage);
+  const content = await getEntry(ENTRIES.HOME_PAGE);
   return transformHomePageData({ content });
 }

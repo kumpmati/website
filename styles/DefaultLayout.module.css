@@ -1,5 +1,12 @@
 #main {
   margin: 0 auto;
   max-width: 60rem;
-  width: 80vw;
+  width: var(--content-width);
+}
+
+@media all and (max-width: 35rem) {
+  #main {
+    width: auto;
+    margin: 0 1rem;
+  }
 }

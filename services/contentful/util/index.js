@@ -1,5 +1,5 @@
 import { client } from "../index";
-import { entries } from "../entries";
+import { ENTRIES } from "../entries";
 
 export const getEntry = async id => {
   try {
@@ -36,5 +36,5 @@ export const getProjectBySlug = async slug => {
 };
 
 export const getNavigation = async () => {
-  return await client.getEntry(entries.navigation);
+  return await client.getEntry(ENTRIES.NAVIGATION);
 };

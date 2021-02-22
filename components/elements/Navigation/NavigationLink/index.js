@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
-import styles from "../../../../styles/Navigation.module.css";
 
-const NavigationLink = ({ data, path }) => {
+const NavigationLink = ({ data, path, styles, onClick }) => {
   const { text, url, strict } = data.fields;
   const active = strict ? path === url : path.includes(url);
 
@@ -14,7 +13,13 @@ const NavigationLink = ({ data, path }) => {
         clicked ? styles.clicked : ""
       }`}>
       <Link href={url}>
-        <a onClick={() => setClicked(true)}>{text}</a>
+        <a
+          onClick={() => {
+            setClicked(true);
+            if (typeof onClick === "function") onClick(data);
+          }}>
+          {text}
+        </a>
       </Link>
     </li>
   );

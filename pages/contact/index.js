@@ -4,13 +4,13 @@ import { transformContactPageProps } from "../../components/template/ContactPage
 import DefaultHeader from "../../components/module/Header";
 import DefaultLayout from "../../components/module/Body/Default";
 import { getEntry } from "../../services/contentful/util";
-import { entries } from "../../services/contentful/entries";
+import { ENTRIES } from "../../services/contentful/entries";
 
 export default ContactPageTemplate;
 ContactPageTemplate.Header = DefaultHeader;
 ContactPageTemplate.Layout = DefaultLayout;
 
 export async function getStaticProps() {
-  const content = await getEntry(entries.contactPage);
+  const content = await getEntry(ENTRIES.CONTACT_PAGE);
   return transformContactPageProps({ content });
 }

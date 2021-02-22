@@ -34,17 +34,24 @@ body {
   --text-col-subtler: rgb(125, 141, 161);
 
   --link-col: rgb(137, 221, 255);
-  --bg-col: rgb(43, 56, 74);
+  --bg-col: rgb(28, 36, 47);
+  --bg-col-old: rgb(43, 56, 74);
+  --nav-bg-col: rgba(0, 11, 19, 0.889);
+  --nav-link-col: var(--text-col);
+  --mobile-nav-col: black; /* rgb(15, 19, 26) */
 
   --max-width: 95rem;
+  --content-width: 55rem;
+
+  --spring-animation: cubic-bezier(0.28, 1.64, 0.47, 0.96);
 
   color: var(--text-col);
-  background-color: var(--bg-col);
 }
 
 body {
   margin: 0 auto;
   max-width: var(--max-width);
+  background-color: var(--bg-col);
 }
 
 a {
@@ -54,6 +61,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 25rem) {
+  :root {
+    font-size: 0.8rem;
+  }
 }
 
 .page-title {
@@ -72,7 +85,6 @@ a {
 
 .fade-in {
   opacity: 0;
-
   animation: fade-in 500ms both;
 }
 

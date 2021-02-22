@@ -1,0 +1,202 @@
+@keyframes reveal-link {
+  from {
+    transform: translateY(100%);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    transform: translateY(0);
+    clip-path: inset(0);
+  }
+}
+
+@keyframes hide-link {
+  from {
+    transform: translateY(0);
+    clip-path: inset(0);
+  }
+  to {
+    transform: translateY(100%);
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#mobileNav {
+  position: relative;
+  margin: 0 auto;
+  max-width: var(--content-width);
+}
+
+#topBar {
+  height: 4rem;
+}
+
+#title {
+  position: relative;
+  left: 1rem;
+  top: 0.25rem;
+
+  width: 5rem;
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+
+  margin: 0;
+  line-height: 3.5rem;
+
+  color: var(--text-col);
+  cursor: default;
+  user-select: none;
+
+  animation: hide-link 500ms both;
+  transition: height 0ms 600ms;
+}
+
+#title.visible {
+  height: auto;
+  animation: reveal-link 600ms both;
+  transition: height 0ms 0ms;
+}
+
+#links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  margin: 0;
+
+  padding: 0 1rem;
+
+  height: 0;
+  overflow: hidden;
+
+  list-style-type: none;
+  transition: height 0ms 600ms, background-color 300ms 0ms, margin-top 300ms 0ms;
+}
+
+#links.visible {
+  height: 100vh;
+  margin-top: 8rem;
+  transition: height 0ms 0ms, background-color 300ms 0ms, margin-top 300ms 0ms;
+}
+
+#bg {
+  position: absolute;
+  display: block;
+  width: 100vw;
+  height: 0;
+  padding: 0;
+  margin: 0;
+
+  transition: height 0ms 600ms, background-color 300ms 100ms;
+}
+
+#bg.visible {
+  height: 100vh;
+
+  background-color: var(--mobile-nav-col);
+
+  transition: height 0ms 0ms, background-color 300ms 0ms;
+}
+
+#mobileButton {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  height: 3rem;
+  width: 3rem;
+  justify-content: center;
+
+  margin-left: auto;
+
+  color: var(--nav-link-col);
+  background-color: transparent;
+  border: 0;
+  outline: none;
+
+  z-index: 100;
+  cursor: pointer;
+
+  transition: transform 500ms, color 200ms;
+  transition-timing-function: var(--spring-animation);
+}
+
+#mobileButton:focus-visible {
+  outline: 2px solid var(--nav-link-col);
+}
+
+#mobileButton.visible {
+  transform: rotate(90deg);
+}
+
+.link {
+  font-size: 1.5rem;
+  font-family: "Raleway";
+  line-height: 3rem;
+  color: var(--nav-link-col);
+}
+
+.link > a {
+  color: inherit;
+}
+
+.link > a:hover {
+  color: var(--text-col-subtle);
+}
+
+.link.active {
+  color: var(--text-col-subtler);
+}
+
+/* 
+ * Link animations
+ */
+
+/* Links animation in */
+#links.visible > .link {
+  animation: reveal-link 600ms both;
+}
+
+/* Links animation out */
+#links > .link {
+  animation: fade-out 0ms both;
+}
+
+/* Delays when links animate in */
+#links.visible > .link:nth-child(1) {
+  animation-delay: 100ms;
+}
+#links.visible > .link:nth-child(2) {
+  animation-delay: 200ms;
+}
+#links.visible > .link:nth-child(3) {
+  animation-delay: 300ms;
+}
+#links.visible > .link:nth-child(4) {
+  animation-delay: 400ms;
+}
+
+/* Delays when links animate out */
+#links > .link:nth-child(1),
+#links > .link:nth-child(2),
+#links > .link:nth-child(3),
+#links > .link:nth-child(4) {
+  animation-delay: 0ms;
+}
+
+#links > .clicked {
+  background-color: red;
+  animation-delay: 1s;
+}

@@ -1,5 +1,5 @@
 import { getEntriesOfType, getEntry } from "../../services/contentful/util";
-import { entries } from "../../services/contentful/entries";
+import { ENTRIES } from "../../services/contentful/entries";
 
 import ProjectsPageTemplate from "../../components/template/ProjectsPageTemplate";
 import { transformProjectsPageData } from "../../components/template/ProjectsPageTemplate/transform";
@@ -12,7 +12,7 @@ ProjectsPageTemplate.Header = DefaultHeader;
 ProjectsPageTemplate.Layout = DefaultLayout;
 
 export async function getServerSideProps(ctx) {
-  const content = await getEntry(entries.projectsPage);
+  const content = await getEntry(ENTRIES.PROJECTS_PAGE);
   const projects = await getEntriesOfType("project");
   return transformProjectsPageData({ content, projects });
 }
