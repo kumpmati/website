@@ -1,5 +1,6 @@
 #main {
   margin: 0 auto;
+  margin-top: 8rem;
   max-width: var(--content-width);
   width: 90vw;
 }
@@ -8,5 +9,6 @@
   #main {
     width: auto;
     margin: 0 1rem;
+    margin-top: 8rem;
   }
 }
