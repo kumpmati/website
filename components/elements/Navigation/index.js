@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useMediaQuery } from "../../../util/hooks";
 import { getNavigation } from "../../../services/contentful/util";
 
 import MobileNavigation from "./MobileNavigation";
