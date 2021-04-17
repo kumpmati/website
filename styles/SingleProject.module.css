@@ -1,8 +1,0 @@
-#description {
-  color: var(--text-col-subtle);
-}
-
-#links {
-  display: flex;
-  gap: 1rem;
-}
