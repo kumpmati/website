@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { MarkdownPage } from "../../types/contentful";
+import { CTBlogPost, CTMarkdownContent } from "@type/content";
 import Header from "../Header/Header";
-import MarkdownContent from "../MarkdownContent/MarkdownContent";
+import MarkdownContent from "../MarkdownContent";
 import Page from "../Page/Page";
+import { Entry, EntryCollection } from "contentful";
 
 const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
   const { title, markdownContent } = markdown.fields;
@@ -20,6 +21,6 @@ const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
 export default BlogPage;
 
 export interface BlogPageProps {
-  markdown: MarkdownPage;
-  posts: any[];
+  markdown: Entry<CTMarkdownContent>;
+  posts: EntryCollection<CTBlogPost>;
 }

@@ -1,21 +1,23 @@
 import { FC } from "react";
 import Head from "next/head";
 
-const Page: FC<PropsI> = ({ title, children }) => {
+import css from "./Page.module.css";
+
+const Page: FC<PageProps> = ({ title, children }) => {
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
 
-      <main>{children}</main>
+      <main className={css.main}>{children}</main>
     </>
   );
 };
 
 export default Page;
 
-interface PropsI {
+export interface PageProps {
   title?: string;
   children?: any;
 }

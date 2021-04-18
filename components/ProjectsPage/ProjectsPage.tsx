@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { MarkdownPage } from "../../types/contentful";
-import Header from "../Header/Header";
-import MarkdownContent from "../MarkdownContent/MarkdownContent";
+import { CTMarkdownContent } from "@type/content";
+import Header from "@components/Header/Header";
+import MarkdownContent from "@components/MarkdownContent";
 import Page from "../Page/Page";
+import { Entry, EntryCollection } from "contentful";
 
 const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
   const { title, markdownContent } = markdown.fields;
@@ -20,6 +21,6 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
 export default ProjectsPage;
 
 export interface ProjectsPageProps {
-  markdown: MarkdownPage;
-  projects: any[];
+  markdown: Entry<CTMarkdownContent>;
+  projects: EntryCollection<any>;
 }
