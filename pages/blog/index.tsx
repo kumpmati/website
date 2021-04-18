@@ -20,8 +20,6 @@ const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
       </Header>
 
       <List collection={posts} delay={750} />
-      <List collection={posts} delay={750} />
-      <List collection={posts} delay={750} />
     </Page>
   );
 };
