@@ -14,20 +14,23 @@
 
 .logo:hover .logo__left {
   width: 5.25em;
+  transition-delay: 200ms;
 }
 
 .logo:hover .logo__right {
   width: 10em;
+  transition-delay: 200ms;
 }
 
 .text__hidden {
   opacity: 0;
   transition: opacity 500ms;
-  transition-delay: 200ms;
+  transition-delay: 0ms;
 }
 
 .logo:hover .text__hidden {
   opacity: 1;
+  transition-delay: 200ms;
 }
 
 .logo__left {
@@ -39,7 +42,7 @@
   height: 1.75em;
 
   transition: width 500ms;
-  transition-delay: 200ms;
+  transition-delay: 0ms;
 }
 
 .logo__right {
@@ -51,7 +54,7 @@
   height: 1.75em;
 
   transition: width 500ms;
-  transition-delay: 200ms;
+  transition-delay: 0ms;
 }
 
 .logo__left > * {
