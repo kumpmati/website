@@ -15,7 +15,7 @@ const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
   return (
     <Page title={"MK | " + title}>
       <Header delay={500}>
-        <h3>Blog</h3>
+        <h1>Blog</h1>
         <MarkdownContent content={markdownContent} />
       </Header>
 

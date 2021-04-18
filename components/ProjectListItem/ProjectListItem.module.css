@@ -9,8 +9,6 @@
   min-height: 3em;
 
   color: var(--txt-col-subtle);
-
-  border: 1px solid red;
 }
 
 .project__title {

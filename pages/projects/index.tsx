@@ -14,11 +14,11 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
   return (
     <Page title={`MK | ${title}`}>
       <Header delay={500}>
-        <h3>Projects</h3>
+        <h1>Projects</h1>
         <MarkdownContent content={markdownContent} />
       </Header>
 
-      <List grid delay={750} collection={projects} />
+      <List delay={750} collection={projects} />
     </Page>
   );
 };
