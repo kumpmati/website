@@ -1,6 +1,10 @@
 import { getEntry } from "../services/contentful/util";
 import { ENTRIES } from "../constants/entries";
-import HomePage from "../components/HomePage/HomePage";
+import Page from "@components/Page/Page";
+
+const HomePage = ({ content }) => {
+  return <Page title="MK" />;
+};
 
 export default HomePage;
 

@@ -1,36 +1,5 @@
-@keyframes divider-reveal {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes title-reveal {
-  from {
-    transform: translateY(100%);
-    clip-path: inset(0% -50% 100% -50%);
-  }
-  to {
-    transform: translateY(0%);
-    clip-path: inset(0 -50% 0% -50%);
-  }
-}
-
-@keyframes links-reveal {
-  from {
-    transform: translateY(-100%);
-    clip-path: inset(100% -50% 00% -50%);
-  }
-  to {
-    transform: translateY(0%);
-    clip-path: inset(0 -50% 0% -50%);
-  }
-}
-
 .nav {
-  width: 100%;
+  width: max-content;
 
   display: flex;
   flex-direction: column;
@@ -44,16 +13,9 @@
   display: block;
   width: 100%;
   border-bottom: 1px solid var(--txt-col-subtle);
-
-  transition: width 500ms;
-
-  animation: divider-reveal 500ms both;
-  animation-delay: 250ms;
 }
 
 .nav__title {
-  width: 100%;
-
   text-align: center;
 
   margin: 0;
@@ -62,17 +24,13 @@
   font-family: "Raleway";
   font-weight: 800;
 
-  animation: title-reveal 1000ms both;
-  animation-delay: 500ms;
+  cursor: pointer;
 }
 
 .nav__links {
   margin: 0;
   padding: 0.25em 0;
   display: flex;
-
-  animation: links-reveal 1000ms both;
-  animation-delay: 1000ms;
 }
 
 .nav__links > * + * {

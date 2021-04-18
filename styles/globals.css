@@ -10,6 +10,7 @@ body {
 
   --txt-col: white;
   --txt-col-subtle: gray;
+  --txt-col-subtler: rgb(100, 100, 100);
 
   --bg-col: black;
   background-color: var(--bg-col);

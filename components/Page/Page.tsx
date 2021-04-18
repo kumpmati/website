@@ -4,7 +4,7 @@ import Head from "next/head";
 import css from "./Page.module.css";
 import Navigation from "@components/Navigation";
 
-const Page: FC<PageProps> = ({ title, children }) => {
+const Page: FC<PageProps> = ({ title, children, noNav }) => {
   return (
     <>
       <Head>
@@ -12,7 +12,7 @@ const Page: FC<PageProps> = ({ title, children }) => {
       </Head>
 
       <main className={css.main}>
-        <Navigation />
+        {!noNav && <Navigation />}
         {children}
       </main>
     </>
@@ -24,5 +24,5 @@ export default Page;
 export interface PageProps {
   title?: string;
   children?: any;
-  navAtTop?: boolean;
+  noNav?: boolean;
 }
