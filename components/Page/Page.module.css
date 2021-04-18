@@ -18,6 +18,7 @@
 .main__content {
   min-width: 30em;
   max-height: 60vh;
+  color: var(--txt-col-subtle);
 }
 
 @media screen and (max-width: 40rem) {

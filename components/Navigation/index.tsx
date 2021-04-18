@@ -3,13 +3,13 @@ import NavigationLink from "../NavigationLink";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import { animated, useSpring, config } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import Logo from "@components/Logo";
 
 const links = [
   { text: "About", url: "/about" },
-  { text: "Blog", url: "/blog" },
   { text: "Projects", url: "/projects" },
+  { text: "Blog", url: "/blog" },
   { text: "Contact", url: "/contact" },
 ];
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { CTMarkdownContent } from "@type/content";
-import Header from "@components/Header/Header";
+import Section from "@components/Section/Section";
 import MarkdownContent from "@components/MarkdownContent";
 import Page from "@components/Page/Page";
 import { Entry, EntryCollection } from "contentful";
@@ -13,10 +13,10 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
 
   return (
     <Page title={`MK | ${title}`}>
-      <Header delay={500}>
+      <Section delay={500}>
         <h1>Projects</h1>
         <MarkdownContent content={markdownContent} />
-      </Header>
+      </Section>
 
       <List delay={750} collection={projects} />
     </Page>
