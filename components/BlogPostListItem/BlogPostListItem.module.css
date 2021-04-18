@@ -1,6 +1,12 @@
 .post {
   appearance: none;
 
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+
+  color: var(--txt-col-subtle);
+
   cursor: pointer;
 }
 
@@ -17,6 +23,5 @@
 
 .post__summary {
   margin: 0;
-  margin-left: 1ch;
-  color: var(--txt-col-subtle);
+  margin-left: 0ch;
 }

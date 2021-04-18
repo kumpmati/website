@@ -14,12 +14,12 @@ const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
 
   return (
     <Page title={"MK | " + title}>
-      <Header>
+      <Header delay={500}>
         <h3>Blog</h3>
         <MarkdownContent content={markdownContent} />
       </Header>
 
-      <List collection={posts} />
+      <List collection={posts} delay={750} />
     </Page>
   );
 };
