@@ -1,17 +1,23 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import Head from "next/head";
+import Navigation from "@components/Navigation";
+import ColorSchemeToggle from "@components/ColorSchemeToggle";
 
 import css from "./Page.module.css";
-import Navigation from "@components/Navigation";
+import { ThemeContext } from "@constants/colorSchemes";
 
 const Page: FC<PageProps> = ({ title, children, noNav }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
 
-      <div className={css.main}>
+      <ColorSchemeToggle />
+
+      <div style={theme} className={css.main}>
         {!noNav && <Navigation />}
         <div className={css.main__content}>{children}</div>
       </div>

@@ -14,12 +14,12 @@
 
 .logo:hover .logo__left {
   width: 5.25em;
-  transition-delay: 200ms;
+  transition-delay: 300ms;
 }
 
 .logo:hover .logo__right {
   width: 10em;
-  transition-delay: 200ms;
+  transition-delay: 300ms;
 }
 
 .text__hidden {
@@ -30,7 +30,7 @@
 
 .logo:hover .text__hidden {
   opacity: 1;
-  transition-delay: 200ms;
+  transition-delay: 300ms;
 }
 
 .logo__left {

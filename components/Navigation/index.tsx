@@ -51,7 +51,7 @@ export default Navigation;
 const dividerAnimation = {
   config: { mass: 1, friction: 15, tension: 100 },
   from: { width: "0em" },
-  to: { width: "15em" },
+  to: { width: "14.25em" },
   delay: 250,
 };
 

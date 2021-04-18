@@ -18,7 +18,7 @@
   font-size: 1em;
   margin: 0.25em 0;
 
-  color: white;
+  color: var(--txt-col);
 }
 
 .post__summary {

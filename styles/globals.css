@@ -23,3 +23,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    --txt-col: white;
+    --txt-col-subtle: gray;
+    --bg-col: black;
+  }
+}

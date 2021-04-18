@@ -19,7 +19,7 @@
 
   padding: 0.5em 0;
 
-  color: white;
+  color: var(--txt-col);
 }
 
 .project__title:hover {
