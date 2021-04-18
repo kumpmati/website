@@ -1,0 +1,63 @@
+.logo {
+  display: flex;
+
+  font-size: 1.25em;
+
+  font-family: "Raleway";
+  font-weight: 700;
+
+  color: var(--txt-col);
+}
+
+.logo:hover .logo__left {
+  width: 5.25em;
+}
+
+.logo:hover .logo__right {
+  width: 10em;
+}
+
+.text__hidden {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.logo:hover .text__hidden {
+  opacity: 1;
+}
+
+.logo__left {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+
+  width: 1.25em;
+  height: 1.75em;
+
+  transition: width 500ms;
+}
+
+.logo__right {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+
+  width: 1.25em;
+  height: 1.75em;
+
+  transition: width 500ms;
+}
+
+.logo__left > * {
+  margin: 0;
+  padding: 0;
+
+  position: absolute;
+  left: 0;
+}
+
+.logo__right > * {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}

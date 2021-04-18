@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import { animated, useSpring, config } from "react-spring";
+import Logo from "@components/Logo";
 
 const links = [
   { text: "About", url: "/about" },
@@ -22,9 +23,9 @@ const Navigation = () => {
   return (
     <nav className={css.nav}>
       <Link href="/">
-        <animated.h1 style={titleProps} className={css.nav__title}>
-          MK
-        </animated.h1>
+        <animated.div style={titleProps} className={css.nav__title}>
+          <Logo />
+        </animated.div>
       </Link>
 
       <animated.div
@@ -49,8 +50,8 @@ export default Navigation;
 
 const dividerAnimation = {
   config: { mass: 1, friction: 15, tension: 100 },
-  from: { width: "0%" },
-  to: { width: "100%" },
+  from: { width: "0em" },
+  to: { width: "15em" },
   delay: 250,
 };
 
