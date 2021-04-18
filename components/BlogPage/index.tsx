@@ -10,7 +10,7 @@ const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
   const { title, markdownContent } = markdown.fields;
 
   return (
-    <Page title={"MK | " + title} navAtTop>
+    <Page title={"MK | " + title}>
       <Header>
         <h3>Blog</h3>
         <MarkdownContent content={markdownContent} />

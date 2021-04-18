@@ -12,9 +12,10 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
   return (
     <Page title={`MK | ${title}`}>
       <Header>
-        <h1>Projects</h1>
+        <h3>Projects</h3>
+        <MarkdownContent content={markdownContent} />
       </Header>
-      <MarkdownContent content={markdownContent} />
+
       <List collection={projects} />
     </Page>
   );
