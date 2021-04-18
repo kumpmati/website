@@ -1,0 +1,13 @@
+.markdown {
+  line-height: 1.5;
+}
+
+.markdown pre {
+  padding: 1em 2em;
+  margin: 2em 0;
+
+  border-radius: 0.2em;
+
+  color: var(--code-txt-col);
+  background-color: var(--code-bg-col);
+}

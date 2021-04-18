@@ -13,6 +13,9 @@ body {
   --txt-col-subtler: rgb(100, 100, 100);
 
   --bg-col: black;
+
+  --code-txt-col: red;
+  --code-bg-col: rgba(255, 255, 255, 0.1);
   background-color: var(--bg-col);
 }
 
@@ -22,13 +25,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html,
-  body {
-    --txt-col: white;
-    --txt-col-subtle: gray;
-    --bg-col: black;
-  }
 }

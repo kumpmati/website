@@ -1,36 +1,41 @@
-.header {
+.section {
   position: sticky;
   top: 6.5em;
 
   margin: 2em 0;
   padding: 1em 0;
-  padding-bottom: 2em;
 
   z-index: 5;
 
   background-color: var(--bg-col);
 }
 
-.header p {
+.section--header {
+  z-index: 6;
+  padding-bottom: 3em;
+  background: linear-gradient(var(--bg-col) 70%, transparent);
+}
+
+.section p {
   color: var(--txt-col-subtle);
   margin: 0.25em 0;
 }
 
-.header h1,
-.header h2,
-.header h3 {
+.section h1,
+.section h2,
+.section h3 {
   color: var(--txt-col);
   margin: 0.5em 0;
 }
 
-.header a {
+.section a {
   color: var(--txt-col-subtle);
 }
 
-.header a:hover {
+.section a:hover {
   color: var(--txt-col);
 }
 
-.header ul > li {
+.section ul > li {
   margin: 0.5em 0;
 }

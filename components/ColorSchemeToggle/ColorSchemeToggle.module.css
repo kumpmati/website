@@ -8,11 +8,13 @@
 
   padding: 0.25em;
 
-  position: absolute;
+  position: fixed;
   top: 1em;
   right: 1em;
 
   transition: width 200ms;
+
+  z-index: 100;
 }
 
 .container:hover {
