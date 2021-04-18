@@ -11,3 +11,7 @@
 
   color: white;
 }
+
+.main__content {
+  min-width: 30em;
+}

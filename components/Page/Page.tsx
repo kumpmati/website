@@ -11,10 +11,10 @@ const Page: FC<PageProps> = ({ title, children, noNav }) => {
         <title>{title}</title>
       </Head>
 
-      <main className={css.main}>
+      <div className={css.main}>
         {!noNav && <Navigation />}
-        {children}
-      </main>
+        <div className={css.main__content}>{children}</div>
+      </div>
     </>
   );
 };
