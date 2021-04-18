@@ -18,5 +18,5 @@ export type CTProject = {
   slug: string;
   url?: string;
   gitHub?: string;
-  content?: any;
+  content?: Entry<CTMarkdownContent | CTBlogPost>;
 };

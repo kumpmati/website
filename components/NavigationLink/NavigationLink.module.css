@@ -1,0 +1,11 @@
+.link {
+  color: var(--txt-col-subtle);
+}
+
+.link--active {
+  color: var(--txt-col);
+}
+
+.link:hover {
+  color: var(--txt-col);
+}
