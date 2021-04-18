@@ -1,4 +1,4 @@
-import Header from "@components/Header/Header";
+import Section from "@components/Section/Section";
 import NavigationLink from "@components/NavigationLink";
 import Page from "@components/Page/Page";
 import Link from "next/link";
@@ -6,10 +6,10 @@ import Link from "next/link";
 const NotFound = () => {
   return (
     <Page title="MK | 404" noNav>
-      <Header>
+      <Section>
         <h3>404</h3>
         <p>Page not found</p>
-      </Header>
+      </Section>
 
       <NavigationLink text="Home" url="/" />
     </Page>

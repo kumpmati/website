@@ -1,10 +1,10 @@
-import Header from "@components/Header/Header";
+import Section from "@components/Section/Section";
 import Page from "@components/Page/Page";
 
 const ContactPage = () => {
   return (
     <Page title="MK | Contact">
-      <Header delay={500}>
+      <Section delay={500}>
         <h1>Contact me</h1>
 
         <ul>
@@ -27,7 +27,7 @@ const ContactPage = () => {
             </a>
           </li>
         </ul>
-      </Header>
+      </Section>
     </Page>
   );
 };

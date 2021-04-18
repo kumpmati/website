@@ -3,7 +3,7 @@ import { getEntriesOfType, getEntry } from "@services/contentful/util";
 
 import { FC } from "react";
 import { CTBlogPost, CTMarkdownContent } from "@type/content";
-import Header from "@components/Header/Header";
+import Section from "@components/Section/Section";
 import MarkdownContent from "@components/MarkdownContent";
 import Page from "@components/Page/Page";
 import { Entry, EntryCollection } from "contentful";
@@ -14,10 +14,10 @@ const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
 
   return (
     <Page title={"MK | " + title}>
-      <Header delay={500}>
+      <Section delay={500}>
         <h1>Blog</h1>
         <MarkdownContent content={markdownContent} />
-      </Header>
+      </Section>
 
       <List collection={posts} delay={750} />
     </Page>
