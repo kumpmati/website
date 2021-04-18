@@ -1,10 +1,20 @@
 .nav {
+  position: sticky;
+  top: 0;
+
   margin: 0 auto;
-  width: max-content;
+  padding: 0.5em 0;
+  padding-bottom: 2.5em;
+
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  z-index: 10;
+
+  background: linear-gradient(black 4.75em, transparent);
 }
 
 .nav__divider {
@@ -36,4 +46,10 @@
 
 .nav__links > * + * {
   margin-left: 0.75em;
+}
+
+@media screen and (max-width: 20rem) {
+  .nav__title {
+    font-size: 0.85em;
+  }
 }
