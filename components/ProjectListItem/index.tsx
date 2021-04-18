@@ -14,14 +14,14 @@ const ProjectListItem: FC<ProjectListItemProps> = ({ entry }) => {
         <a className={css.project__title}>{title}</a>
       </Link>
       <div className={css.project__links}>
-        <a href={url} target="noreferrer" className={css.link}>
-          Demo
-        </a>
         {gitHub && (
           <a href={gitHub} target="noreferrer" className={css.link}>
             GitHub
           </a>
         )}
+        <a href={url} target="noreferrer" className={css.link}>
+          Demo
+        </a>
       </div>
     </div>
   );

@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+
+  overflow: hidden;
+
+  width: 3.25em;
+
+  padding: 0.25em;
+
+  position: absolute;
+  top: 1em;
+  right: 1em;
+
+  transition: width 200ms;
+}
+
+.container:hover {
+  width: 6.25em;
+}
+
+.container .reset {
+  visibility: hidden;
+  transition: visibility 0ms;
+  transition-delay: 200ms;
+}
+
+.container:hover .reset {
+  visibility: visible;
+  transition-delay: 0ms;
+}
+
+.reset,
+.toggle {
+  appearance: none;
+
+  background-color: transparent;
+  border: 0;
+
+  outline: 0;
+
+  padding: 0.25em 0.75em;
+
+  cursor: pointer;
+
+  border-radius: 1.5em;
+
+  color: var(--txt-col-subtle);
+}
+
+.reset:hover,
+.toggle:hover {
+  color: var(--txt-col);
+}
+
+.reset:focus-visible,
+.toggle:focus-visible {
+  box-shadow: 0 0 0 2px var(--txt-col-subtle);
+  color: var(--txt-col);
+}

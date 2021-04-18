@@ -6,13 +6,14 @@
   justify-content: center;
 
   width: 100%;
-  height: 90vh;
-  max-height: 100vh;
+  height: 100vh;
 
   margin: 0;
   padding: 0;
 
-  color: white;
+  color: var(--txt-col);
+
+  background-color: var(--bg-col);
 }
 
 .main__content {
