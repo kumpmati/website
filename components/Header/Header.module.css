@@ -1,5 +1,14 @@
 .header {
+  position: sticky;
+  top: 6.5em;
+
   margin: 2em 0;
+  padding: 1em 0;
+  padding-bottom: 2em;
+
+  z-index: 5;
+
+  background: linear-gradient(black 60%, transparent);
 }
 
 .header p {
