@@ -22,3 +22,11 @@
   color: var(--txt-col);
   margin: 0.5em 0;
 }
+
+.header a {
+  color: var(--txt-col-subtle);
+}
+
+.header a:hover {
+  color: var(--txt-col);
+}

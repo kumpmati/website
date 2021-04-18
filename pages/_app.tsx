@@ -5,10 +5,6 @@ import Head from "next/head";
 import "../styles/globals.css";
 
 const MyApp = ({ Component, pageProps }) => {
-  const Header = Component.Header ? Component.Header : Fragment;
-  const Layout = Component.Layout ? Component.Layout : Fragment;
-  const Footer = Component.Footer ? Component.Footer : Fragment;
-
   return (
     <>
       <Head>
@@ -20,11 +16,7 @@ const MyApp = ({ Component, pageProps }) => {
         <meta name="keywords" content="Next.js, Contentful, Blog, Website" />
         <meta name="author" content="Matias Kumpulainen" />
       </Head>
-      <Header />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-      <Footer />
+      <Component {...pageProps} />
     </>
   );
 };
