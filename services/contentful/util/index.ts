@@ -1,3 +1,4 @@
+import { CONTENTFUL_QUERY_DEPTH } from "@constants/contentful";
 import { client } from "@services/contentful";
 import { Entry, EntryCollection } from "contentful";
 
@@ -13,7 +14,10 @@ export const getEntries = async <T>(
   query: any
 ): Promise<EntryCollection<T>> => {
   try {
-    return await client.getEntries(query);
+    return await client.getEntries({
+      ...query,
+      include: CONTENTFUL_QUERY_DEPTH,
+    });
   } catch (error) {
     return null;
   }

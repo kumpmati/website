@@ -1,0 +1,13 @@
+.header {
+  margin: 1em 0;
+}
+
+.header p {
+  color: var(--txt-col-subtle);
+}
+
+.header h1,
+.header h2,
+.header h3 {
+  color: var(--txt-col);
+}

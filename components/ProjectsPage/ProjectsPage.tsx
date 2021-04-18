@@ -4,6 +4,7 @@ import Header from "@components/Header/Header";
 import MarkdownContent from "@components/MarkdownContent";
 import Page from "../Page/Page";
 import { Entry, EntryCollection } from "contentful";
+import List from "@components/List";
 
 const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
   const { title, markdownContent } = markdown.fields;
@@ -14,6 +15,7 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
         <h1>Projects</h1>
       </Header>
       <MarkdownContent content={markdownContent} />
+      <List collection={projects} />
     </Page>
   );
 };
