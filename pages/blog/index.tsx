@@ -1,8 +1,35 @@
-import BlogPage, { BlogPageProps } from "@components/BlogPage";
 import { ENTRIES } from "@constants/entries";
 import { getEntriesOfType, getEntry } from "@services/contentful/util";
 
+import { FC } from "react";
+import { CTBlogPost, CTMarkdownContent } from "@type/content";
+import Header from "@components/Header/Header";
+import MarkdownContent from "@components/MarkdownContent";
+import Page from "@components/Page/Page";
+import { Entry, EntryCollection } from "contentful";
+import List from "@components/List";
+
+const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
+  const { title, markdownContent } = markdown.fields;
+
+  return (
+    <Page title={"MK | " + title}>
+      <Header>
+        <h3>Blog</h3>
+        <MarkdownContent content={markdownContent} />
+      </Header>
+
+      <List collection={posts} />
+    </Page>
+  );
+};
+
 export default BlogPage;
+
+export interface BlogPageProps {
+  markdown: Entry<CTMarkdownContent>;
+  posts: EntryCollection<CTBlogPost>;
+}
 
 export async function getStaticProps() {
   const props: BlogPageProps = {
