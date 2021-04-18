@@ -5,3 +5,13 @@
   padding: 0;
   list-style-type: none;
 }
+
+.list > * {
+  margin: 0.5em 0;
+}
+
+.list--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
+  gap: 2em;
+}
