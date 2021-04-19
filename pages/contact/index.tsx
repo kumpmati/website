@@ -12,8 +12,6 @@ const ContactPage = () => {
             <a href="mailto:hello@mvkump.dev">hello@mvkump.dev</a>
           </li>
 
-          <br></br>
-
           <li>
             <a
               target="noreferrer"
