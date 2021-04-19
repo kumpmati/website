@@ -8,12 +8,19 @@ import { FC } from "react";
 
 const SingleBlogPostPage: FC<SingleBlogPostPageProps> = ({ entry }) => {
   const { title, content, summary } = entry.fields;
+  const createdDate = new Date(entry.sys.createdAt).toLocaleDateString();
 
   return (
     <Page title={`MK | ${title}`}>
-      <Section delay={500} isHeader>
-        <h1>{title}</h1>
-        <p>{summary}</p>
+      <Section delay={500} columns={2}>
+        <div>
+          <h1>{title}</h1>
+          <p>{summary}</p>
+        </div>
+
+        <div style={{ marginLeft: "auto" }}>
+          <p>{createdDate}</p>
+        </div>
       </Section>
 
       <Section delay={750}>

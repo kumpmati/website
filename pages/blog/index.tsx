@@ -39,5 +39,6 @@ export async function getStaticProps() {
 
   return {
     props,
+    revalidate: 10 * 60, // refresh list every 10 minutes
   };
 }
