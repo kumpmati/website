@@ -12,3 +12,11 @@
   color: var(--code-txt-col);
   background-color: var(--code-bg-col);
 }
+
+.markdown a {
+  color: var(--link-col);
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}

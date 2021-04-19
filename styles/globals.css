@@ -11,10 +11,11 @@ body {
   --txt-col: white;
   --txt-col-subtle: gray;
   --txt-col-subtler: rgb(100, 100, 100);
+  --link-col: var(--txt-col);
 
   --bg-col: black;
 
-  --code-txt-col: red;
+  --code-txt-col: var(--txt-col);
   --code-bg-col: rgba(255, 255, 255, 0.1);
   background-color: var(--bg-col);
 }
