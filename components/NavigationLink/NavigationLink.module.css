@@ -1,5 +1,7 @@
 .link {
   color: var(--txt-col-subtle);
+
+  transition: padding 200ms;
 }
 
 .link--active {
@@ -8,4 +10,10 @@
 
 .link:hover {
   color: var(--txt-col);
+}
+
+@media screen and (max-width: 35rem) {
+  .link {
+    padding: 0.35em 0.2em;
+  }
 }

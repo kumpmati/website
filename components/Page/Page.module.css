@@ -29,3 +29,9 @@
     padding: 0 1.25em;
   }
 }
+
+@media screen and (max-width: 30rem) {
+  .main__content {
+    padding: 0 0.5em;
+  }
+}
