@@ -6,6 +6,7 @@ import "../styles/globals.css";
 
 const MyApp = ({ Component, pageProps }) => {
   const colorScheme = useColorScheme();
+  const { dark } = colorScheme;
 
   return (
     <ThemeContext.Provider value={colorScheme}>
@@ -17,6 +18,10 @@ const MyApp = ({ Component, pageProps }) => {
         />
         <meta name="keywords" content="Next.js, Contentful, Blog, Website" />
         <meta name="author" content="Matias Kumpulainen" />
+        <link
+          rel="icon"
+          href={dark ? "/favicon-dark.png" : "/favicon-light.png"}
+        />
       </Head>
 
       <Component {...pageProps} />

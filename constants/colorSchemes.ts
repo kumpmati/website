@@ -3,6 +3,7 @@ import { createContext } from "react";
 export const ThemeContext = createContext<{
   theme: any;
   current: "dark" | "light" | "auto";
+  dark: boolean;
   setColorScheme: (value: "dark" | "light" | "auto") => any;
 } | null>(null);
 

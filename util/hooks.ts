@@ -47,5 +47,5 @@ export const useColorScheme = () => {
     localStorage.setItem("color-scheme", value);
   };
 
-  return { theme, setColorScheme, current };
+  return { theme, setColorScheme, current, dark };
 };
