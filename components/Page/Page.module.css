@@ -19,6 +19,7 @@
 .main__content {
   min-width: 30em;
   max-width: 40em;
+  margin-bottom: 7em;
   color: var(--txt-col-subtle);
 }
 
