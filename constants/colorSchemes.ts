@@ -9,7 +9,7 @@ export const ThemeContext = createContext<{
 
 export const DARK_THEME = {
   "--txt-col": "white",
-  "--txt-col-subtle": "gray",
+  "--txt-col-subtle": "rgb(140,140,140)",
   "--link-col": "white",
   "--bg-col": "black",
   "--code-txt-col": "rgb(170,170,170)",

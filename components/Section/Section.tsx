@@ -3,7 +3,7 @@ import { animated, useSpring } from "react-spring";
 
 import css from "./Section.module.css";
 
-const Section: FC<HeaderProps> = (props) => {
+const Section: FC<SectionProps> = (props) => {
   const { children, delay, sticky, columns, className } = props;
 
   const springProps = useSpring({
@@ -31,7 +31,7 @@ const Section: FC<HeaderProps> = (props) => {
 
 export default Section;
 
-export interface HeaderProps {
+export interface SectionProps {
   children?: any;
   delay?: number;
   sticky?: boolean;

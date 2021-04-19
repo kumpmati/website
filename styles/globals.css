@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Ubuntu+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Ubuntu+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap");
 
 html,
 body {
@@ -12,6 +12,8 @@ body {
   --txt-col-subtle: gray;
   --txt-col-subtler: rgb(100, 100, 100);
   --link-col: var(--txt-col);
+
+  --blogtext-col: rgb(163, 163, 163);
 
   --bg-col: black;
 
