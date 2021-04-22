@@ -41,16 +41,19 @@
 }
 
 .nav__links {
-  margin: 0;
+  margin: 0 auto;
   padding: 0.25em 0;
   display: flex;
+  justify-content: space-between;
+
+  width: 30ch;
 }
 
 .nav__links > * + * {
   margin-left: 0.75em;
 }
 
-@media screen and (max-width: 20rem) {
+@media screen and (max-width: 25rem) {
   .nav__title {
     font-size: 0.85em;
   }

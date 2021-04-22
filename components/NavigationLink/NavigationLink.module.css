@@ -11,9 +11,3 @@
 .link:hover {
   color: var(--txt-col);
 }
-
-@media screen and (max-width: 35rem) {
-  .link {
-    padding: 0.35em 0.2em;
-  }
-}

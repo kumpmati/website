@@ -1,4 +1,6 @@
 .app {
+  font-size: 1.125em;
+
   display: flex;
   flex-direction: column;
 

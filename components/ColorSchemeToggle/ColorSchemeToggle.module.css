@@ -1,35 +1,31 @@
 .container {
   display: flex;
   justify-content: flex-end;
-
   overflow: hidden;
 
-  width: 3.25em;
-
-  padding: 0.25em;
+  border-radius: 1em;
+  padding: 0.25em 0.35em;
 
   position: fixed;
   top: 1em;
   right: 1em;
-
-  transition: width 200ms;
+  width: 3.25em;
 
   z-index: 100;
 }
 
 .container:hover {
-  width: 6.25em;
+  width: auto;
+  background-color: var(--overlay);
 }
 
 .container .reset {
   visibility: hidden;
   transition: visibility 0ms;
-  transition-delay: 200ms;
 }
 
 .container:hover .reset {
   visibility: visible;
-  transition-delay: 0ms;
 }
 
 .reset,
