@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { FC } from "react";
 
 import css from "./Logo.module.css";
 
-const Logo = () => {
+const Logo: FC<PropsI> = ({ open }) => {
   return (
     <Link href="/">
-      <a className={css.logo}>
+      <a className={`${css.logo} ${open ? css["logo--open"] : ""}`}>
         <div className={css.logo__left}>
           <h1>M</h1>
           <h1 className={css.text__hidden}>Matias</h1>
@@ -20,3 +21,7 @@ const Logo = () => {
 };
 
 export default Logo;
+
+interface PropsI {
+  open?: boolean;
+}
