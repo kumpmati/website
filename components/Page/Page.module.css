@@ -3,7 +3,7 @@
   min-width: 30em;
   max-width: 40em;
 
-  min-height: calc(100vh - 8.5em);
+  min-height: calc(100vh - 9em);
 
   color: var(--txt-col-subtle);
 }
