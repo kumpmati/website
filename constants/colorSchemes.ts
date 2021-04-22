@@ -19,7 +19,7 @@ export const DARK_THEME = {
 
 export const LIGHT_THEME = {
   "--txt-col": "black",
-  "--txt-col-subtle": "gray",
+  "--txt-col-subtle": "rgb(110,110,110)",
   "--link-col": "black",
   "--bg-col": "white",
   "--overlay": "rgba(0,0,0,0.1)",
