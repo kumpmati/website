@@ -12,16 +12,16 @@
   color: var(--txt-col);
 }
 
-.logo:hover .logo__left,
+/*.logo:hover .logo__left,*/
 .logo--open .logo__left {
   width: 5.25em;
-  transition-delay: 100ms;
+  transition-delay: 0ms;
 }
 
-.logo:hover .logo__right,
+/*.logo:hover .logo__right,*/
 .logo--open .logo__right {
   width: 10em;
-  transition-delay: 100ms;
+  transition-delay: 0ms;
 }
 
 .text__hidden {
@@ -30,10 +30,10 @@
   transition-delay: 0ms;
 }
 
-.logo:hover .text__hidden,
+/*.logo:hover .text__hidden,*/
 .logo--open .text__hidden {
   opacity: 1;
-  transition-delay: 100ms;
+  transition-delay: 0ms;
 }
 
 .logo__left {

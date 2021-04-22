@@ -1,12 +1,23 @@
 import Link from "next/link";
-import { FC } from "react";
+import { useRouter } from "next/router";
+import { FC, useEffect, useState } from "react";
 
 import css from "./Logo.module.css";
 
-const Logo: FC<PropsI> = ({ open }) => {
+const Logo: FC = () => {
+  const { asPath } = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const atHomePage = asPath === "/";
+
+  // close when navigating to other pages than home page
+  useEffect(() => !atHomePage && setIsOpen(false), [asPath]);
+
   return (
     <Link href="/">
-      <a className={`${css.logo} ${open ? css["logo--open"] : ""}`}>
+      <a
+        onClick={() => setIsOpen((o) => atHomePage && !o)}
+        className={`${css.logo} ${isOpen ? css["logo--open"] : ""}`}>
         <div className={css.logo__left}>
           <h1>M</h1>
           <h1 className={css.text__hidden}>Matias</h1>
@@ -21,7 +32,3 @@ const Logo: FC<PropsI> = ({ open }) => {
 };
 
 export default Logo;
-
-interface PropsI {
-  open?: boolean;
-}
