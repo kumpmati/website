@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { animated, useSpring } from "react-spring";
 import Logo from "@components/Logo";
+import { motion } from "framer-motion";
 
 const links = [
   { text: "About", url: "/about" },
@@ -21,7 +22,10 @@ const Navigation = () => {
   const linksProps = useSpring(linksAnimation);
 
   return (
-    <nav className={css.nav}>
+    <motion.nav
+      transition={{ delay: 0.05, type: "tween", duration: 0.5 }}
+      className={css.nav}
+      layoutId="nav">
       <Link href="/">
         <animated.div style={titleProps} className={css.nav__title}>
           <Logo />
@@ -42,7 +46,7 @@ const Navigation = () => {
           />
         ))}
       </animated.ul>
-    </nav>
+    </motion.nav>
   );
 };
 

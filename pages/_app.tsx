@@ -1,3 +1,4 @@
+import App from "@components/App/App";
 import { ThemeContext } from "@constants/colorSchemes";
 import Head from "next/head";
 import { useColorScheme } from "util/hooks";
@@ -24,7 +25,9 @@ const MyApp = ({ Component, pageProps }) => {
         />
       </Head>
 
-      <Component {...pageProps} />
+      <App>
+        <Component {...pageProps} />
+      </App>
     </ThemeContext.Provider>
   );
 };
