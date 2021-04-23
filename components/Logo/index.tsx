@@ -16,7 +16,6 @@ const Logo: FC = () => {
   return (
     <Link href="/">
       <a
-        onMouseLeave={() => setIsOpen(false)}
         onClick={() => setIsOpen((o) => atHomePage && !o)}
         className={`${css.logo} ${isOpen ? css["logo--open"] : ""} ${
           atHomePage ? css["logo--openable"] : ""
