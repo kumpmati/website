@@ -12,7 +12,7 @@ const SingleBlogPostPage: FC<SingleBlogPostPageProps> = ({ entry }) => {
 
   return (
     <Page title={`MK | ${title}`}>
-      <Section delay={500} columns={2}>
+      <Section delay={500} style={{ display: "flex", alignItems: "center" }}>
         <div>
           <h1>{title}</h1>
           <p>{summary}</p>
