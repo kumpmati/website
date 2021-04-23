@@ -1,10 +1,17 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import { animated, useSpring } from "react-spring";
 
 import css from "./Section.module.css";
 
 const Section: FC<SectionProps> = (props) => {
-  const { children, delay, sticky, columns, className } = props;
+  const {
+    children,
+    delay,
+    sticky,
+    columns,
+    className,
+    style: customStyle,
+  } = props;
 
   const springProps = useSpring({
     config: { mass: 1, friction: 10, tension: 100 },
@@ -20,6 +27,7 @@ const Section: FC<SectionProps> = (props) => {
   const style = {
     ...springProps,
     gridTemplateColumns: `repeat(${columns ?? 0}, 1fr)`,
+    ...customStyle,
   };
 
   return (
@@ -37,4 +45,5 @@ export interface SectionProps {
   sticky?: boolean;
   columns?: number;
   className?: string;
+  style?: CSSProperties;
 }
