@@ -1,4 +1,5 @@
 import { DARK_THEME, LIGHT_THEME } from "@constants/colorSchemes";
+import { useRouter } from "next/router";
 import { useEffect, useLayoutEffect, useState } from "react";
 
 /**
@@ -48,4 +49,17 @@ export const useColorScheme = () => {
   };
 
   return { theme, setColorScheme, current, dark };
+};
+
+export const useLoadingState = () => {
+  const [loading, setLoading] = useState(true);
+  const { events } = useRouter();
+
+  useIsomorphicLayoutEffect(() => setLoading(false), []);
+
+  events?.on("routeChangeStart", () => setLoading(true));
+  events?.on("routeChangeComplete", () => setLoading(false));
+  events?.on("routeChangeError", () => setLoading(false));
+
+  return { loading };
 };
