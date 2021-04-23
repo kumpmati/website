@@ -1,12 +1,22 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { useLoadingState } from "util/hooks";
 
 import css from "./NavigationLink.module.css";
 
 const NavigationLink: FC<NavigationLinkProps> = ({ text, url, active }) => {
+  const { loading } = useLoadingState();
+  const [clicked, setClicked] = useState(false);
+
+  useEffect(() => clicked && setClicked(loading), [loading]);
+
   return (
     <Link href={url}>
-      <a className={`${css.link} ${active ? css["link--active"] : ""}`}>
+      <a
+        onClick={() => setClicked(true)}
+        className={`${css.link} ${active ? css["link--active"] : ""} ${
+          clicked ? css["link--loading"] : ""
+        }`}>
         {text}
       </a>
     </Link>

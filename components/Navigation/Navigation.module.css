@@ -1,3 +1,18 @@
+@keyframes divider-loading {
+  0% {
+    clip-path: inset(-50% 0% -50% 0%);
+  }
+  25% {
+    clip-path: inset(-50% 100% -50% 0%);
+  }
+  50% {
+    clip-path: inset(-50% 0% -50% 100%);
+  }
+  100% {
+    clip-path: inset(-50% 0% -50% 0%);
+  }
+}
+
 .nav {
   position: sticky;
   top: 0;
@@ -26,6 +41,13 @@
   display: block;
 
   border-bottom: 1px solid var(--txt-col-subtle);
+  animation-iteration-count: 1;
+  animation-play-state: paused;
+}
+
+.nav__divider--loading {
+  animation: divider-loading 1000ms infinite;
+  animation-fill-mode: forwards;
 }
 
 .nav__title {

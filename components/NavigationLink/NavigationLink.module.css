@@ -1,7 +1,5 @@
 .link {
   color: var(--txt-col-subtle);
-
-  transition: padding 200ms;
 }
 
 .link--active {
@@ -10,4 +8,9 @@
 
 .link:hover {
   color: var(--txt-col);
+}
+
+.link--loading,
+.link--loading:hover {
+  color: var(--txt-col-subtler);
 }

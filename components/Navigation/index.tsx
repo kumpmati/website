@@ -6,6 +6,7 @@ import Link from "next/link";
 import { animated, useSpring } from "react-spring";
 import Logo from "@components/Logo";
 import { motion } from "framer-motion";
+import { useLoadingState } from "util/hooks";
 
 const links = [
   { text: "About", url: "/about" },
@@ -16,6 +17,7 @@ const links = [
 
 const Navigation = () => {
   const { asPath } = useRouter();
+  const { loading } = useLoadingState();
 
   const dividerProps = useSpring(dividerAnimation);
   const titleProps = useSpring(titleAnimation);
@@ -34,13 +36,16 @@ const Navigation = () => {
 
       <animated.div
         style={dividerProps}
-        className={css.nav__divider}></animated.div>
+        className={`${css.nav__divider} ${
+          loading ? css["nav__divider--loading"] : ""
+        }`}
+      />
 
       <animated.ul style={linksProps} className={css.nav__links}>
         {links.map((link) => (
           <NavigationLink
             key={link.url}
-            active={asPath === link.url}
+            active={asPath.startsWith(link.url)}
             text={link.text}
             url={link.url}
           />

@@ -12,7 +12,8 @@ const App = ({ children }) => {
     <AnimateSharedLayout>
       <div style={theme} className={css.app}>
         <Navigation />
-        <motion.div>{children}</motion.div>
+
+        <motion.div style={{ position: "relative" }}>{children}</motion.div>
       </div>
     </AnimateSharedLayout>
   );
