@@ -16,7 +16,7 @@ body {
   --blogtext-col: rgb(163, 163, 163);
 
   --bg-col: black;
-  --overlay: rgba(255, 255, 255, 0.1);
+  --overlay: rgba(255, 255, 255, 0.05);
 
   --code-txt-col: var(--txt-col);
   --code-bg-col: rgba(255, 255, 255, 0.1);
