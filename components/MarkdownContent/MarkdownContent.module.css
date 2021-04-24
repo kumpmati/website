@@ -29,6 +29,12 @@
   text-decoration: underline;
 }
 
+.header__link {
+  position: relative;
+  visibility: hidden;
+  top: -6em;
+}
+
 .snippet {
   white-space: nowrap;
   padding: 0.25em;
