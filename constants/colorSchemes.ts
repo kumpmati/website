@@ -12,7 +12,7 @@ export const DARK_THEME = {
   "--txt-col-subtle": "rgb(160,160,160)",
   "--link-col": "white",
   "--bg-col": "black",
-  "--overlay": "rgba(255,255,255,0.05)",
+  "--overlay": "rgba(255,255,255,0.08)",
   "--code-txt-col": "rgb(170,170,170)",
   "--code-bg-col": "rgba(255,255,255,0.1)",
 };
