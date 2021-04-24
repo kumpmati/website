@@ -9,12 +9,16 @@
 
 .markdown img {
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
 
   width: 90%;
+  left: 1em;
   max-width: 32em;
   margin: 1em 0;
+
+  padding: 1em;
+
+  border-radius: 0.2em;
+  border-left: 1px dotted var(--blogtext-col);
 }
 
 .markdown a {
@@ -30,4 +34,10 @@
   padding: 0.25em;
   border-radius: 0.2em;
   background-color: var(--overlay);
+}
+
+@media screen and (max-width: 30rem) {
+  .snippet {
+    white-space: normal;
+  }
 }
