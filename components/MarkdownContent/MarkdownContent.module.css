@@ -8,7 +8,7 @@
 }
 
 .markdown a {
-  color: var(--link-col);
+  color: var(--link-col) !important;
 }
 
 .markdown a:hover {
