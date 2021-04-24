@@ -16,6 +16,9 @@ const MarkdownContent: FC<{ content: string }> = ({ content }) => {
     <ReactMarkdown
       components={{
         code: ({ children, node }) => {
+          if (node.position.start.line === node.position.end.line)
+            return <code className={css.snippet}>{children}</code>;
+
           const lang = node.properties?.className?.[0].replace("language-", "");
           return (
             <SyntaxHighlighter
