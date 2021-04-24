@@ -16,6 +16,7 @@
 }
 
 .snippet {
+  white-space: nowrap;
   padding: 0.25em;
   border-radius: 0.2em;
   background-color: var(--overlay);
