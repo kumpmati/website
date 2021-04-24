@@ -7,6 +7,16 @@
   margin: 2em 0;
 }
 
+.markdown img {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 90%;
+  max-width: 32em;
+  margin: 1em 0;
+}
+
 .markdown a {
   color: var(--link-col) !important;
 }
