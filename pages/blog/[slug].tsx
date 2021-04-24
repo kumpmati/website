@@ -24,7 +24,7 @@ const SingleBlogPostPage: FC<SingleBlogPostPageProps> = ({ entry }) => {
       </Section>
 
       <Section delay={750}>
-        <MarkdownContent content={content} />
+        <MarkdownContent headingAnchors content={content} />
       </Section>
     </Page>
   );

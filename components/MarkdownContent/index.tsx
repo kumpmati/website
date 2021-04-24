@@ -11,41 +11,20 @@ import { toURLSafeString } from "util/index";
 
 import css from "./MarkdownContent.module.css";
 
-const MarkdownContent: FC<{ content: string }> = ({ content }) => {
+const MarkdownContent: FC<{ content: string; headingAnchors?: boolean }> = ({
+  content,
+  headingAnchors,
+}) => {
   const { dark } = useContext(ThemeContext);
-
-  const headerTitle: HeadingComponent = ({ children, node }) => {
-    const hash = toURLSafeString(children?.[0].toString());
-
-    return (
-      <a href={"#" + hash}>
-        <span id={hash} className={css.header__link} />
-        {createElement(node.tagName, {}, children)}
-      </a>
-    );
-  };
 
   return (
     <ReactMarkdown
       components={{
-        h1: headerTitle,
-        h2: headerTitle,
-        h3: headerTitle,
+        [headingAnchors ? "h1" : null]: headingAnchor,
+        [headingAnchors ? "h2" : null]: headingAnchor,
+        [headingAnchors ? "h3" : null]: headingAnchor,
 
-        code: ({ children, node }) => {
-          if (node.position.start.line === node.position.end.line)
-            return <code className={css.snippet}>{children}</code>;
-
-          const lang = node.properties?.className?.[0].replace("language-", "");
-          return (
-            <SyntaxHighlighter
-              showLineNumbers
-              style={dark ? atomOneDark : atomOneLight}
-              language={lang}>
-              {children}
-            </SyntaxHighlighter>
-          );
-        },
+        code: (opts) => codeSyntaxHighlighting(opts, dark),
       }}
       className={css.markdown}
       children={content}
@@ -54,3 +33,31 @@ const MarkdownContent: FC<{ content: string }> = ({ content }) => {
 };
 
 export default MarkdownContent;
+
+// adds syntax highlighting to code blocks
+const codeSyntaxHighlighting = ({ children, node }, dark: boolean) => {
+  if (node.position.start.line === node.position.end.line)
+    return <code className={css.snippet}>{children}</code>;
+
+  const lang = node.properties?.className?.[0].replace("language-", "");
+  return (
+    <SyntaxHighlighter
+      showLineNumbers
+      style={dark ? atomOneDark : atomOneLight}
+      language={lang}>
+      {children}
+    </SyntaxHighlighter>
+  );
+};
+
+// adds an anchor to a heading
+const headingAnchor: HeadingComponent = ({ children, node }) => {
+  const hash = toURLSafeString(children?.[0].toString());
+
+  return (
+    <a href={"#" + hash}>
+      <span id={hash} className={css.header__link} />
+      {createElement(node.tagName, {}, children)}
+    </a>
+  );
+};
