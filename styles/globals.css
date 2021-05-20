@@ -4,9 +4,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Ubuntu Mono", -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
+  font-family: "Ubuntu Mono", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
   --txt-col: white;
   --txt-col-subtle: gray;
@@ -15,7 +14,8 @@ body {
 
   --blogtext-col: rgb(163, 163, 163);
 
-  --bg-col: black;
+  --bg-col: #000;
+  --bg-col-transparent: rgba(0, 0, 0, 0);
   --overlay: rgba(255, 255, 255, 0.05);
 
   --code-txt-col: var(--txt-col);

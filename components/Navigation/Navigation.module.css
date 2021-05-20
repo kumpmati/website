@@ -28,7 +28,7 @@
   align-items: center;
 
   background-color: var(--bg-col);
-  background: linear-gradient(var(--bg-col) 80%, transparent);
+  background: linear-gradient(var(--bg-col) 80%, var(--bg-col-transparent));
 
   z-index: 10;
 }
