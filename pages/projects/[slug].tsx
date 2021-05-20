@@ -5,7 +5,7 @@ import { getEntriesOfType, getSingleProject } from "@services/contentful/util";
 import { CTProject } from "@type/content";
 import { Entry } from "contentful";
 import { FC } from "react";
-import styles from "./[slug].module.css";
+import css from "./[slug].module.css";
 
 const SingleProjectPage: FC<PropsI> = ({ entry }) => {
   const { title, content, gitHub, url } = entry.fields;
@@ -17,7 +17,7 @@ const SingleProjectPage: FC<PropsI> = ({ entry }) => {
           <h1>{title}</h1>
         </div>
 
-        <div className={styles.links}>
+        <div className={css.links}>
           {gitHub && (
             <a href={gitHub} target="_blank" referrerPolicy="no-referrer">
               GitHub

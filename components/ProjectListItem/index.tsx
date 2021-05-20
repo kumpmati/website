@@ -5,8 +5,8 @@ import Link from "next/link";
 
 import css from "./ProjectListItem.module.css";
 
-const ProjectListItem: FC<ProjectListItemProps> = ({ entry }) => {
-  const { title, slug, url, gitHub } = entry.fields;
+const ProjectListItem: FC<PropsI> = ({ entry }) => {
+  const { title, slug, url } = entry.fields;
 
   return (
     <div className={css.project}>
@@ -24,6 +24,6 @@ const ProjectListItem: FC<ProjectListItemProps> = ({ entry }) => {
 
 export default ProjectListItem;
 
-export interface ProjectListItemProps {
+interface PropsI {
   entry: Entry<CTProject>;
 }
