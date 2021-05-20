@@ -19,8 +19,8 @@ const Navigation = () => {
   const { asPath } = useRouter();
   const { loading } = useLoadingState();
 
-  const dividerProps = useSpring(dividerAnimation);
   const titleProps = useSpring(titleAnimation);
+  const dividerProps = useSpring(dividerAnimation);
   const linksProps = useSpring(linksAnimation);
 
   return (
@@ -36,9 +36,7 @@ const Navigation = () => {
 
       <animated.div
         style={dividerProps}
-        className={`${css.nav__divider} ${
-          loading ? css["nav__divider--loading"] : ""
-        }`}
+        className={`${css.nav__divider} ${loading ? css["nav__divider--loading"] : ""}`}
       />
 
       <animated.ul style={linksProps} className={css.nav__links}>
@@ -57,13 +55,6 @@ const Navigation = () => {
 
 export default Navigation;
 
-const dividerAnimation = {
-  config: { mass: 1, friction: 15, tension: 100 },
-  from: { width: "0ch" },
-  to: { width: "30ch" },
-  delay: 250,
-};
-
 const titleAnimation = {
   config: { mass: 1, friction: 15, tension: 75 },
   from: {
@@ -74,7 +65,14 @@ const titleAnimation = {
     transform: "translateY(0%)",
     clipPath: "inset(0% -50% 0% -50%)",
   },
-  delay: 500,
+  delay: 250,
+};
+
+const dividerAnimation = {
+  config: { mass: 1, friction: 15, tension: 100 },
+  from: { width: "0%" },
+  to: { width: "100%" },
+  delay: 0,
 };
 
 const linksAnimation = {
