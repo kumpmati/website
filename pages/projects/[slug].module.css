@@ -1,0 +1,7 @@
+.links {
+  display: flex;
+}
+
+.links > * + * {
+  margin-left: 1em;
+}

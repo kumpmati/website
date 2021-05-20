@@ -9,7 +9,7 @@ import Page from "@components/Page/Page";
 import { Entry, EntryCollection } from "contentful";
 import List from "@components/List";
 
-const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
+const BlogPage: FC<PropsI> = ({ markdown, posts }) => {
   const { title, markdownContent } = markdown.fields;
 
   return (
@@ -26,13 +26,13 @@ const BlogPage: FC<BlogPageProps> = ({ markdown, posts }) => {
 
 export default BlogPage;
 
-export interface BlogPageProps {
+export interface PropsI {
   markdown: Entry<CTMarkdownContent>;
   posts: EntryCollection<CTBlogPost>;
 }
 
 export async function getStaticProps() {
-  const props: BlogPageProps = {
+  const props: PropsI = {
     markdown: await getEntry(ENTRIES.BLOG_PAGE),
     posts: await getEntriesOfType("blogPost"),
   };

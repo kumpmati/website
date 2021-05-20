@@ -6,7 +6,7 @@ import { CTBlogPost } from "@type/content";
 import { Entry } from "contentful";
 import { FC } from "react";
 
-const SingleBlogPostPage: FC<SingleBlogPostPageProps> = ({ entry }) => {
+const SingleBlogPostPage: FC<PropsI> = ({ entry }) => {
   const { title, content, summary } = entry.fields;
   const createdDate = new Date(entry.sys.createdAt).toLocaleDateString();
 
@@ -32,7 +32,7 @@ const SingleBlogPostPage: FC<SingleBlogPostPageProps> = ({ entry }) => {
 
 export default SingleBlogPostPage;
 
-interface SingleBlogPostPageProps {
+interface PropsI {
   entry: Entry<CTBlogPost>;
 }
 

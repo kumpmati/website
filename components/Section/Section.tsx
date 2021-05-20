@@ -4,14 +4,7 @@ import { animated, useSpring } from "react-spring";
 import css from "./Section.module.css";
 
 const Section: FC<SectionProps> = (props) => {
-  const {
-    children,
-    delay,
-    sticky,
-    columns,
-    className,
-    style: customStyle,
-  } = props;
+  const { children, delay, sticky, columns, className, style: customStyle } = props;
 
   const springProps = useSpring({
     config: { mass: 1, friction: 10, tension: 100 },
@@ -31,9 +24,9 @@ const Section: FC<SectionProps> = (props) => {
   };
 
   return (
-    <animated.header style={style} className={classNames}>
+    <animated.section style={style} className={classNames}>
       {children}
-    </animated.header>
+    </animated.section>
   );
 };
 

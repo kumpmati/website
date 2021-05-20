@@ -7,9 +7,8 @@ export const isProject = (entry: Entry<any>): entry is Entry<CTProject> =>
 export const isBlogPost = (entry: Entry<any>): entry is Entry<CTBlogPost> =>
   isType(entry, "blogPost");
 
-export const isMarkdownContent = (
-  entry: Entry<any>
-): entry is Entry<CTMarkdownContent> => isType(entry, "markdownPage");
+export const isMarkdownContent = (entry: Entry<any>): entry is Entry<CTMarkdownContent> =>
+  isType(entry, "markdownPage");
 
 const isType = (entry: Entry<any>, contentType: string) =>
-  entry.sys.contentType.sys.id === contentType;
+  entry?.sys.contentType?.sys.id === contentType;

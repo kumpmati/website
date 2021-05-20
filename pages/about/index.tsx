@@ -7,7 +7,7 @@ import { CTMarkdownContent } from "@type/content";
 import { Entry } from "contentful";
 import { FC } from "react";
 
-const AboutPage: FC<AboutPageProps> = ({ markdown }) => {
+const AboutPage: FC<PropsI> = ({ markdown }) => {
   return (
     <Page title="MK | About">
       <Section delay={500}>
@@ -20,12 +20,12 @@ const AboutPage: FC<AboutPageProps> = ({ markdown }) => {
 
 export default AboutPage;
 
-interface AboutPageProps {
+interface PropsI {
   markdown: Entry<CTMarkdownContent>;
 }
 
 export async function getStaticProps() {
-  const props: AboutPageProps = {
+  const props: PropsI = {
     markdown: await getEntry(ENTRIES.ABOUT_PAGE),
   };
 

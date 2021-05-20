@@ -8,7 +8,7 @@ import List from "@components/List";
 import { getEntriesOfType, getEntry } from "@services/contentful/util";
 import { ENTRIES } from "@constants/entries";
 
-const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
+const ProjectsPage: FC<PropsI> = ({ markdown, projects }) => {
   const { title, markdownContent } = markdown.fields;
 
   return (
@@ -25,13 +25,13 @@ const ProjectsPage: FC<ProjectsPageProps> = ({ markdown, projects }) => {
 
 export default ProjectsPage;
 
-export interface ProjectsPageProps {
+export interface PropsI {
   markdown: Entry<CTMarkdownContent>;
   projects: EntryCollection<any>;
 }
 
 export async function getStaticProps() {
-  const props: ProjectsPageProps = {
+  const props: PropsI = {
     markdown: await getEntry(ENTRIES.PROJECTS_PAGE),
     projects: await getEntriesOfType("project"),
   };

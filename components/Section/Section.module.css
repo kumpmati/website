@@ -25,6 +25,10 @@
   margin: 0.25em 0;
 }
 
+.section h1 {
+  font-size: 2em;
+}
+
 .section h1,
 .section h2,
 .section h3 {
