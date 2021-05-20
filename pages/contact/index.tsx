@@ -4,7 +4,7 @@ import Page from "@components/Page/Page";
 const ContactPage = () => {
   return (
     <Page title="MK | Contact">
-      <Section delay={500}>
+      <Section delay={0.5}>
         <h1>Contact me</h1>
 
         <ul>

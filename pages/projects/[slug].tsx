@@ -12,7 +12,7 @@ const SingleProjectPage: FC<PropsI> = ({ entry }) => {
 
   return (
     <Page title={`MK | ${title}`}>
-      <Section delay={250}>
+      <Section delay={0.25}>
         <div>
           <h1>{title}</h1>
         </div>
@@ -31,7 +31,7 @@ const SingleProjectPage: FC<PropsI> = ({ entry }) => {
         </div>
       </Section>
 
-      <Section delay={500}>
+      <Section delay={0.5}>
         <MarkdownContent content={content?.fields?.markdownContent} />
       </Section>
     </Page>

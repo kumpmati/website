@@ -12,7 +12,7 @@ const SingleBlogPostPage: FC<PropsI> = ({ entry }) => {
 
   return (
     <Page title={`MK | ${title}`}>
-      <Section delay={500} style={{ display: "flex", alignItems: "center" }}>
+      <Section delay={0.5} style={{ display: "flex", alignItems: "center" }}>
         <div>
           <h1>{title}</h1>
           <p>{summary}</p>
@@ -23,7 +23,7 @@ const SingleBlogPostPage: FC<PropsI> = ({ entry }) => {
         </div>
       </Section>
 
-      <Section delay={750}>
+      <Section delay={0.75}>
         <MarkdownContent headingAnchors content={content} />
       </Section>
     </Page>

@@ -10,7 +10,7 @@ import { FC } from "react";
 const AboutPage: FC<PropsI> = ({ markdown }) => {
   return (
     <Page title="MK | About">
-      <Section delay={500}>
+      <Section delay={0.5}>
         <h1>About me</h1>
         <MarkdownContent content={markdown.fields.markdownContent} />
       </Section>

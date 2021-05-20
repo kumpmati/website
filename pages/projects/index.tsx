@@ -13,7 +13,7 @@ const ProjectsPage: FC<PropsI> = ({ markdown, projects }) => {
 
   return (
     <Page title={`MK | ${title}`}>
-      <Section delay={500}>
+      <Section delay={0.5}>
         <h1>Projects</h1>
         <MarkdownContent content={markdownContent} />
       </Section>
