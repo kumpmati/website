@@ -26,7 +26,7 @@ const BlogPage: FC<PropsI> = ({ markdown, posts }) => {
 
 export default BlogPage;
 
-export interface PropsI {
+interface PropsI {
   markdown: Entry<CTMarkdownContent>;
   posts: EntryCollection<CTBlogPost>;
 }

@@ -4,7 +4,7 @@ import { useLoadingState } from "util/hooks";
 
 import css from "./NavigationLink.module.css";
 
-const NavigationLink: FC<NavigationLinkProps> = ({ text, url, active }) => {
+const NavigationLink: FC<PropsI> = ({ text, url, active }) => {
   const { loading } = useLoadingState();
   const [clicked, setClicked] = useState(false);
 
@@ -25,7 +25,7 @@ const NavigationLink: FC<NavigationLinkProps> = ({ text, url, active }) => {
 
 export default NavigationLink;
 
-export interface NavigationLinkProps {
+interface PropsI {
   text: string;
   url: string;
   active?: boolean;

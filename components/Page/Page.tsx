@@ -4,7 +4,7 @@ import ColorSchemeToggle from "@components/ColorSchemeToggle";
 
 import css from "./Page.module.css";
 
-const Page: FC<PageProps> = ({ title, children }) => {
+const Page: FC<PropsI> = ({ title, children }) => {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ const Page: FC<PageProps> = ({ title, children }) => {
 
 export default Page;
 
-export interface PageProps {
+interface PropsI {
   title?: string;
   children?: any;
   noNav?: boolean;

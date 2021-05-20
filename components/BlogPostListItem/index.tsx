@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import css from "./BlogPostListItem.module.css";
 
-const BlogPostListItem: FC<BlogPostListItemProps> = ({ entry }) => {
+const BlogPostListItem: FC<PropsI> = ({ entry }) => {
   const { title, summary, slug } = entry.fields;
   const createDate = new Date(entry.sys.createdAt).toLocaleDateString();
 
@@ -26,6 +26,6 @@ const BlogPostListItem: FC<BlogPostListItemProps> = ({ entry }) => {
 
 export default BlogPostListItem;
 
-export interface BlogPostListItemProps {
+interface PropsI {
   entry: Entry<CTBlogPost>;
 }

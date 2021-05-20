@@ -25,7 +25,7 @@ const ProjectsPage: FC<PropsI> = ({ markdown, projects }) => {
 
 export default ProjectsPage;
 
-export interface PropsI {
+interface PropsI {
   markdown: Entry<CTMarkdownContent>;
   projects: EntryCollection<any>;
 }

@@ -25,7 +25,7 @@ const SingleProjectPage: FC<PropsI> = ({ entry }) => {
           )}
           {url && (
             <a href={url} target="_blank" referrerPolicy="no-referrer">
-              Demo
+              View
             </a>
           )}
         </div>

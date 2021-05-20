@@ -5,7 +5,7 @@ import defaultListRenderer from "./renderer";
 
 import css from "./List.module.css";
 
-const List: FC<ListProps> = ({ collection, renderer, delay, grid }) => {
+const List: FC<PropsI> = ({ collection, renderer, delay, grid }) => {
   const trail = useTrail(collection.items.length, {
     config: { mass: 1, friction: 10, tension: 75 },
     from: { opacity: 0, transform: "translateY(-0.75rem)" },
@@ -29,13 +29,9 @@ const List: FC<ListProps> = ({ collection, renderer, delay, grid }) => {
 
 export default List;
 
-export interface ListProps {
+interface PropsI {
   collection: EntryCollection<any>;
-  renderer?: (
-    entry: Entry<any>,
-    index?: number,
-    arr?: Entry<any>[]
-  ) => JSX.Element;
+  renderer?: (entry: Entry<any>, index?: number, arr?: Entry<any>[]) => JSX.Element;
 
   delay?: number;
   grid?: boolean;
