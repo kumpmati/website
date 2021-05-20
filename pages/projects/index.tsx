@@ -18,7 +18,7 @@ const ProjectsPage: FC<PropsI> = ({ markdown, projects }) => {
         <MarkdownContent content={markdownContent} />
       </Section>
 
-      <List delay={750} collection={projects} />
+      <List delay={0.25} collection={projects} />
     </Page>
   );
 };

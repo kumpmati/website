@@ -19,7 +19,7 @@ const BlogPage: FC<PropsI> = ({ markdown, posts }) => {
         <MarkdownContent content={markdownContent} />
       </Section>
 
-      <List collection={posts} delay={750} />
+      <List collection={posts} delay={0.25} />
     </Page>
   );
 };

@@ -1,29 +1,38 @@
 import { FC } from "react";
 import { Entry, EntryCollection } from "contentful";
-import { animated, useTrail } from "react-spring";
 import defaultListRenderer from "./renderer";
 
 import css from "./List.module.css";
+import { motion } from "framer-motion";
 
-const List: FC<PropsI> = ({ collection, renderer, delay, grid }) => {
-  const trail = useTrail(collection.items.length, {
-    config: { mass: 1, friction: 10, tension: 75 },
-    from: { opacity: 0, transform: "translateY(-0.75rem)" },
-    to: { opacity: 1, transform: "translateY(0rem)" },
-    delay,
-  });
+const List: FC<PropsI> = ({ collection, delay, renderer, grid }) => {
+  const listVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { when: "beforeChildren", delay, staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, transform: "translateY-0.75rem)" },
+    visible: { opacity: 1, transform: "translateY(0rem)" },
+  };
 
   return (
-    <ul className={`${css.list} ${grid ? css["list--grid"] : ""}`}>
-      {trail.map((props, i) => {
-        const item = collection.items[i];
+    <motion.ul
+      initial="hidden"
+      animate="visible"
+      variants={listVariants}
+      className={`${css.list} ${grid ? css["list--grid"] : ""}`}>
+      {collection?.items.map((item, i) => {
         return (
-          <animated.li key={item.sys.id} style={props}>
+          <motion.li variants={itemVariants} key={item.sys.id}>
             {!!renderer ? renderer(item) : defaultListRenderer(item)}
-          </animated.li>
+          </motion.li>
         );
       })}
-    </ul>
+    </motion.ul>
   );
 };
 
