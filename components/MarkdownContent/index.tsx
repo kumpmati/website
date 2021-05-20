@@ -2,14 +2,14 @@ import { ThemeContext } from "@constants/colorSchemes";
 import React, { createElement, FC, useContext } from "react";
 import ReactMarkdown from "react-markdown";
 import { HeadingComponent } from "react-markdown/src/ast-to-react";
-import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/default-highlight";
-import {
-  atomOneDark,
-  atomOneLight,
-} from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { toURLSafeString } from "util/index";
-
+import { atomOneDark, atomOneLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import dynamic from "next/dynamic";
+import { numLines, toURLSafeString } from "@util/index";
+import { useTrackVisibility } from "react-intersection-observer-hook";
 import css from "./MarkdownContent.module.css";
+const SyntaxHighlighter = dynamic(
+  () => import("react-syntax-highlighter/dist/cjs/default-highlight")
+);
 
 const MarkdownContent: FC<{ content: string; headingAnchors?: boolean }> = ({
   content,
@@ -36,17 +36,29 @@ export default MarkdownContent;
 
 // adds syntax highlighting to code blocks
 const codeSyntaxHighlighting = ({ children, node }, dark: boolean) => {
-  if (node.position.start.line === node.position.end.line)
-    return <code className={css.snippet}>{children}</code>;
-
   const lang = node.properties?.className?.[0].replace("language-", "");
+  const [ref, { wasEverVisible }] = useTrackVisibility();
+
+  if (node.position.start.line === node.position.end.line) {
+    return <code className={css.snippet}>{children}</code>;
+  }
+
   return (
-    <SyntaxHighlighter
-      showLineNumbers
-      style={dark ? atomOneDark : atomOneLight}
-      language={lang}>
-      {children}
-    </SyntaxHighlighter>
+    <div
+      className={css.codeWrapper}
+      ref={ref}
+      style={{ minHeight: `${numLines(children?.[0]) * 1.28}rem` }}>
+      {wasEverVisible ? (
+        <SyntaxHighlighter
+          showLineNumbers
+          style={dark ? atomOneDark : atomOneLight}
+          language={lang}>
+          {children}
+        </SyntaxHighlighter>
+      ) : (
+        <p>Loading code...</p>
+      )}
+    </div>
   );
 };
 

@@ -42,6 +42,19 @@
   background-color: var(--overlay);
 }
 
+.codeWrapper {
+  display: block;
+  padding: 0.5em;
+  border-radius: 0.25em;
+  color: var(--blogtext-col);
+  background: var(--overlay);
+}
+
+.codeWrapper > * {
+  margin: 0 !important;
+  padding: 0;
+}
+
 @media screen and (max-width: 30rem) {
   .snippet {
     white-space: normal;
