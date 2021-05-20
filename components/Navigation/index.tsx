@@ -25,7 +25,7 @@ const Navigation = () => {
 
   return (
     <motion.nav
-      transition={{ delay: 0.05, type: "tween", duration: 0.5 }}
+      transition={{ type: "spring", duration: 1, delay: 0.25 }}
       className={css.nav}
       layoutId="nav">
       <Link href="/">
