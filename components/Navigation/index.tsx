@@ -1,12 +1,10 @@
-import css from "./Navigation.module.css";
 import NavigationLink from "../NavigationLink";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
-import { animated, useSpring } from "react-spring";
 import Logo from "@components/Logo";
-import { motion } from "framer-motion";
-import { useLoadingState } from "util/hooks";
+import { motion, Variants } from "framer-motion";
+import { useLoadingState } from "@util/hooks";
+import css from "./Navigation.module.css";
 
 const links = [
   { text: "About", url: "/about" },
@@ -19,27 +17,33 @@ const Navigation = () => {
   const { asPath } = useRouter();
   const { loading } = useLoadingState();
 
-  const titleProps = useSpring(titleAnimation);
-  const dividerProps = useSpring(dividerAnimation);
-  const linksProps = useSpring(linksAnimation);
-
   return (
     <motion.nav
       transition={{ type: "spring", duration: 1, delay: 0.25 }}
       className={css.nav}
       layoutId="nav">
       <Link href="/">
-        <animated.div style={titleProps} className={css.nav__title}>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={titleVariants}
+          className={css.nav__title}>
           <Logo />
-        </animated.div>
+        </motion.div>
       </Link>
 
-      <animated.div
-        style={dividerProps}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={dividerVariants}
         className={`${css.nav__divider} ${loading ? css["nav__divider--loading"] : ""}`}
       />
 
-      <animated.ul style={linksProps} className={css.nav__links}>
+      <motion.ul
+        initial="hidden"
+        animate="visible"
+        variants={listVariants}
+        className={css.nav__links}>
         {links.map((link) => (
           <NavigationLink
             key={link.url}
@@ -48,42 +52,43 @@ const Navigation = () => {
             url={link.url}
           />
         ))}
-      </animated.ul>
+      </motion.ul>
     </motion.nav>
   );
 };
 
 export default Navigation;
 
-const titleAnimation = {
-  config: { mass: 1, friction: 15, tension: 75 },
-  from: {
+const titleVariants: Variants = {
+  hidden: {
     transform: "translateY(100%)",
     clipPath: "inset(0% -50% 100% -50%)",
   },
-  to: {
+  visible: {
     transform: "translateY(0%)",
     clipPath: "inset(0% -50% 0% -50%)",
+    transition: { delay: 0.5, type: "tween" },
   },
-  delay: 250,
 };
 
-const dividerAnimation = {
-  config: { mass: 1, friction: 15, tension: 100 },
-  from: { width: "0ch" },
-  to: { width: "35.5ch" },
-  delay: 0,
+const dividerVariants: Variants = {
+  hidden: {
+    width: "0ch",
+  },
+  visible: {
+    width: "35.5ch",
+    transition: { delay: 0, type: "spring", bounce: 0.3 },
+  },
 };
 
-const linksAnimation = {
-  config: { mass: 1, friction: 15, tension: 75 },
-  from: {
+const listVariants: Variants = {
+  hidden: {
     transform: "translateY(-100%)",
     clipPath: "inset(100% -50% 0% -50%)",
   },
-  to: {
+  visible: {
     transform: "translateY(0%)",
     clipPath: "inset(0% -50% 0% -50%)",
+    transition: { delay: 1, type: "spring", bounce: 0.6, stiffness: 100 },
   },
-  delay: 1000,
 };
