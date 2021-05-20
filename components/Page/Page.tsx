@@ -22,5 +22,4 @@ export default Page;
 interface PropsI {
   title?: string;
   children?: any;
-  noNav?: boolean;
 }

@@ -4,7 +4,7 @@ import Page from "@components/Page/Page";
 
 const NotFound = () => {
   return (
-    <Page title="MK | 404" noNav>
+    <Page title="MK | 404">
       <Section>
         <h1>404</h1>
         <p>Page not found</p>

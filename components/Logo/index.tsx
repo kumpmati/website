@@ -14,6 +14,7 @@ const Logo: FC = () => {
   return (
     <Link href="/">
       <a
+        title="Matias Kumpulainen"
         className={`${css.logo} ${isOpen ? css["logo--open"] : css["logo--closed"]} ${
           atHomePage ? css["logo--openable"] : ""
         }`}>
