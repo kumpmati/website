@@ -70,8 +70,8 @@ const titleAnimation = {
 
 const dividerAnimation = {
   config: { mass: 1, friction: 15, tension: 100 },
-  from: { width: "0%" },
-  to: { width: "100%" },
+  from: { width: "0ch" },
+  to: { width: "35.5ch" },
   delay: 0,
 };
 

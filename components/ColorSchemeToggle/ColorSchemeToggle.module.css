@@ -1,31 +1,19 @@
 .container {
   display: flex;
   justify-content: flex-end;
-  overflow: hidden;
 
   border-radius: 1em;
-  padding: 0.25em 0.35em;
+  padding: 0;
 
   position: fixed;
-  top: 1em;
-  right: 1em;
-  width: 3.25em;
+  top: 0.5em;
+  right: 0.5em;
 
   z-index: 100;
 }
 
 .container:hover {
-  width: auto;
   background-color: var(--overlay);
-}
-
-.container .reset {
-  visibility: hidden;
-  transition: visibility 0ms;
-}
-
-.container:hover .reset {
-  visibility: visible;
 }
 
 .reset,
@@ -37,7 +25,7 @@
 
   outline: 0;
 
-  padding: 0.25em 0.75em;
+  padding: 0.5em 0.9em;
 
   cursor: pointer;
 
@@ -53,6 +41,6 @@
 
 .reset:focus-visible,
 .toggle:focus-visible {
-  box-shadow: 0 0 0 2px var(--txt-col-subtle);
+  box-shadow: 0 0 0 1px var(--txt-col-subtle);
   color: var(--txt-col);
 }

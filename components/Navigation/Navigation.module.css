@@ -21,7 +21,7 @@
   padding: 0.5em 0;
   padding-bottom: 2em;
 
-  width: 35.5ch;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -36,8 +36,6 @@
 .nav__divider {
   margin: 0;
   padding: 0;
-
-  width: 100%;
 
   display: block;
 
@@ -69,7 +67,7 @@
   display: flex;
   justify-content: space-between;
 
-  width: 100%;
+  width: 35.5ch;
 }
 
 .nav__links > * + * {
@@ -77,11 +75,15 @@
 }
 
 @media screen and (max-width: 25rem) {
-  .nav {
-    width: 31ch;
-  }
-
   .nav__title {
     font-size: 0.85em;
+  }
+
+  .nav__divider {
+    max-width: 31ch;
+  }
+
+  .nav__links {
+    width: 31ch;
   }
 }
