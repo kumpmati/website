@@ -2,9 +2,7 @@
   appearance: none;
 
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1em;
+  flex-direction: column;
 
   min-height: 3em;
 
@@ -13,17 +11,21 @@
 
 .project__title {
   font-size: 1em;
-  margin: 0.25em 0;
+
+  margin: 0 0 0.5em 0;
 
   width: 100%;
-
-  padding: 0.5em 0;
 
   color: var(--txt-col);
 }
 
-.project__title:hover {
+.project:hover .project__title {
   text-decoration: underline;
+}
+
+.project__technologies {
+  margin: 0;
+  color: var(--txt-col-subtle);
 }
 
 .project__links {

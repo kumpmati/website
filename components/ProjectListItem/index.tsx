@@ -6,19 +6,15 @@ import Link from "next/link";
 import css from "./ProjectListItem.module.css";
 
 const ProjectListItem: FC<PropsI> = ({ entry }) => {
-  const { title, slug, url } = entry.fields;
+  const { title, slug, technologies } = entry.fields;
 
   return (
-    <div className={css.project}>
-      <Link href={`/projects/${slug}`}>
-        <a className={css.project__title}>{title}</a>
-      </Link>
-      <div className={css.project__links}>
-        <a href={url} target="noreferrer" className={css.link}>
-          View
-        </a>
-      </div>
-    </div>
+    <Link href={`/projects/${slug}`}>
+      <a className={css.project}>
+        <p className={css.project__title}>{title}</p>
+        <p className={css.project__technologies}>{technologies.join(", ")}</p>
+      </a>
+    </Link>
   );
 };
 

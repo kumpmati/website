@@ -4,15 +4,16 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Ubuntu Mono", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Ubuntu Mono", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
 
-  --txt-col: white;
-  --txt-col-subtle: gray;
-  --txt-col-subtler: rgb(100, 100, 100);
+  --txt-col: #fff;
+  --txt-col-subtle: #808080;
+  --txt-col-subtler: #646464;
   --link-col: var(--txt-col);
 
-  --blogtext-col: rgb(163, 163, 163);
+  --blogtext-col: #a3a3a3;
 
   --bg-col: #000;
   --bg-col-transparent: rgba(0, 0, 0, 0);
@@ -20,6 +21,7 @@ body {
 
   --code-txt-col: var(--txt-col);
   --code-bg-col: rgba(255, 255, 255, 0.1);
+
   background-color: var(--bg-col);
 }
 

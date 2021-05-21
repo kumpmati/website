@@ -19,4 +19,5 @@ export type CTProject = {
   url?: string;
   gitHub?: string;
   content?: Entry<CTMarkdownContent>;
+  technologies?: string[];
 };

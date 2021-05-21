@@ -9,9 +9,11 @@ export const ThemeContext =
   } | null>(null);
 
 export const DARK_THEME = {
-  "--txt-col": "white",
-  "--txt-col-subtle": "rgb(160,160,160)",
+  "--txt-col": "#fff",
+  "--txt-col-subtle": "#808080",
+  "--txt-col-subtler": "#646464",
   "--link-col": "white",
+  "--blogtext-col": "#a3a3a3",
   "--bg-col": "#000",
   "--bg-col-transparent": "rgba(0,0,0,0)",
   "--overlay": "rgba(255,255,255,0.08)",
@@ -21,7 +23,8 @@ export const DARK_THEME = {
 
 export const LIGHT_THEME = {
   "--txt-col": "black",
-  "--txt-col-subtle": "rgb(110,110,110)",
+  "--txt-col-subtle": "rgb(120,120,120)",
+  "--txt-col-subtler": "rgb(150,150,150)",
   "--link-col": "black",
   "--bg-col": "#fff",
   "--bg-col-transparent": "rgba(255,255,255,0)",
