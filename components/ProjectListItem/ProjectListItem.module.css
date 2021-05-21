@@ -6,7 +6,16 @@
 
   min-height: 3em;
 
+  padding: 0.5em;
+
   color: var(--txt-col-subtle);
+}
+
+.project:focus-visible {
+  outline: 0;
+  background-color: var(--overlay);
+  box-shadow: 0 0 0 2px var(--txt-col-subtler);
+  border-radius: 0.1em;
 }
 
 .project__title {

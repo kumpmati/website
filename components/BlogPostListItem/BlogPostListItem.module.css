@@ -3,7 +3,10 @@
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1em;
+
+  padding: 0.5em;
 
   color: var(--txt-col-subtle);
 
@@ -12,6 +15,13 @@
 
 .post:hover .post__title {
   text-decoration: underline;
+}
+
+.post:focus-visible {
+  outline: 0;
+  background-color: var(--overlay);
+  box-shadow: 0 0 0 2px var(--txt-col-subtler);
+  border-radius: 0.1em;
 }
 
 .post__title {
