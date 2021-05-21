@@ -10,7 +10,7 @@
   "dependencies": {
     "contentful": "^8.1.7",
     "framer-motion": "^4.1.8",
-    "next": "10.0.7",
+    "next": "^10.2.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-intersection-observer-hook": "^2.0.3",
