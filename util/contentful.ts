@@ -62,5 +62,5 @@ export const getSongsInAlbum = async (albumSlug: string) => {
       content_type: "song",
       links_to_entry: album.sys.id,
     })
-  )?.items?.[0];
+  )?.items;
 };

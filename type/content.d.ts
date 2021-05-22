@@ -25,9 +25,10 @@ export type CTProject = {
 export type CTAlbum = {
   title: string;
   slug: string;
+  url: string;
   releaseDate: string;
-  coverImage?: Asset;
   songs: number;
+  coverImage: Asset;
 };
 
 export type CTSong = {

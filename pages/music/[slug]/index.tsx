@@ -1,12 +1,13 @@
 import Page from "@components/Page/Page";
 import Section from "@components/Section/Section";
-import { getEntriesOfType, getSingleAlbum } from "@util/contentful";
-import { CTAlbum, CTBlogPost } from "@type/content";
+import { getEntriesOfType, getSingleAlbum, getSongsInAlbum } from "@util/contentful";
+import { CTAlbum, CTSong } from "@type/content";
 import { Entry } from "contentful";
 import { FC } from "react";
+import List from "@components/List";
 
-const SingleAlbumPage: FC<PropsI> = ({ entry }) => {
-  const { title } = entry.fields;
+const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
+  const { title } = album.fields;
 
   return (
     <Page title={`MK | ${title}`}>
@@ -15,6 +16,8 @@ const SingleAlbumPage: FC<PropsI> = ({ entry }) => {
           <h1>{title}</h1>
         </div>
       </Section>
+
+      <List collection={songs} />
     </Page>
   );
 };
@@ -22,30 +25,33 @@ const SingleAlbumPage: FC<PropsI> = ({ entry }) => {
 export default SingleAlbumPage;
 
 interface PropsI {
-  entry: Entry<CTAlbum>;
+  album: Entry<CTAlbum>;
+  songs: Entry<CTSong>[];
 }
 
 export async function getStaticProps({ params }) {
-  const { slug } = params;
-  const entry = await getSingleAlbum(slug);
+  const album = await getSingleAlbum(params.slug);
 
-  if (!entry) {
+  if (!album) {
     return {
       notFound: true,
     };
   }
 
+  const songs = await getSongsInAlbum(album.fields.slug);
+
   return {
     props: {
-      entry,
+      album,
+      songs,
     },
-    revalidate: 60 * 60, // 1 hour
+    // don't revalidate
   };
 }
 
 export async function getStaticPaths() {
-  const posts = (await getEntriesOfType<CTBlogPost>("blogPost")).items;
-  const paths = posts.map((post) => ({ params: { slug: post.fields.slug } }));
+  const albums = (await getEntriesOfType<CTAlbum>("album")).items;
+  const paths = albums.map((album) => ({ params: { slug: album.fields.slug } }));
 
   return {
     paths,

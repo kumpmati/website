@@ -45,8 +45,7 @@ interface PropsI {
 }
 
 export async function getStaticProps({ params }) {
-  const { slug } = params;
-  const entry = await getSingleProject(slug);
+  const entry = await getSingleProject(params.slug);
 
   if (!entry) {
     return {
