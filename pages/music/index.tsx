@@ -7,9 +7,14 @@ import { getEntriesOfType, getEntry } from "@util/contentful";
 import { CTAlbum, CTMarkdownContent } from "@type/content";
 import { Entry, EntryCollection } from "contentful";
 import { FC } from "react";
+import { compareDateStrings } from "@util/index";
 
 const MusicPage: FC<PropsI> = ({ markdown, albums }) => {
   const { title, markdownContent } = markdown.fields;
+
+  const orderedAlbums = albums.items.sort((a, b) =>
+    compareDateStrings(b.fields.releaseDate, a.fields.releaseDate)
+  );
 
   return (
     <Page title={`MK | ${title}`}>
@@ -19,7 +24,7 @@ const MusicPage: FC<PropsI> = ({ markdown, albums }) => {
       </Section>
 
       <Section delay={0.75}>
-        <List grid collection={albums.items} />
+        <List grid collection={orderedAlbums} />
       </Section>
     </Page>
   );
@@ -40,6 +45,6 @@ export async function getStaticProps() {
 
   return {
     props,
-    revalidate: 60 * 60, // 1 hour
+    // don't revalidate
   };
 }
