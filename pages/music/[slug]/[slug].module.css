@@ -1,12 +1,15 @@
 .container {
   display: grid;
-  grid-template-columns: 3fr 4fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2.5em;
 }
 
 .image {
   display: grid;
   place-content: center;
+  overflow: hidden;
+  border-radius: 0.15em;
+  height: max-content;
 }
 
 .songs {
