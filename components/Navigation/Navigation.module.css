@@ -31,6 +31,8 @@
   background: linear-gradient(var(--bg-col) 80%, var(--bg-col-transparent));
 
   z-index: 10;
+
+  --nav-width: 35.5ch;
 }
 
 .nav__divider {
@@ -67,7 +69,7 @@
   display: flex;
   justify-content: space-between;
 
-  width: 35.5ch;
+  width: var(--nav-width);
 }
 
 .nav__links > * + * {
@@ -75,15 +77,24 @@
 }
 
 @media screen and (max-width: 25rem) {
+  .nav {
+    --nav-width: 31ch;
+  }
+
   .nav__title {
     font-size: 0.85em;
   }
 
   .nav__divider {
-    max-width: 31ch;
+    max-width: var(--nav-width);
   }
 
   .nav__links {
-    width: 31ch;
+    font-size: 0.9em;
+    width: calc(var(--nav-width) * 1.11);
+  }
+
+  .nav__links > * + * {
+    margin-left: 0em;
   }
 }

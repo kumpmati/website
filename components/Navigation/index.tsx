@@ -5,13 +5,7 @@ import Logo from "@components/Logo";
 import { motion, Variants } from "framer-motion";
 import { useLoadingState } from "@util/hooks";
 import css from "./Navigation.module.css";
-
-const links = [
-  { text: "About", url: "/about" },
-  { text: "Projects", url: "/projects" },
-  { text: "Blog", url: "/blog" },
-  { text: "Contact", url: "/contact" },
-];
+import { NAV_LINKS } from "@constants/navigation";
 
 const Navigation = () => {
   const { asPath } = useRouter();
@@ -44,7 +38,7 @@ const Navigation = () => {
         animate="visible"
         variants={listVariants}
         className={css.nav__links}>
-        {links.map((link) => (
+        {NAV_LINKS.map((link) => (
           <NavigationLink
             key={link.url}
             active={asPath.startsWith(link.url)}
@@ -76,7 +70,7 @@ const dividerVariants: Variants = {
     width: "0ch",
   },
   visible: {
-    width: "35.5ch",
+    width: "var(--nav-width)",
     transition: { delay: 0, type: "spring", bounce: 0.3 },
   },
 };
@@ -89,6 +83,6 @@ const listVariants: Variants = {
   visible: {
     transform: "translateY(0%)",
     clipPath: "inset(0% -50% 0% -50%)",
-    transition: { delay: 1, type: "spring", bounce: 0.6, stiffness: 100 },
+    transition: { delay: 1, type: "spring", bounce: 0.3 },
   },
 };
