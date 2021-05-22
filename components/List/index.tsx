@@ -25,7 +25,7 @@ const List: FC<PropsI> = ({ collection, delay, renderer, grid }) => {
       animate="visible"
       variants={listVariants}
       className={`${css.list} ${grid ? css["list--grid"] : ""}`}>
-      {collection?.items.map((item, i) => {
+      {collection?.map((item, i) => {
         return (
           <motion.li variants={itemVariants} key={item.sys.id}>
             {!!renderer ? renderer(item) : defaultListRenderer(item)}
@@ -39,7 +39,7 @@ const List: FC<PropsI> = ({ collection, delay, renderer, grid }) => {
 export default List;
 
 interface PropsI {
-  collection: EntryCollection<any>;
+  collection: Entry<any>[];
   renderer?: (entry: Entry<any>, index?: number, arr?: Entry<any>[]) => JSX.Element;
 
   delay?: number;

@@ -3,11 +3,19 @@ import { CSSProperties, FC } from "react";
 import css from "./Section.module.css";
 
 const Section: FC<PropsI> = (props) => {
-  const { children, delay, sticky, columns, className, style: customStyle } = props;
+  const {
+    children,
+    delay,
+    sticky,
+    columns,
+    className,
+    style: customStyle,
+    inline,
+  } = props;
 
   const classNames = `${className}  ${css.section} ${
     sticky ? css["section--sticky"] : ""
-  } ${columns > 0 ? css["section--grid"] : ""}`;
+  } ${columns > 0 ? css["section--grid"] : ""} ${inline ? css["section--inline"] : ""}`;
 
   const style = {
     gridTemplateColumns: `repeat(${columns ?? 0}, 1fr)`,
@@ -39,5 +47,6 @@ interface PropsI {
   sticky?: boolean;
   columns?: number;
   className?: string;
+  inline?: boolean;
   style?: CSSProperties;
 }

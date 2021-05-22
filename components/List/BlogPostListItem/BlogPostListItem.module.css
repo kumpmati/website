@@ -20,8 +20,7 @@
 .post:focus-visible {
   outline: 0;
   background-color: var(--overlay);
-  box-shadow: 0 0 0 2px var(--txt-col-subtler);
-  border-radius: 0.1em;
+  border-radius: 0.15em;
 }
 
 .post__title {

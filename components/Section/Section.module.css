@@ -12,6 +12,11 @@
   align-items: center;
 }
 
+.section--inline {
+  margin: 0;
+  padding: 0;
+}
+
 .section--sticky {
   position: sticky;
   top: 4.5em;

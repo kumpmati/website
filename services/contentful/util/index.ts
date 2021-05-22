@@ -1,6 +1,6 @@
 import { CONTENTFUL_QUERY_DEPTH } from "@constants/contentful";
 import { client } from "@services/contentful";
-import { CTBlogPost, CTProject } from "@type/content";
+import { CTAlbum, CTBlogPost, CTProject } from "@type/content";
 import { Entry, EntryCollection } from "contentful";
 
 export const getEntry = async <T>(id: string): Promise<Entry<T>> => {
@@ -11,9 +11,7 @@ export const getEntry = async <T>(id: string): Promise<Entry<T>> => {
   }
 };
 
-export const getEntries = async <T>(
-  query: any
-): Promise<EntryCollection<T>> => {
+export const getEntries = async <T>(query: any): Promise<EntryCollection<T>> => {
   try {
     return await client.getEntries({
       ...query,
@@ -41,6 +39,15 @@ export const getSingleProject = async (slug: string) => {
   return (
     await getEntries<CTProject>({
       content_type: "project",
+      "fields.slug[in]": slug,
+    })
+  )?.items?.[0];
+};
+
+export const getSingleAlbum = async (slug: string) => {
+  return (
+    await getEntries<CTAlbum>({
+      content_type: "album",
       "fields.slug[in]": slug,
     })
   )?.items?.[0];
