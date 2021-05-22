@@ -37,5 +37,6 @@ export type CTSong = {
   coverImage?: Asset;
   audioFile?: Asset;
   url?: string;
-  album: Entry<CTAlbum>;
+  album?: Entry<CTAlbum>;
+  songNumber?: number;
 };

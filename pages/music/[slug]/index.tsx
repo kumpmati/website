@@ -1,23 +1,32 @@
 import Page from "@components/Page/Page";
 import Section from "@components/Section/Section";
 import { getEntriesOfType, getSingleAlbum, getSongsInAlbum } from "@util/contentful";
-import { CTAlbum, CTSong } from "@type/content";
-import { Entry } from "contentful";
-import { FC } from "react";
+import type { CTAlbum, CTSong } from "@type/content";
+import type { Entry } from "contentful";
+import type { FC } from "react";
+import Image from "next/image";
 import List from "@components/List";
+import css from "./[slug].module.css";
 
 const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
-  const { title } = album.fields;
+  const { title, coverImage } = album.fields;
+  const coverImageURL = "https:" + coverImage.fields.file.url;
+
+  const orderedSongs = songs.sort((a, b) => a.fields.songNumber - b.fields.songNumber);
 
   return (
     <Page title={`MK | ${title}`}>
-      <Section delay={0.5} style={{ display: "flex", alignItems: "center" }}>
-        <div>
-          <h1>{title}</h1>
-        </div>
+      <Section className={css.container}>
+        <Section inline delay={0.5} className={css.image}>
+          <Image src={coverImageURL} layout="responsive" width="100" height="100" />
+        </Section>
+        <Section inline delay={0.75} className={css.details}>
+          <div>
+            <h1>{title}</h1>
+            <List collection={orderedSongs} />
+          </div>
+        </Section>
       </Section>
-
-      <List collection={songs} />
     </Page>
   );
 };
