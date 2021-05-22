@@ -9,7 +9,7 @@ import List from "@components/List";
 import css from "./[slug].module.css";
 
 const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
-  const { title, coverImage } = album.fields;
+  const { title, coverImage, url } = album.fields;
   const coverImageURL = "https:" + coverImage.fields.file.url;
 
   const orderedSongs = songs.sort((a, b) => a.fields.songNumber - b.fields.songNumber);
@@ -18,11 +18,16 @@ const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
     <Page title={`MK | ${title}`}>
       <Section className={css.container}>
         <Section inline delay={0.5} className={css.image}>
-          <Image src={coverImageURL} layout="responsive" width="100" height="100" />
+          <Image src={coverImageURL} layout="intrinsic" width="400" height="400" />
         </Section>
         <Section inline delay={0.75} className={css.details}>
           <div>
             <h1>{title}</h1>
+            <a href={url} target="_blank" referrerPolicy="no-referrer">
+              Show in Spotify
+            </a>
+          </div>
+          <div className={css.songs}>
             <List collection={orderedSongs} />
           </div>
         </Section>
