@@ -2,7 +2,7 @@ import Section from "@components/Section/Section";
 import MarkdownContent from "@components/MarkdownContent";
 import Page from "@components/Page/Page";
 import { ENTRIES } from "@constants/entries";
-import { getEntry } from "@services/contentful/util";
+import { getEntry } from "@util/contentful";
 import { CTMarkdownContent } from "@type/content";
 import { Entry } from "contentful";
 import { FC } from "react";

@@ -1,6 +1,6 @@
 import { CONTENTFUL_QUERY_DEPTH } from "@constants/contentful";
 import { client } from "@services/contentful";
-import { CTAlbum, CTBlogPost, CTProject } from "@type/content";
+import { CTAlbum, CTBlogPost, CTProject, CTSong } from "@type/content";
 import { Entry, EntryCollection } from "contentful";
 
 export const getEntry = async <T>(id: string): Promise<Entry<T>> => {
@@ -49,6 +49,18 @@ export const getSingleAlbum = async (slug: string) => {
     await getEntries<CTAlbum>({
       content_type: "album",
       "fields.slug[in]": slug,
+    })
+  )?.items?.[0];
+};
+
+export const getSongsInAlbum = async (albumSlug: string) => {
+  const album = await getSingleAlbum(albumSlug);
+  if (!album) throw new Error("Album not found");
+
+  return (
+    await getEntries<CTSong>({
+      content_type: "song",
+      links_to_entry: album.sys.id,
     })
   )?.items?.[0];
 };

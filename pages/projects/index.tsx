@@ -5,7 +5,7 @@ import MarkdownContent from "@components/MarkdownContent";
 import Page from "@components/Page/Page";
 import { Entry, EntryCollection } from "contentful";
 import List from "@components/List";
-import { getEntriesOfType, getEntry } from "@services/contentful/util";
+import { getEntriesOfType, getEntry } from "@util/contentful";
 import { ENTRIES } from "@constants/entries";
 
 const ProjectsPage: FC<PropsI> = ({ markdown, projects }) => {

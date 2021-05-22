@@ -1,5 +1,5 @@
 import { ENTRIES } from "@constants/entries";
-import { getEntriesOfType, getEntry } from "@services/contentful/util";
+import { getEntriesOfType, getEntry } from "@util/contentful";
 
 import { FC } from "react";
 import { CTBlogPost, CTMarkdownContent } from "@type/content";

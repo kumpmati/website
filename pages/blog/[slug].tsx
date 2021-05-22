@@ -1,7 +1,7 @@
 import MarkdownContent from "@components/MarkdownContent";
 import Page from "@components/Page/Page";
 import Section from "@components/Section/Section";
-import { getEntriesOfType, getSingleBlogPost } from "@services/contentful/util";
+import { getEntriesOfType, getSingleBlogPost } from "@util/contentful";
 import { CTBlogPost } from "@type/content";
 import { Entry } from "contentful";
 import { FC } from "react";

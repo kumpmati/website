@@ -3,7 +3,7 @@ import MarkdownContent from "@components/MarkdownContent";
 import Page from "@components/Page/Page";
 import Section from "@components/Section/Section";
 import { ENTRIES } from "@constants/entries";
-import { getEntriesOfType, getEntry } from "@services/contentful/util";
+import { getEntriesOfType, getEntry } from "@util/contentful";
 import { CTAlbum, CTMarkdownContent } from "@type/content";
 import { Entry, EntryCollection } from "contentful";
 import { FC } from "react";
