@@ -31,7 +31,9 @@ const AlbumListItem: FC<PropsI> = ({ entry }) => {
               <p className={css.info__releaseDate}>{releaseDateStr}</p>
             </div>
 
-            <p className={css.info__numSongs}>{songs} songs</p>
+            <p className={css.info__numSongs}>{`${songs} ${
+              songs > 1 ? "songs" : "song"
+            }`}</p>
           </Section>
         </div>
       </a>
