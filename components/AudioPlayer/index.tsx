@@ -1,4 +1,5 @@
 import { CTSong } from "@type/content";
+import { secondsToTimeString } from "@util/index";
 import { Entry } from "contentful";
 import { createContext, MouseEventHandler, useContext } from "react";
 import css from "./AudioPlayer.module.css";
@@ -30,27 +31,32 @@ const AudioPlayer = () => {
     seek(pointInSong);
   };
 
+  const toggle = () => setPlayState(playing ? "pause" : "play");
+
+  const currentAlbumName = currentSong?.fields.album?.fields.title;
+  const currentSongName = currentSong?.fields.title;
+
   return (
     <div className={css.player}>
       <div className={css.info}>
-        <p>Now playing</p>
-        <h2 className={css.info__title}>{currentSong?.fields.title ?? "-"}</h2>
+        <p>{currentAlbumName ?? "-"}</p>
+        <h2 className={css.info__title}>{currentSongName ?? "-"}</h2>
       </div>
 
       <div className={css.controls}>
         <div className={css.buttons}>
-          <button className={css.buttons__button}>{"<"}</button>
-          <button
-            className={css.buttons__button}
-            onClick={() => setPlayState(playing ? "pause" : "play")}>
+          <button className={css.buttons__button} onClick={toggle}>
             {playing ? "||" : "▷"}
           </button>
-          <button className={css.buttons__button}>{">"}</button>
+          {/* 
+          <button className={css.buttons__button}>{"<"}</button>
+          <button className={css.buttons__button}>{">"}</button> 
+          */}
         </div>
         <div className={css.progress}>
           <div className={css.progress__time}>
-            <p>0:00</p>
-            <p>2:30</p>
+            <p>{secondsToTimeString(time.currentTime)}</p>
+            <p>{secondsToTimeString(time.duration)}</p>
           </div>
           <progress
             className={css.progress__bar}

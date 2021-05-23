@@ -3,6 +3,7 @@
   font-family: inherit;
 
   appearance: none;
+  display: contents;
   border: none;
   background: none;
 
@@ -12,4 +13,8 @@
 .song__title--playable:hover {
   color: var(--txt-col);
   cursor: pointer;
+}
+
+.song--current .song__title {
+  color: var(--txt-col);
 }

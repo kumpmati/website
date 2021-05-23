@@ -6,11 +6,13 @@ import css from "./SongListItem.module.css";
 import { AudioPlayerContext } from "@components/AudioPlayer";
 
 const SongListItem: FC<PropsI> = ({ entry }) => {
-  const { load } = useContext(AudioPlayerContext);
+  const { load, currentSong } = useContext(AudioPlayerContext);
   const { title, audioFile } = entry.fields;
 
+  const isCurrentSong = currentSong?.sys.id === entry?.sys.id;
+
   return (
-    <div className={css.song}>
+    <div className={`${css.song} ${isCurrentSong ? css["song--current"] : ""}`}>
       <button
         onClick={() => (audioFile ? load(entry, true) : null)}
         className={`${css.song__title} ${audioFile ? css["song__title--playable"] : ""}`}>
