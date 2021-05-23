@@ -45,7 +45,11 @@ const AudioPlayer = () => {
 
       <div className={css.controls}>
         <div className={css.buttons}>
-          <button className={css.buttons__button} onClick={toggle}>
+          <button
+            disabled={!currentSong}
+            className={css.buttons__button}
+            onClick={toggle}
+            title={playing ? "pause" : "play"}>
             {playing ? "||" : "▷"}
           </button>
           {/* 
