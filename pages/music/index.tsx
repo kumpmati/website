@@ -45,6 +45,6 @@ export async function getStaticProps() {
 
   return {
     props,
-    // don't revalidate
+    revalidate: 60 * 60, // 1 hour
   };
 }
