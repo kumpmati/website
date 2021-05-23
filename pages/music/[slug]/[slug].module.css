@@ -4,7 +4,11 @@
   gap: 2.5em;
 }
 
-.details__title:hover {
+.details__link {
+  margin-left: auto;
+}
+
+.details__link:hover {
   text-decoration: underline;
 }
 

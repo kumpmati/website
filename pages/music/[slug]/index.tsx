@@ -26,14 +26,17 @@ const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
             <Image src={coverImageURL} layout="intrinsic" width="400" height="400" />
           </Section>
           <Section inline delay={0.75} className={css.details}>
-            <a
-              className={css.details__title}
-              title={`View ${title} in streaming services`}
-              href={url}
-              target="_blank"
-              referrerPolicy="no-referrer">
+            <Section inline style={{ display: "flex", alignItems: "center" }}>
               <h1>{title}</h1>
-            </a>
+              <a
+                className={css.details__link}
+                title={`View ${title} in streaming services`}
+                href={url}
+                target="_blank"
+                referrerPolicy="no-referrer">
+                {"->"}
+              </a>
+            </Section>
 
             <div className={css.songs}>
               <List collection={orderedSongs} />
