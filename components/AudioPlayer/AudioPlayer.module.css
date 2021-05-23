@@ -76,11 +76,11 @@
   appearance: none;
   width: 100%;
   cursor: pointer;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.6em;
 }
 
 .progress__bar {
-  height: 0.75em;
+  height: 0.6em;
   border-radius: 0.15em;
   overflow: hidden;
 }
