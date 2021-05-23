@@ -4,6 +4,10 @@
   gap: 2.5em;
 }
 
+.details__title:hover {
+  text-decoration: underline;
+}
+
 .image {
   display: grid;
   place-content: center;
