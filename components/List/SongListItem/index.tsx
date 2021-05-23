@@ -1,13 +1,23 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { CTSong } from "@type/content";
 import { Entry } from "contentful";
 
 import css from "./SongListItem.module.css";
+import { AudioPlayerContext } from "@components/AudioPlayer";
 
 const SongListItem: FC<PropsI> = ({ entry }) => {
-  const { title } = entry.fields;
+  const { load } = useContext(AudioPlayerContext);
+  const { title, audioFile } = entry.fields;
 
-  return <p className={css.song__title}>{title}</p>;
+  return (
+    <div className={css.song}>
+      <button
+        onClick={() => (audioFile ? load(entry, true) : null)}
+        className={`${css.song__title} ${audioFile ? css["song__title--playable"] : ""}`}>
+        {title}
+      </button>
+    </div>
+  );
 };
 
 export default SongListItem;

@@ -1,6 +1,9 @@
+import { AudioPlayerContextI } from "@components/AudioPlayer";
 import { DARK_THEME, LIGHT_THEME } from "@constants/colorSchemes";
+import { CTSong } from "@type/content";
+import { Entry } from "contentful";
 import { useRouter } from "next/router";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 /**
  * Helper to use useLayoutEffect without console warnings.
@@ -62,4 +65,95 @@ export const useLoadingState = () => {
   events?.on("routeChangeError", () => setLoading(false));
 
   return { loading };
+};
+
+export const useAudioPlayer = (): AudioPlayerContextI => {
+  const [playing, setPlaying] = useState(false);
+  const [time, setTime] = useState({ currentTime: 0, duration: 0 });
+  const [currentSong, setCurrentSong] = useState<Entry<CTSong>>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // sync play state
+  useEffect(() => {
+    setPlaying(!audioRef.current?.paused);
+  }, [audioRef.current?.paused]);
+
+  // event handling
+  useEffect(() => {
+    if (!audioRef.current) {
+      setTime({ currentTime: 0, duration: 0 });
+      return;
+    }
+
+    audioRef.current.ontimeupdate = () => {
+      const { currentTime, duration } = audioRef.current;
+      setTime({ currentTime, duration: !isNaN(duration) ? duration : 0 });
+    };
+
+    return () => {
+      audioRef.current.ontimeupdate = null;
+      audioRef.current?.pause();
+      audioRef.current?.remove();
+    };
+  }, [audioRef.current]);
+
+  // clean-up on unmount
+  useEffect(() => {
+    return () => {
+      if (!audioRef.current) return;
+      audioRef.current.src = null;
+      audioRef.current.pause();
+      audioRef.current.remove();
+    };
+  }, []);
+
+  /**
+   * Loads a new song and removes the previous one.
+   * @param song
+   * @returns
+   */
+  const load = (song: Entry<CTSong>, playOnLoad?: boolean) => {
+    if (!song.fields.audioFile?.fields.file.url) return;
+
+    if (!audioRef.current) audioRef.current = new Audio();
+
+    audioRef.current.src = song.fields.audioFile.fields.file.url;
+    audioRef.current.currentTime = 0;
+    audioRef.current.pause();
+    setCurrentSong(song);
+
+    if (playOnLoad) audioRef.current.play();
+  };
+
+  const setPlayState = (state: "play" | "pause" | "stop") => {
+    if (!audioRef.current) return;
+
+    switch (state) {
+      case "play":
+        audioRef.current.play();
+        break;
+      case "pause":
+        audioRef.current.pause();
+        break;
+      case "stop":
+        audioRef.current.currentTime = 0;
+        audioRef.current.pause();
+        break;
+    }
+  };
+
+  const seek = (time: number) => {
+    if (!audioRef.current || !isFinite(time)) return;
+    audioRef.current.currentTime = time;
+  };
+
+  return {
+    setPlayState,
+    load,
+    seek,
+    playing,
+    time,
+    currentSong,
+    audio: audioRef.current,
+  };
 };

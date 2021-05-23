@@ -1,0 +1,15 @@
+.song__title {
+  font-size: 1rem;
+  font-family: inherit;
+
+  appearance: none;
+  border: none;
+  background: none;
+
+  color: var(--txt-col-subtle);
+}
+
+.song__title--playable:hover {
+  color: var(--txt-col);
+  cursor: pointer;
+}
