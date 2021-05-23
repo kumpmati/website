@@ -12,14 +12,14 @@
   border: 1px solid transparent;
 }
 
-.album:focus {
+.album:focus-visible {
   outline: 0;
   background-color: var(--overlay);
   border-color: var(--txt-col);
 }
 
 .album:hover .info__title,
-.album:focus .info__title {
+.album:focus-visible .info__title {
   text-decoration: underline;
 }
 

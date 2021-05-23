@@ -147,8 +147,17 @@ export const useAudioPlayer = (): AudioPlayerContextI => {
     audioRef.current.currentTime = time;
   };
 
+  const setVolume = (volume: number) => {
+    if (volume < 0 || volume > 1) return;
+    if (!audioRef.current) return;
+
+    audioRef.current.volume = volume;
+  };
+
   return {
     setPlayState,
+    setVolume,
+    volume: audioRef.current?.volume ?? 0,
     load,
     seek,
     playing,

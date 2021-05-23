@@ -3,11 +3,19 @@
   font-family: inherit;
 
   appearance: none;
-  display: contents;
+
+  padding: 0;
+
   border: none;
   background: none;
 
   color: var(--txt-col-subtle);
+}
+
+.song__title:focus-visible {
+  outline: none;
+  color: var(--txt-col);
+  text-decoration: underline;
 }
 
 .song__title--playable:hover {

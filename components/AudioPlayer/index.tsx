@@ -1,20 +1,9 @@
-import { CTSong } from "@type/content";
+import { AudioPlayerContextI } from "@type/audioPlayer";
 import { secondsToTimeString } from "@util/index";
-import { Entry } from "contentful";
 import { createContext, MouseEventHandler, useContext } from "react";
 import css from "./AudioPlayer.module.css";
 
 export const AudioPlayerContext = createContext<AudioPlayerContextI>(null);
-
-export type AudioPlayerContextI = {
-  currentSong: Entry<CTSong>;
-  audio: HTMLAudioElement | null;
-  playing: boolean;
-  time: { currentTime: number; duration: number };
-  seek: (time: number) => void;
-  load: (song: Entry<CTSong>, playOnLoad?: boolean) => void;
-  setPlayState: (state: "play" | "pause" | "stop") => void;
-};
 
 const AudioPlayer = () => {
   const { currentSong, time, seek, setPlayState, playing } =
@@ -52,10 +41,6 @@ const AudioPlayer = () => {
             title={playing ? "pause" : "play"}>
             {playing ? "||" : "▷"}
           </button>
-          {/* 
-          <button className={css.buttons__button}>{"<"}</button>
-          <button className={css.buttons__button}>{">"}</button> 
-          */}
         </div>
         <div className={css.progress}>
           <div className={css.progress__time}>

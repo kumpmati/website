@@ -11,10 +11,15 @@ const SongListItem: FC<PropsI> = ({ entry }) => {
 
   const isCurrentSong = currentSong?.sys.id === entry?.sys.id;
 
+  const loadSong = () => {
+    if (!audioFile) return;
+    load(entry, true);
+  };
+
   return (
     <div className={`${css.song} ${isCurrentSong ? css["song--current"] : ""}`}>
       <button
-        onClick={() => (audioFile ? load(entry, true) : null)}
+        onClick={loadSong}
         className={`${css.song__title} ${audioFile ? css["song__title--playable"] : ""}`}>
         {title}
       </button>
