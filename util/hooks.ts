@@ -1,5 +1,5 @@
-import { AudioPlayerContextI } from "@components/AudioPlayer";
 import { DARK_THEME, LIGHT_THEME } from "@constants/colorSchemes";
+import { AudioPlayerContextI } from "@type/audioPlayer";
 import { CTSong } from "@type/content";
 import { Entry } from "contentful";
 import { useRouter } from "next/router";
@@ -67,16 +67,13 @@ export const useLoadingState = () => {
   return { loading };
 };
 
+/**
+ * Handles all the logic of the audio player
+ */
 export const useAudioPlayer = (): AudioPlayerContextI => {
-  const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState({ currentTime: 0, duration: 0 });
   const [currentSong, setCurrentSong] = useState<Entry<CTSong>>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  // sync play state
-  useEffect(() => {
-    setPlaying(!audioRef.current?.paused);
-  }, [audioRef.current?.paused]);
 
   // event handling
   useEffect(() => {
@@ -160,7 +157,7 @@ export const useAudioPlayer = (): AudioPlayerContextI => {
     volume: audioRef.current?.volume ?? 0,
     load,
     seek,
-    playing,
+    playing: !audioRef.current?.paused,
     time,
     currentSong,
     audio: audioRef.current,

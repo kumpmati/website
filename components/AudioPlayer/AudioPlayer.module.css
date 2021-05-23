@@ -103,3 +103,47 @@
 .progress__bar:hover::-webkit-progress-value {
   background: var(--txt-col);
 }
+
+.volume {
+  position: relative;
+
+  margin-left: 0.5em;
+  margin-bottom: 0.4em;
+  padding: 0.25em;
+
+  display: flex;
+  align-items: center;
+}
+
+.volume__bar {
+  appearance: none;
+
+  width: 1em;
+  height: 0.6em;
+
+  border-radius: 0.15em;
+
+  background: var(--overlay);
+  overflow: hidden;
+
+  transition: width 300ms;
+}
+
+.volume:hover .volume__bar {
+  width: 5em;
+  cursor: pointer;
+}
+
+.volume__bar::-webkit-progress-bar {
+  background: var(--overlay);
+}
+
+.volume__bar::-webkit-progress-value {
+  background: var(--txt-col-subtler);
+  border-radius: 0.15em;
+
+  transition: width 100ms;
+}
+.volume__bar:hover::-webkit-progress-value {
+  background: var(--txt-col);
+}

@@ -6,11 +6,10 @@ import css from "./AudioPlayer.module.css";
 export const AudioPlayerContext = createContext<AudioPlayerContextI>(null);
 
 const AudioPlayer = () => {
-  const { currentSong, time, seek, setPlayState, playing } =
+  const { currentSong, time, seek, setPlayState, setVolume, playing, volume } =
     useContext(AudioPlayerContext);
 
-  // handle seeking to different points in song
-  const progressBarOnClick: MouseEventHandler<HTMLProgressElement> = (e) => {
+  const handleSeek: MouseEventHandler<HTMLProgressElement> = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
 
     const width = rect.right - rect.left;
@@ -18,6 +17,16 @@ const AudioPlayer = () => {
 
     const pointInSong = (x / width) * time.duration;
     seek(pointInSong);
+  };
+
+  const handleVolume: MouseEventHandler<HTMLProgressElement> = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    const width = rect.right - rect.left;
+    const x = e.clientX - rect.left;
+
+    const finalVolume = x / width;
+    setVolume(finalVolume);
   };
 
   const toggle = () => setPlayState(playing ? "pause" : "play");
@@ -42,6 +51,7 @@ const AudioPlayer = () => {
             {playing ? "||" : "▷"}
           </button>
         </div>
+
         <div className={css.progress}>
           <div className={css.progress__time}>
             <p>{secondsToTimeString(time.currentTime)}</p>
@@ -49,9 +59,19 @@ const AudioPlayer = () => {
           </div>
           <progress
             className={css.progress__bar}
-            onClick={progressBarOnClick}
+            onClick={handleSeek}
             max={time.duration}
             value={time.currentTime}
+          />
+        </div>
+
+        <div className={css.volume}>
+          <progress
+            className={css.volume__bar}
+            onClick={handleVolume}
+            max={1}
+            value={volume}
+            title="Volume"
           />
         </div>
       </div>
