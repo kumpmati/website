@@ -13,6 +13,8 @@
   margin: 0;
   padding: 0;
 
+  overflow-x: hidden;
+
   color: var(--txt-col);
 
   background-color: var(--bg-col);
