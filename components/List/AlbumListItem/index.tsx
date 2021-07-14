@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import css from "./AlbumListItem.module.css";
 import Section from "@components/Section/Section";
+import { blurDataURL } from "@util/placeholderBlur";
 
 const AlbumListItem: FC<PropsI> = ({ entry }) => {
   const { title, slug, releaseDate, coverImage, songs } = entry.fields;
@@ -18,6 +19,8 @@ const AlbumListItem: FC<PropsI> = ({ entry }) => {
       <a className={css.album}>
         <div className={css.info}>
           <Image
+            placeholder="blur"
+            blurDataURL={blurDataURL(500, 500)}
             className={css.info__coverImage}
             src={coverImageURL}
             layout="responsive"

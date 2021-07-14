@@ -5,16 +5,23 @@ import Page from "@components/Page/Page";
 import Section from "@components/Section/Section";
 import List from "@components/List";
 import AudioPlayer, { AudioPlayerContext } from "@components/AudioPlayer";
-import { getEntriesOfType, getSingleAlbum, getSongsInAlbum } from "@util/contentful";
+import {
+  getEntriesOfType,
+  getSingleAlbum,
+  getSongsInAlbum,
+} from "@util/contentful";
 import Image from "next/image";
 import css from "./[slug].module.css";
 import { useAudioPlayer } from "@util/hooks";
+import { blurDataURL } from "@util/placeholderBlur";
 
 const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
   const { title, coverImage, url } = album.fields;
   const coverImageURL = "https:" + coverImage.fields.file.url;
 
-  const orderedSongs = songs.sort((a, b) => a.fields.songNumber - b.fields.songNumber);
+  const orderedSongs = songs.sort(
+    (a, b) => a.fields.songNumber - b.fields.songNumber
+  );
 
   const audioContext = useAudioPlayer();
 
@@ -23,7 +30,14 @@ const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
       <Page title={`MK | ${title}`}>
         <Section className={css.container}>
           <Section inline delay={0.5} className={css.image}>
-            <Image src={coverImageURL} layout="intrinsic" width="400" height="400" />
+            <Image
+              placeholder="blur"
+              blurDataURL={blurDataURL(500, 500)}
+              src={coverImageURL}
+              layout="intrinsic"
+              width="400"
+              height="400"
+            />
           </Section>
           <Section inline delay={0.75} className={css.details}>
             <Section inline style={{ display: "flex", alignItems: "center" }}>
@@ -33,7 +47,8 @@ const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
                 title={`View ${title} in streaming services`}
                 href={url}
                 target="_blank"
-                referrerPolicy="no-referrer">
+                referrerPolicy="no-referrer"
+              >
                 {"->"}
               </a>
             </Section>
@@ -81,7 +96,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const albums = (await getEntriesOfType<CTAlbum>("album")).items;
-  const paths = albums.map((album) => ({ params: { slug: album.fields.slug } }));
+  const paths = albums.map(album => ({ params: { slug: album.fields.slug } }));
 
   return {
     paths,
