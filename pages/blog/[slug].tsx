@@ -49,13 +49,13 @@ export async function getStaticProps({ params }) {
     props: {
       entry,
     },
-    revalidate: 60 * 60, // 1 hour
+    revalidate: 60 * 60 * 24, // 1 day
   };
 }
 
 export async function getStaticPaths() {
   const posts = (await getEntriesOfType<CTBlogPost>("blogPost")).items;
-  const paths = posts.map((post) => ({ params: { slug: post.fields.slug } }));
+  const paths = posts.map(post => ({ params: { slug: post.fields.slug } }));
 
   return {
     paths,
