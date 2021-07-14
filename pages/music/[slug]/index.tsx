@@ -32,7 +32,7 @@ const SingleAlbumPage: FC<PropsI> = ({ album, songs }) => {
           <Section inline delay={0.5} className={css.image}>
             <Image
               placeholder="blur"
-              blurDataURL={blurDataURL(500, 500)}
+              blurDataURL={blurDataURL(10, 10)}
               src={coverImageURL}
               layout="intrinsic"
               width="400"

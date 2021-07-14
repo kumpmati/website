@@ -20,7 +20,7 @@ const AlbumListItem: FC<PropsI> = ({ entry }) => {
         <div className={css.info}>
           <Image
             placeholder="blur"
-            blurDataURL={blurDataURL(500, 500)}
+            blurDataURL={blurDataURL(10, 10)}
             className={css.info__coverImage}
             src={coverImageURL}
             layout="responsive"
