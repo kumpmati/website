@@ -1,25 +1,32 @@
-import { ThemeContext } from "@constants/colorSchemes";
-import { useContext } from "react";
+import { ThemeContext } from "@constants/colorSchemes"
+import { domAnimation, LazyMotion, m } from "framer-motion"
+import { useContext, useState } from "react"
 
-import css from "./ColorSchemeToggle.module.css";
+import css from "./ColorSchemeToggle.module.css"
+
+const options: ("dark" | "light" | "auto")[] = ["auto", "light", "dark"]
+
+const emojis = {
+  dark: `🌚`,
+  light: `🌝`,
+  auto: `🌗`,
+}
 
 const ColorSchemeToggle = () => {
-  const { theme, current, setColorScheme } = useContext(ThemeContext);
-  const nextMode = current === "auto" || current === "light" ? "dark" : "light";
+  const { theme, current, setColorScheme } = useContext(ThemeContext)
+  const nextMode = options[(options.indexOf(current) + 1) % options.length]
 
   return (
-    <div style={theme} className={css.container}>
-      {current !== "auto" && (
-        <button className={css.reset} onClick={() => setColorScheme("auto")}>
-          auto
-        </button>
-      )}
-
-      <button className={css.toggle} onClick={() => setColorScheme(nextMode)}>
-        {current}
+    <div style={theme}>
+      <button
+        className={css.toggle}
+        onClick={() => setColorScheme(nextMode)}
+        title={`switch to ${nextMode} mode`}
+      >
+        {emojis[nextMode]}
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default ColorSchemeToggle;
+export default ColorSchemeToggle

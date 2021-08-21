@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
@@ -13,11 +14,13 @@ const Logo: FC = () => {
 
   return (
     <Link href="/">
-      <a
+      <motion.a
+        drag
         title="Matias Kumpulainen"
-        className={`${css.logo} ${isOpen ? css["logo--open"] : css["logo--closed"]} ${
-          atHomePage ? css["logo--openable"] : ""
-        }`}>
+        className={`${css.logo} ${
+          isOpen ? css["logo--open"] : css["logo--closed"]
+        } ${atHomePage ? css["logo--openable"] : ""}`}
+      >
         <div className={css.logo__left}>
           <h1>M</h1>
           <h1 className={css.text__hidden}>Matias</h1>
@@ -26,7 +29,7 @@ const Logo: FC = () => {
           <h1>K</h1>
           <h1 className={css.text__hidden}>Kumpulainen</h1>
         </div>
-      </a>
+      </motion.a>
     </Link>
   );
 };
