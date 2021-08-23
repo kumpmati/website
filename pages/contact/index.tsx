@@ -1,5 +1,5 @@
-import Section from "@components/Section/Section";
-import Page from "@components/Page/Page";
+import Section from "@components/Section/Section"
+import Page from "@components/Page/Page"
 
 const ContactPage = () => {
   return (
@@ -9,13 +9,11 @@ const ContactPage = () => {
 
         <ul>
           <li>
-            <a href="mailto:hello@mvkump.dev">hello@mvkump.dev</a>
+            <a href="mailto:matias.kumpulainen@kvanttori.fi">matias.kumpulainen@kvanttori.fi</a>
           </li>
 
           <li>
-            <a
-              target="noreferrer"
-              href="https://www.linkedin.com/in/matias-kumpulainen-27b4421b9/">
+            <a target="noreferrer" href="https://www.linkedin.com/in/matias-kumpulainen-27b4421b9/">
               LinkedIn
             </a>
           </li>
@@ -27,7 +25,7 @@ const ContactPage = () => {
         </ul>
       </Section>
     </Page>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage
