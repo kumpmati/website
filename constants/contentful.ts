@@ -1,1 +1,0 @@
-export const CONTENTFUL_QUERY_DEPTH = 5;
