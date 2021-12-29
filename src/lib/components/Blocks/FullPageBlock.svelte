@@ -3,6 +3,7 @@
 	import SplitSection from '../SplitSection/SplitSection.svelte';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { scrollPosition } from '$lib/stores/scroll';
+	import Parallax from '../Parallax/Parallax.svelte';
 
 	export let block: FullPageBlock;
 
@@ -34,9 +35,11 @@
 		class="right"
 		class:difference={style === 'Difference'}
 		class:visible
-		style={`color: ${textColor}; transform: translateY(${yOffset / 12}px);`}
+		style={`color: ${textColor}; `}
 	>
-		{@html documentToHtmlString(content)}
+		<Parallax amount={10}>
+			{@html documentToHtmlString(content)}
+		</Parallax>
 	</div>
 
 	<span slot="background" class="backgroundContainer" class:visible>
@@ -54,7 +57,7 @@
 <style lang="scss">
 	.left {
 		text-align: right;
-		margin-top: 2.5rem;
+		margin: 2.5rem 0 0 1rem;
 		letter-spacing: var(--letter-spacing-100);
 		font-weight: 700;
 	}
@@ -122,5 +125,44 @@
 
 		/* This prevents white edges when scrolling fast */
 		will-change: transform;
+	}
+
+	@media screen and (max-width: 1200px) {
+		.right {
+			:global(h1) {
+				font-size: 4rem;
+			}
+			:global(h2) {
+				font-size: 3.5rem;
+			}
+		}
+	}
+
+	@media screen and (max-width: 950px) {
+		.left {
+			margin: 1.25rem 0;
+			text-align: left;
+			max-width: 10rem;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: flex-end;
+			justify-content: flex-start;
+		}
+
+		.backgroundContainer.visible {
+			transform: scale(1.3);
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		.right {
+			:global(h1) {
+				font-size: 2.5rem;
+			}
+			:global(h2) {
+				font-size: 2rem;
+			}
+		}
 	}
 </style>

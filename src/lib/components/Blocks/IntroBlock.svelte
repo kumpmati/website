@@ -3,8 +3,8 @@
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import SplitSection from '../SplitSection/SplitSection.svelte';
 	import { ChevronDownIcon } from 'svelte-feather-icons';
-	import { scrollPosition } from '$lib/stores/scroll';
 	import SideNavigation from '../Navigation/SideNavigation.svelte';
+	import Visible from '../Visible/Visible.svelte';
 
 	export let block: IntroBlock;
 
@@ -12,36 +12,31 @@
 	const imageUrl = profilePicture?.fields.file.url;
 
 	let visible = false;
-	let element;
-
-	// update yOffset whenever scroll position is changed
-	scrollPosition.subscribe(() => {
-		const rect = element?.getBoundingClientRect();
-		if (rect) visible = rect.top < -200;
-	});
 </script>
 
-<SplitSection bind:element offset="35vh" dividerOffset="35vh" style="background: #fff">
-	<div slot="left" class="left">
-		<p>{subheading}</p>
-	</div>
+<Visible threshold={-200} bind:visible>
+	<SplitSection offset="35vh" dividerOffset="35vh" style="background: #fff;">
+		<div slot="left" class="left">
+			<p>{subheading}</p>
+		</div>
 
-	<div slot="right" class="content">
-		{@html documentToHtmlString(content)}
+		<div slot="right" class="content">
+			{@html documentToHtmlString(content)}
 
-		<SideNavigation />
+			<SideNavigation />
 
-		<span class="icon" class:visible={!visible}>
-			<ChevronDownIcon size="20" />
-		</span>
-	</div>
+			<span class="icon" class:visible={!visible}>
+				<ChevronDownIcon size="20" />
+			</span>
+		</div>
 
-	<div slot="background">
-		{#if imageUrl}
-			<img src={imageUrl} class="profilePicture" alt={profilePicture.fields.title} />
-		{/if}
-	</div>
-</SplitSection>
+		<div slot="background">
+			{#if imageUrl}
+				<img src={imageUrl} class="profilePicture" alt={profilePicture.fields.title} />
+			{/if}
+		</div>
+	</SplitSection>
+</Visible>
 
 <style lang="scss">
 	@keyframes bounce {
@@ -111,11 +106,47 @@
 
 	.profilePicture {
 		bottom: 0;
-		right: 8rem;
+		right: 5rem;
 		position: absolute;
 		width: fit-content;
 		height: 70%;
 		z-index: -1;
 		object-fit: contain;
+	}
+
+	@media screen and (max-width: 950px) {
+		.left {
+			display: flex;
+			text-align: left;
+			align-items: flex-end;
+			height: 100%;
+			padding: 1rem 0;
+		}
+
+		.icon {
+			left: 2rem;
+			bottom: -12rem;
+		}
+
+		.content {
+			top: 0;
+
+			:global(h2) {
+				font-size: 3.5rem;
+			}
+		}
+
+		.profilePicture {
+			height: 60%;
+			right: -2rem;
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		.content {
+			:global(h2) {
+				font-size: 2.25rem;
+			}
+		}
 	}
 </style>

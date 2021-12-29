@@ -1,6 +1,5 @@
 <script lang="ts">
 	import SplitSection from '$lib/components/SplitSection/SplitSection.svelte';
-	import { scrollPosition } from '$lib/stores/scroll';
 	import type { GridBlock } from '$lib/types/contentful';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import GridImage from './GridImage/GridImage.svelte';
@@ -8,6 +7,7 @@
 	import { getTileWidth } from '$lib/utils/grid';
 	import { fade } from 'svelte/transition';
 	import Parallax from '$lib/components/Parallax/Parallax.svelte';
+	import Visible from '$lib/components/Visible/Visible.svelte';
 
 	export let block: GridBlock;
 	const { subheading, content, items, columns, layout } = block.fields;
@@ -16,32 +16,26 @@
 		layout === 'Normal' ? 'grid' : 'flex'
 	};grid-template-columns: repeat(${columns}, 1fr)`;
 
-	let element;
-	let yOffset: number = 0;
-	$: visible = yOffset < 200;
-
-	// update yOffset whenever scroll position is changed
-	scrollPosition.subscribe(() => {
-		const rect = element?.getBoundingClientRect();
-		if (rect) yOffset = rect.top;
-	});
+	let visible;
 </script>
 
-<SplitSection bind:element fullHeight={false} offset="10rem" style="padding-bottom: 3rem;">
-	<span slot="left">
-		{#if subheading}
-			<p class="subheading">{subheading}</p>
-		{/if}
-	</span>
-
-	<Parallax amount={2} slot="right">
-		<div class="content" class:visible>
-			{#if content}
-				{@html documentToHtmlString(content)}
+<Visible threshold={200} bind:visible>
+	<SplitSection fullHeight={false} offset="10rem" style="padding-bottom: 3rem;">
+		<span slot="left">
+			{#if subheading}
+				<p class="subheading">{subheading}</p>
 			{/if}
-		</div>
-	</Parallax>
-</SplitSection>
+		</span>
+
+		<Parallax amount={5} slot="right">
+			<div class="content" class:visible>
+				{#if content}
+					{@html documentToHtmlString(content)}
+				{/if}
+			</div>
+		</Parallax>
+	</SplitSection>
+</Visible>
 
 <div class="container" style={`min-height: ${Math.ceil(items.length / 2) * 30}rem; ${style}`}>
 	{#if visible}
@@ -66,17 +60,6 @@
 
 		& > :global(*) {
 			height: 30rem;
-		}
-	}
-
-	@media screen and(max-width: 1000px) {
-		.container {
-			display: grid !important;
-			grid-template-columns: 1fr !important;
-
-			:global(*) {
-				width: 100% !important;
-			}
 		}
 	}
 
@@ -108,6 +91,37 @@
 			font-size: 6rem;
 			letter-spacing: var(--letter-spacing-100);
 			font-weight: 800;
+		}
+	}
+
+	@media screen and(max-width: 1100px) {
+		.container {
+			display: grid !important;
+			grid-template-columns: 1fr !important;
+
+			:global(*) {
+				width: 100% !important;
+			}
+		}
+
+		.content {
+			:global(h1) {
+				font-size: 4rem;
+			}
+		}
+	}
+
+	@media screen and(max-width: 950px) {
+		.subheading {
+			text-align: left;
+		}
+	}
+
+	@media screen and(max-width: 600px) {
+		.content {
+			:global(h1) {
+				font-size: 2.75rem;
+			}
 		}
 	}
 </style>

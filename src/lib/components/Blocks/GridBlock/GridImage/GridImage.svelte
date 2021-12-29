@@ -100,6 +100,7 @@
 		height: 100%;
 		z-index: 0;
 		object-fit: cover;
+		pointer-events: none;
 
 		will-change: transform;
 
@@ -107,5 +108,22 @@
 		transform: scale(1);
 
 		transition: opacity 200ms, transform 200ms;
+	}
+
+	@media screen and (max-width: 950px) {
+		.title {
+			font-size: 2.5rem;
+		}
+
+		.content {
+			width: 50% !important;
+		}
+	}
+
+	@media screen and (max-width: 950px) {
+		.title,
+		.content {
+			margin: 0 1rem;
+		}
 	}
 </style>
