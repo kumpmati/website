@@ -4,6 +4,8 @@
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { scrollPosition } from '$lib/stores/scroll';
 	import Parallax from '../Parallax/Parallax.svelte';
+	import { onMount } from 'svelte';
+	import Visible from '../Visible/Visible.svelte';
 
 	export let block: FullPageBlock;
 
@@ -15,44 +17,48 @@
 	let yOffset = 0;
 	let visible = false;
 
-	// update yOffset whenever scroll position is changed
-	scrollPosition.subscribe(() => {
+	const checkVisibility = () => {
 		const rect = element?.getBoundingClientRect();
 		if (rect) {
-			visible = rect.top < 200;
 			yOffset = rect.top;
 		}
-	});
+	};
+
+	// update yOffset whenever scroll position is changed
+	scrollPosition.subscribe(checkVisibility);
+	onMount(checkVisibility);
 </script>
 
-<SplitSection bind:element offset="35vh" {divider}>
-	<p slot="left" class="left" style={`color: ${subheadingColor};`}>
-		{subheading}
-	</p>
+<Visible threshold={100} bind:visible>
+	<SplitSection bind:element offset="35vh" {divider}>
+		<p slot="left" class="left" style={`color: ${subheadingColor};`}>
+			{subheading}
+		</p>
 
-	<div
-		slot="right"
-		class="right"
-		class:difference={style === 'Difference'}
-		class:visible
-		style={`color: ${textColor}; `}
-	>
-		<Parallax amount={10}>
-			{@html documentToHtmlString(content)}
-		</Parallax>
-	</div>
+		<div
+			slot="right"
+			class="right"
+			class:difference={style === 'Difference'}
+			class:visible
+			style={`color: ${textColor}; `}
+		>
+			<Parallax amount={10}>
+				{@html documentToHtmlString(content)}
+			</Parallax>
+		</div>
 
-	<span slot="background" class="backgroundContainer" class:visible>
-		{#if imageUrl}
-			<img
-				class="background"
-				src={imageUrl}
-				alt={backgroundImage.fields.title}
-				style={`transform: scale(0.8) translateY(${-yOffset / 8}px);`}
-			/>
-		{/if}
-	</span>
-</SplitSection>
+		<span slot="background" class="backgroundContainer" class:visible>
+			{#if imageUrl}
+				<img
+					class="background"
+					src={imageUrl}
+					alt={backgroundImage.fields.title}
+					style={`transform: scale(0.8) translateY(${-yOffset / 8}px);`}
+				/>
+			{/if}
+		</span>
+	</SplitSection>
+</Visible>
 
 <style lang="scss">
 	.left {
@@ -140,7 +146,7 @@
 
 	@media screen and (max-width: 950px) {
 		.left {
-			margin: 1.25rem 0;
+			margin: 0;
 			text-align: left;
 			max-width: 10rem;
 			width: 100%;
