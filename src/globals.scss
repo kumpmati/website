@@ -1,0 +1,29 @@
+html,
+body {
+	--font-main: 'Manrope', Helvetica, sans-serif;
+
+	--text000: #000000;
+	--text100: #9a9a9a;
+	--text200: #b4b4b4;
+	--text300: #ffffff;
+
+	--letter-spacing-normal: normal;
+	--letter-spacing-100: 0.15em;
+	--letter-spacing-200: 0.2em;
+	--letter-spacing-300: 0.3em;
+
+	font-family: var(--font-main);
+
+	background: #fff;
+
+	margin: 0;
+	padding: 0;
+}
+
+#svelte {
+	scroll-snap-type: y mandatory;
+}
+
+* {
+	box-sizing: border-box;
+}
