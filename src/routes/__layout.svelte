@@ -29,8 +29,7 @@
 	import { onMount } from 'svelte';
 
 	export let nav: NavigationT;
-
-	$navigation = nav;
+	$navigation = nav; // update navigation store with the value
 
 	onMount(() => ($scrollPosition = window.scrollY));
 </script>

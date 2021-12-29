@@ -19,7 +19,7 @@
 	let visible;
 </script>
 
-<Visible threshold={200} bind:visible>
+<Visible threshold={300} bind:visible>
 	<SplitSection fullHeight={false} offset="10rem" style="padding-bottom: 3rem;">
 		<span slot="left">
 			{#if subheading}
@@ -41,8 +41,8 @@
 	{#if visible}
 		{#each items as item, index (item.sys.id)}
 			<div
-				in:scaleDelayed={{ duration: 500, delay: index * 200 }}
-				out:fade={{ duration: 200 }}
+				in:scaleDelayed|local={{ duration: 500, delay: index * 200 }}
+				out:fade|local={{ duration: 200 }}
 				style={`width: ${getTileWidth(layout, index)}`}
 			>
 				<GridImage {item} {index} />

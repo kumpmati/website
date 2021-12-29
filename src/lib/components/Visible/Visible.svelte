@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { scrollPosition } from '$lib/stores/scroll';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 
 	export let threshold: number = 0;
 	export let visible: boolean = false;
 	export let once: boolean = false;
 
 	let changed: boolean = false;
-	let element: HTMLDivElement;
+	let element: HTMLSpanElement;
 	let prevValue: boolean = false;
 	const dispatch = createEventDispatcher();
 
-	scrollPosition.subscribe(() => {
+	const update = () => {
 		if (once && changed) return;
 
 		const rect = element?.getBoundingClientRect();
@@ -26,9 +26,12 @@
 				changed = true;
 			}
 		}
-	});
+	};
+
+	scrollPosition.subscribe(update);
+	onMount(update);
 </script>
 
-<div bind:this={element}>
+<span bind:this={element}>
 	<slot />
-</div>
+</span>
