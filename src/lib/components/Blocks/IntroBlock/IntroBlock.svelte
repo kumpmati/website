@@ -1,22 +1,22 @@
 <script lang="ts">
 	import type { IntroBlock } from '$lib/types/contentful';
+	import SplitSection from '$lib/components/SplitSection/SplitSection.svelte';
+	import SideNavigation from '$lib/components/Navigation/SideNavigation.svelte';
+	import Visible from '$lib/components/Visible/Visible.svelte';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-	import SplitSection from '../SplitSection/SplitSection.svelte';
 	import { ChevronDownIcon } from 'svelte-feather-icons';
-	import SideNavigation from '../Navigation/SideNavigation.svelte';
-	import Visible from '../Visible/Visible.svelte';
 
 	export let block: IntroBlock;
 
-	const { subheading, content, profilePicture } = block.fields;
+	const { subheading, content, profilePicture, divider } = block.fields;
 	const imageUrl = profilePicture?.fields.file.url;
 
 	let visible = false;
 </script>
 
 <Visible threshold={-200} bind:visible>
-	<SplitSection offset="35vh" dividerOffset="35vh" style="background: #fff;">
-		<div slot="left" class="left">
+	<SplitSection offset="35vh" dividerOffset="35vh" {divider} style="background: #fff;">
+		<div slot="left" class="subheading">
 			<p>{subheading}</p>
 		</div>
 
@@ -51,11 +51,11 @@
 		}
 	}
 
-	.left {
+	.subheading {
 		text-align: right;
 		letter-spacing: var(--letter-spacing-100);
 		color: #9a9a9a;
-		font-size: 14px;
+		font-size: 18px;
 		font-weight: 700;
 
 		p {
@@ -115,7 +115,7 @@
 	}
 
 	@media screen and (max-width: 950px) {
-		.left {
+		.subheading {
 			display: flex;
 			text-align: left;
 			align-items: flex-end;

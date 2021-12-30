@@ -18,15 +18,16 @@ export type Page = Entry<{
 	blocks: PageBlocks[];
 }>;
 
-export type PageBlocks = IntroBlock | FullPageBlock | GridBlock;
+export type PageBlocks = IntroBlock | HeroBlock | GridBlock;
 
 export type IntroBlock = Entry<{
 	subheading?: string;
 	content: Document;
 	profilePicture?: Asset;
+	divider: boolean;
 }>;
 
-export type FullPageBlock = Entry<{
+export type HeroBlock = Entry<{
 	subheading?: string;
 	content: Document;
 	backgroundImage?: Asset;
@@ -34,23 +35,31 @@ export type FullPageBlock = Entry<{
 	subheadingColor?: string;
 	style: 'Normal' | 'Difference';
 	divider: boolean;
+	size: 'Full Page' | 'Normal';
 }>;
 
 export type GridBlockLayout = 'Normal' | 'Mason';
+
+export type GridBlockItem = GridColorTile | GridImage;
 
 export type GridBlock = Entry<{
 	subheading?: string;
 	content?: Document;
 	layout: GridBlockLayout;
 	columns: number;
-	items: GridImage[];
+	divider: boolean;
+	items: GridBlockItem[];
 }>;
 
-export type GridImage = Entry<{
+export type GridColorTile = Entry<{
 	title: string;
 	content?: Document;
 	image: Asset;
 	link?: string;
 	textColor?: string;
 	color?: string;
+}>;
+
+export type GridImage = Entry<{
+	image: Asset;
 }>;

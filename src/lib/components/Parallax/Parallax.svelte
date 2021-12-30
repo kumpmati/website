@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { scrollPosition } from '$lib/stores/scroll';
+	import { onDestroy, onMount, tick } from 'svelte';
 
 	export let direction: 'x' | 'y' = 'y';
 	export let amount: number = 1;
@@ -14,12 +15,15 @@
 		offset * multiplier
 	}px) ${style}`;
 
-	scrollPosition.subscribe(() => {
+	const updatePosition = () => {
 		const rect = element?.getBoundingClientRect();
-		if (rect) {
-			offset = rect.top;
-		}
-	});
+		if (rect) offset = rect.top;
+	};
+
+	const unsubscribe = scrollPosition.subscribe(updatePosition);
+
+	onMount(updatePosition);
+	onDestroy(unsubscribe);
 </script>
 
 <div bind:this={element} class={`container ${className}`} style={styleString}>

@@ -25,16 +25,16 @@
 <script lang="ts">
 	import type { Page } from '$lib/types/contentful';
 	import BlockPicker from '$lib/components/Blocks/BlockPicker.svelte';
-	import { browser } from '$app/env';
 
 	export let page: Page;
+
 	$: blocks = page.fields.blocks;
 	$: title = page.fields.title;
-
-	$: {
-		if (browser) document.title = title;
-	}
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
 
 {#each blocks as block (block.sys.id)}
 	<BlockPicker {block} />

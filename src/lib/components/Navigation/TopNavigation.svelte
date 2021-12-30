@@ -6,14 +6,16 @@
 	import { scrollPosition } from '$lib/stores/scroll';
 
 	const nav: Navigation | null = $navigation;
+
+	$: visible = $scrollPosition > 800;
 </script>
 
 <SplitSection
 	divider={false}
 	fullHeight={false}
-	style="position: fixed; width: 100%; z-index: 1000000; mix-blend-mode: difference; padding-bottom: 0rem;"
+	style="position: fixed; top: 0; width: 100%; z-index: 1000000; mix-blend-mode: difference; padding-bottom: 0rem;"
 >
-	<nav slot="right" class:visible={$scrollPosition > 800}>
+	<nav slot="right" class:visible>
 		{#each nav?.fields.links ?? [] as link (link.sys.id)}
 			<a class="link" class:active={$page.path === link.fields.url} href={link.fields.url}>
 				{link.fields.text}
@@ -52,7 +54,6 @@
 		transition: color 100ms;
 
 		&.active {
-			display: none;
 			font-weight: 800;
 			color: var(--text000);
 			cursor: default;
