@@ -1,18 +1,20 @@
 <script lang="ts">
 	import type { PageBlocks } from '$lib/types/contentful';
-	import FullPageBlock from './FullPageBlock.svelte';
 	import GridBlock from './GridBlock/GridBlock.svelte';
-	import IntroBlock from './IntroBlock.svelte';
+	import IntroBlock from './IntroBlock/IntroBlock.svelte';
+	import HeroBlock from './HeroBlock/HeroBlock.svelte';
 
 	export let block: PageBlocks;
-	const blockType = block.sys.contentType.sys.id;
+	$: blockType = block.sys.contentType.sys.id;
 
 	// map of components for each block type
 	const components = {
 		introBlock: IntroBlock,
-		fullPageBlock: FullPageBlock,
+		fullPageBlock: HeroBlock,
 		gridBlock: GridBlock
 	};
+
+	$: component = components?.[blockType] ?? null;
 </script>
 
-<svelte:component this={components?.[blockType] ?? null} {block} />
+<svelte:component this={component} {block} />

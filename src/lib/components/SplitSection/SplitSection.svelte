@@ -4,10 +4,9 @@
 	export let fullHeight: boolean = true;
 	export let divider: boolean = true;
 	export let style: string = '';
-	export let element = null;
 </script>
 
-<section bind:this={element} class="container" class:fullHeight class:divider {style}>
+<section class="container" class:fullHeight class:divider {style}>
 	<div class="left" style={`padding-top: ${offset};`}>
 		<slot name="left" />
 	</div>

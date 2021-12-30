@@ -2,15 +2,15 @@
 	import SplitSection from '$lib/components/SplitSection/SplitSection.svelte';
 	import type { GridBlock } from '$lib/types/contentful';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-	import GridImage from './GridImage/GridImage.svelte';
 	import { scaleDelayed } from '$lib/utils/transition';
 	import { getTileWidth } from '$lib/utils/grid';
 	import { fade } from 'svelte/transition';
 	import Parallax from '$lib/components/Parallax/Parallax.svelte';
 	import Visible from '$lib/components/Visible/Visible.svelte';
+	import GridItemPicker from './GridItemPicker.svelte';
 
 	export let block: GridBlock;
-	const { subheading, content, items, columns, layout } = block.fields;
+	const { subheading, content, items, columns, layout, divider } = block.fields;
 
 	const style = `display: ${
 		layout === 'Normal' ? 'grid' : 'flex'
@@ -20,7 +20,7 @@
 </script>
 
 <Visible threshold={300} bind:visible>
-	<SplitSection fullHeight={false} offset="10rem" style="padding-bottom: 3rem;">
+	<SplitSection fullHeight={false} {divider} offset="10rem" style="padding-bottom: 3rem;">
 		<span slot="left">
 			{#if subheading}
 				<p class="subheading">{subheading}</p>
@@ -38,17 +38,17 @@
 </Visible>
 
 <div class="container" style={`min-height: ${Math.ceil(items.length / 2) * 30}rem; ${style}`}>
-	{#if visible}
-		{#each items as item, index (item.sys.id)}
+	{#each items as item, index (item.sys.id)}
+		{#if visible}
 			<div
 				in:scaleDelayed|local={{ duration: 500, delay: index * 200 }}
 				out:fade|local={{ duration: 200 }}
 				style={`width: ${getTileWidth(layout, index)}`}
 			>
-				<GridImage {item} {index} />
+				<GridItemPicker {item} {index} />
 			</div>
-		{/each}
-	{/if}
+		{/if}
+	{/each}
 </div>
 
 <style lang="scss">

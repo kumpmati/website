@@ -1,37 +1,27 @@
 <script lang="ts">
-	import type { FullPageBlock } from '$lib/types/contentful';
-	import SplitSection from '../SplitSection/SplitSection.svelte';
+	import type { HeroBlock } from '$lib/types/contentful';
+	import SplitSection from '../../SplitSection/SplitSection.svelte';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-	import { scrollPosition } from '$lib/stores/scroll';
-	import Parallax from '../Parallax/Parallax.svelte';
-	import { onMount } from 'svelte';
-	import Visible from '../Visible/Visible.svelte';
+	import Parallax from '../../Parallax/Parallax.svelte';
+	import Visible from '../../Visible/Visible.svelte';
 
-	export let block: FullPageBlock;
+	export let block: HeroBlock;
 
-	const { subheading, content, backgroundImage, textColor, subheadingColor, style, divider } =
+	const { subheading, content, backgroundImage, textColor, subheadingColor, style, divider, size } =
 		block.fields;
 	const imageUrl = backgroundImage?.fields.file.url;
 
-	let element;
-	let yOffset = 0;
-	let visible = false;
-
-	const checkVisibility = () => {
-		const rect = element?.getBoundingClientRect();
-		if (rect) {
-			yOffset = rect.top;
-		}
-	};
-
-	// update yOffset whenever scroll position is changed
-	scrollPosition.subscribe(checkVisibility);
-	onMount(checkVisibility);
+	let visible;
+	let isFullPage = size === 'Full Page';
 </script>
 
-<Visible threshold={100} bind:visible>
-	<SplitSection bind:element offset="35vh" {divider}>
-		<p slot="left" class="left" style={`color: ${subheadingColor};`}>
+<Visible threshold={isFullPage ? 100 : 250} bind:visible>
+	<SplitSection
+		offset={isFullPage ? '35vh' : '10rem'}
+		{divider}
+		style={`min-height: ${isFullPage ? '100vh' : '10rem'}`}
+	>
+		<p slot="left" class="subheading" style={`color: ${subheadingColor};`}>
 			{subheading}
 		</p>
 
@@ -42,26 +32,29 @@
 			class:visible
 			style={`color: ${textColor}; `}
 		>
-			<Parallax amount={10}>
+			<Parallax amount={10} className="hero content">
 				{@html documentToHtmlString(content)}
 			</Parallax>
 		</div>
 
 		<span slot="background" class="backgroundContainer" class:visible>
 			{#if imageUrl}
-				<img
-					class="background"
-					src={imageUrl}
-					alt={backgroundImage.fields.title}
-					style={`transform: scale(0.8) translateY(${-yOffset / 8}px);`}
-				/>
+				<Parallax amount={1} style="width: 100%; height: 100%;" className="hero bg">
+					<img
+						class="background"
+						src={imageUrl}
+						alt={backgroundImage.fields.title}
+						style={`transform: scale(0.8)`}
+					/>
+				</Parallax>
 			{/if}
 		</span>
 	</SplitSection>
 </Visible>
 
 <style lang="scss">
-	.left {
+	.subheading {
+		font-size: 18px;
 		text-align: right;
 		margin: 2.5rem 0 0 1rem;
 		letter-spacing: var(--letter-spacing-100);
@@ -123,9 +116,6 @@
 
 	.background {
 		object-fit: cover;
-		position: absolute;
-		top: 0;
-		left: 0;
 		width: 100%;
 		height: 100%;
 
@@ -145,7 +135,7 @@
 	}
 
 	@media screen and (max-width: 950px) {
-		.left {
+		.subheading {
 			margin: 0;
 			text-align: left;
 			max-width: 10rem;

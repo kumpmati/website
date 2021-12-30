@@ -26,12 +26,11 @@
 	import type { Navigation as NavigationT } from '$lib/types/contentful';
 	import { scrollPosition } from '$lib/stores/scroll';
 	import { navigation } from '$lib/stores/navigation';
-	import { onMount } from 'svelte';
 
 	export let nav: NavigationT;
-	$navigation = nav; // update navigation store with the value
 
-	onMount(() => ($scrollPosition = window.scrollY));
+	$navigation = nav;
+	$scrollPosition = 0;
 </script>
 
 <svelte:window on:scroll={() => ($scrollPosition = window.scrollY)} />
