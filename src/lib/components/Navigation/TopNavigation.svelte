@@ -10,31 +10,31 @@
 	$: visible = $scrollPosition > 800;
 </script>
 
-<SplitSection
-	divider={false}
-	fullHeight={false}
-	style="position: fixed; top: 0; width: 100%; z-index: 1000000; mix-blend-mode: difference; padding-bottom: 0rem;"
->
-	<nav slot="right" class:visible>
-		{#each nav?.fields.links ?? [] as link (link.sys.id)}
-			<a class="link" class:active={$page.path === link.fields.url} href={link.fields.url}>
-				{link.fields.text}
-			</a>
-		{/each}
-	</nav>
-</SplitSection>
+<nav class:visible>
+	{#each nav?.fields.links ?? [] as link (link.sys.id)}
+		<a class="link" class:active={$page.path === link.fields.url} href={link.fields.url}>
+			{link.fields.text}
+		</a>
+	{/each}
+</nav>
 
 <style lang="scss">
 	nav {
-		position: relative;
+		position: fixed;
 		display: flex;
-		margin: 1.25rem 0;
-		top: -1rem;
-		opacity: 0;
-		visibility: hidden;
+		margin: 1.25rem 0 0 25%;
+		padding: 0 2rem;
+		width: 100%;
+		z-index: 1000000;
+		mix-blend-mode: difference;
 
 		transition: top 200ms, opacity 200ms, visibility 200ms;
 
+		&:not(.visible) {
+			top: -1rem;
+			opacity: 0;
+			visibility: hidden;
+		}
 		&.visible {
 			top: 0;
 			opacity: 1;

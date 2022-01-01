@@ -15,31 +15,31 @@
 	let isFullPage = size === 'Full Page';
 </script>
 
-<Visible threshold={isFullPage ? 100 : 250} bind:visible>
+<Visible threshold={isFullPage ? 100 : 250} bind:visible once>
 	<SplitSection
-		offset={isFullPage ? '35vh' : '10rem'}
 		{divider}
-		style={`min-height: ${isFullPage ? '100vh' : '10rem'}`}
+		fullHeight={isFullPage}
+		style={`min-height: ${isFullPage ? 'calc(100vh + 5rem)' : '20rem'}`}
 	>
 		<p slot="left" class="subheading" style={`color: ${subheadingColor};`}>
-			{subheading}
+			{subheading ?? ''}
 		</p>
 
 		<div
 			slot="right"
-			class="right"
+			class="content"
 			class:difference={style === 'Difference'}
 			class:visible
 			style={`color: ${textColor}; `}
 		>
-			<Parallax amount={10} className="hero content">
+			<Parallax amount={10}>
 				{@html documentToHtmlString(content)}
 			</Parallax>
 		</div>
 
 		<span slot="background" class="backgroundContainer" class:visible>
 			{#if imageUrl}
-				<Parallax amount={1} style="width: 100%; height: 100%;" className="hero bg">
+				<Parallax amount={1} style="width: 100%; height: 100%;">
 					<img
 						class="background"
 						src={imageUrl}
@@ -61,7 +61,7 @@
 		font-weight: 700;
 	}
 
-	.right {
+	.content {
 		position: relative;
 		color: var(--text200);
 		font-size: 1.25rem;
@@ -104,13 +104,13 @@
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		transform: scale(1);
+		transform: scale(1.15);
 		overflow: hidden;
 
 		transition: transform 500ms;
 
 		&.visible {
-			transform: scale(1.15);
+			transform: scale(1.25);
 		}
 	}
 
@@ -124,7 +124,7 @@
 	}
 
 	@media screen and (max-width: 1200px) {
-		.right {
+		.content {
 			:global(h1) {
 				font-size: 4rem;
 			}
@@ -139,6 +139,7 @@
 			margin: 0;
 			text-align: left;
 			max-width: 10rem;
+			padding-top: 5rem;
 			width: 100%;
 			height: 100%;
 			display: flex;
@@ -152,7 +153,7 @@
 	}
 
 	@media screen and (max-width: 600px) {
-		.right {
+		.content {
 			:global(h1) {
 				font-size: 2.5rem;
 			}

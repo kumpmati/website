@@ -20,8 +20,9 @@ body {
 	padding: 0;
 }
 
-#svelte {
-	scroll-snap-type: y mandatory;
+body {
+	width: 100%;
+	overflow-x: hidden;
 }
 
 * {

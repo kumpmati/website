@@ -20,7 +20,7 @@
 	class="container"
 	style={`background: ${color ?? '#000'};`}
 >
-	<Parallax direction="y" amount={multiplier * 9}>
+	<Parallax direction="x" amount={multiplier * 9}>
 		<h2 class="title" style={`color: ${textColor ?? '#fff'}`}>
 			{title}
 		</h2>
@@ -42,7 +42,8 @@
 		display: grid;
 		place-content: center;
 		position: relative;
-		height: 100%;
+		height: 25rem;
+		width: 100%;
 		overflow: hidden;
 
 		text-decoration: none;
@@ -111,19 +112,26 @@
 	}
 
 	@media screen and (max-width: 950px) {
+		.container {
+			height: 20rem;
+		}
+
 		.title {
 			font-size: 2.5rem;
 		}
 
 		.content {
-			width: 50% !important;
+			width: calc(100% - 2rem) !important;
 		}
-	}
-
-	@media screen and (max-width: 950px) {
 		.title,
 		.content {
 			margin: 0 1rem;
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		.container {
+			height: 20rem;
 		}
 	}
 </style>

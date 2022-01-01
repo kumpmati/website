@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let offset: string = '0px';
 	export let dividerOffset: string = '0px';
 	export let fullHeight: boolean = true;
 	export let divider: boolean = true;
@@ -7,13 +6,13 @@
 </script>
 
 <section class="container" class:fullHeight class:divider {style}>
-	<div class="left" style={`padding-top: ${offset};`}>
+	<div class="left">
 		<slot name="left" />
 	</div>
 
-	<div class="divider" style={`top: ${dividerOffset};`} />
+	<div class="dividerLine" style={`top: ${dividerOffset};`} />
 
-	<div class="right" style={`padding-top: ${offset};`}>
+	<div class="right">
 		<slot name="right" />
 	</div>
 
@@ -28,32 +27,39 @@
 		grid-template-areas: 'left divider right';
 		grid-template-columns: 1fr 2px 3fr;
 		gap: 1rem;
-		overflow: hidden;
 
 		z-index: 1;
 
-		padding-bottom: 10rem;
-
 		&.fullHeight {
 			min-height: 100vh;
+
+			.left,
+			.right {
+				margin-top: 40vh;
+			}
+		}
+		&:not(.fullHeight) {
+			.left,
+			.right {
+				margin: 10em 0;
+			}
 		}
 
 		&.divider {
-			.divider {
+			.dividerLine {
 				grid-area: divider;
 				display: block;
 				width: 2px;
-				height: 200%;
+				height: calc(100% + 4rem);
 				background: #ff7070;
 				mix-blend-mode: difference;
-				top: -10rem;
 				position: absolute;
-				z-index: 1000;
 			}
 		}
 	}
 
 	.left {
+		padding-left: 2rem;
 		grid-area: left;
 	}
 
@@ -67,18 +73,40 @@
 				'left'
 				'right';
 			grid-template-columns: 1fr;
+
+			&.fullHeight {
+				.left {
+					margin-top: 10em;
+					margin-bottom: 0;
+				}
+
+				.right {
+					margin-top: 0;
+					margin-bottom: 12em;
+				}
+			}
+			&:not(.fullHeight) {
+				.left {
+					margin-top: 5em;
+					margin-bottom: 0;
+				}
+
+				.right {
+					margin-top: 0;
+					margin-bottom: 10em;
+				}
+			}
 		}
 
 		.left,
 		.right {
 			width: 100%;
 			padding: 0 4rem;
-			margin: 0 auto;
-			padding-top: 0 !important;
+			transform: none !important;
 		}
 
-		.divider {
-			background: transparent !important;
+		.dividerLine {
+			display: none !important;
 		}
 	}
 

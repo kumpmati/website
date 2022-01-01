@@ -14,13 +14,13 @@
 
 	const style = `display: ${
 		layout === 'Normal' ? 'grid' : 'flex'
-	};grid-template-columns: repeat(${columns}, 1fr)`;
+	}; grid-template-columns: repeat(${columns}, 1fr)`;
 
 	let visible;
 </script>
 
-<Visible threshold={300} bind:visible>
-	<SplitSection fullHeight={false} {divider} offset="10rem" style="padding-bottom: 3rem;">
+<Visible threshold={300} bind:visible once style="z-index: 0">
+	<SplitSection fullHeight={false} {divider} style="overflow: hidden">
 		<span slot="left">
 			{#if subheading}
 				<p class="subheading">{subheading}</p>
@@ -37,7 +37,7 @@
 	</SplitSection>
 </Visible>
 
-<div class="container" style={`min-height: ${Math.ceil(items.length / 2) * 30}rem; ${style}`}>
+<div class="container" style={`min-height: ${Math.ceil(items.length / 2) * 10}rem;${style}`}>
 	{#each items as item, index (item.sys.id)}
 		{#if visible}
 			<div
@@ -54,13 +54,9 @@
 <style lang="scss">
 	.container {
 		flex-wrap: wrap;
-		grid-auto-rows: 30rem;
+		grid-auto-rows: unset;
 
 		margin-bottom: 10rem;
-
-		& > :global(*) {
-			height: 30rem;
-		}
 	}
 
 	.subheading {
@@ -99,7 +95,7 @@
 			display: grid !important;
 			grid-template-columns: 1fr !important;
 
-			:global(*) {
+			& > :global(*) {
 				width: 100% !important;
 			}
 		}
@@ -112,6 +108,10 @@
 	}
 
 	@media screen and(max-width: 950px) {
+		.content {
+			margin-bottom: 0 !important;
+		}
+
 		.subheading {
 			text-align: left;
 		}

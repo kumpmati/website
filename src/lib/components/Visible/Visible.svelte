@@ -2,6 +2,7 @@
 	import { scrollPosition } from '$lib/stores/scroll';
 	import { createEventDispatcher, onMount } from 'svelte';
 
+	export let style: string = '';
 	export let threshold: number = 0;
 	export let visible: boolean = false;
 	export let once: boolean = false;
@@ -32,6 +33,6 @@
 	onMount(update);
 </script>
 
-<span bind:this={element}>
+<span bind:this={element} {style}>
 	<slot />
 </span>
