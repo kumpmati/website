@@ -15,7 +15,7 @@
 </script>
 
 <Visible threshold={-200} bind:visible>
-	<SplitSection offset="35vh" dividerOffset="35vh" {divider} style="background: #fff;">
+	<SplitSection fullHeight={false} dividerOffset="13rem" {divider} style="background: #fff;">
 		<div slot="left" class="subheading">
 			<p>{subheading}</p>
 		</div>
@@ -65,7 +65,7 @@
 
 	.icon {
 		position: absolute;
-		bottom: -10rem;
+		bottom: 0rem;
 		left: 40%;
 		transform: translateX(-50%);
 		z-index: 100;
@@ -105,7 +105,8 @@
 	}
 
 	.profilePicture {
-		bottom: 0;
+		overflow: hidden;
+		bottom: -2.25rem;
 		right: 5rem;
 		position: absolute;
 		width: fit-content;

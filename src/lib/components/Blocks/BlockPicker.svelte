@@ -5,6 +5,7 @@
 	import HeroBlock from './HeroBlock/HeroBlock.svelte';
 
 	export let block: PageBlocks;
+	export let index: number;
 	$: blockType = block.sys.contentType.sys.id;
 
 	// map of components for each block type
@@ -17,4 +18,4 @@
 	$: component = components?.[blockType] ?? null;
 </script>
 
-<svelte:component this={component} {block} />
+<svelte:component this={component} {block} {index} />

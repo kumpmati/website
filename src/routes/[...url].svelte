@@ -36,6 +36,6 @@
 	<title>{title}</title>
 </svelte:head>
 
-{#each blocks as block (block.sys.id)}
-	<BlockPicker {block} />
+{#each blocks as block, index (block.sys.id)}
+	<BlockPicker {block} {index} />
 {/each}
