@@ -11,16 +11,12 @@
 		block.fields;
 	const imageUrl = backgroundImage?.fields.file.url;
 
-	let visible;
+	let visible: boolean;
 	let isFullPage = size === 'Full Page';
 </script>
 
 <Visible threshold={isFullPage ? 100 : 250} bind:visible once>
-	<SplitSection
-		{divider}
-		fullHeight={isFullPage}
-		style={`min-height: ${isFullPage ? 'calc(100vh + 5rem)' : '20rem'}`}
-	>
+	<SplitSection {divider} fullHeight={isFullPage} style={`background-color: #fff;`}>
 		<p slot="left" class="subheading" style={`color: ${subheadingColor};`}>
 			{subheading ?? ''}
 		</p>
@@ -39,7 +35,10 @@
 
 		<span slot="background" class="backgroundContainer" class:visible>
 			{#if imageUrl}
-				<Parallax amount={1} style="width: 100%; height: 100%;">
+				<Parallax
+					amount={-20}
+					style="width: 100%; height: calc(100% + 10rem); top: -5rem; position: relative"
+				>
 					<img
 						class="background"
 						src={imageUrl}
@@ -104,13 +103,13 @@
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		transform: scale(1.15);
+		transform: scale(1.25);
 		overflow: hidden;
 
 		transition: transform 500ms;
 
 		&.visible {
-			transform: scale(1.25);
+			transform: scale(1.3);
 		}
 	}
 

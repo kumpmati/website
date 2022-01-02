@@ -15,6 +15,7 @@ export type Link = Entry<{
 export type Page = Entry<{
 	title: string;
 	url: string;
+	backgroundColor?: string;
 	blocks: PageBlocks[];
 }>;
 

@@ -25,11 +25,28 @@
 <script lang="ts">
 	import type { Page } from '$lib/types/contentful';
 	import BlockPicker from '$lib/components/Blocks/BlockPicker.svelte';
+	import { browser } from '$app/env';
+	import { pageSettings } from '$lib/stores/page';
 
 	export let page: Page;
 
+	$: backgroundColor = page.fields.backgroundColor ?? '#fff';
 	$: blocks = page.fields.blocks;
 	$: title = page.fields.title;
+
+	$: {
+		const hasIntroBlockFirst = blocks?.[0].sys.contentType.sys.id === 'introBlock';
+
+		// hide navigation when intro block is first
+		$pageSettings.navigationVisibleThreshold = hasIntroBlockFirst ? 800 : 0;
+
+		// set background color
+		if (browser) {
+			$pageSettings.backgroundColor = backgroundColor;
+			document.body.style.backgroundColor = backgroundColor;
+			document.body.style.transition = 'background-color 500ms';
+		}
+	}
 </script>
 
 <svelte:head>

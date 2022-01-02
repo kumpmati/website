@@ -11,11 +11,11 @@
 	const { subheading, content, profilePicture, divider } = block.fields;
 	const imageUrl = profilePicture?.fields.file.url;
 
-	let visible = false;
+	let visible: boolean;
 </script>
 
 <Visible threshold={-200} bind:visible>
-	<SplitSection fullHeight={false} dividerOffset="13rem" {divider} style="background: #fff;">
+	<SplitSection dividerOffset="13rem" fullHeight {divider} style="background: #fff;">
 		<div slot="left" class="subheading">
 			<p>{subheading}</p>
 		</div>
@@ -24,13 +24,13 @@
 			{@html documentToHtmlString(content)}
 
 			<SideNavigation />
-
-			<span class="icon" class:visible={!visible}>
-				<ChevronDownIcon size="20" />
-			</span>
 		</div>
 
 		<div slot="background">
+			<span class="icon" class:visible={!visible}>
+				<ChevronDownIcon size="20" />
+			</span>
+
 			{#if imageUrl}
 				<img src={imageUrl} class="profilePicture" alt={profilePicture.fields.title} />
 			{/if}
@@ -52,6 +52,7 @@
 	}
 
 	.subheading {
+		height: 20rem;
 		text-align: right;
 		letter-spacing: var(--letter-spacing-100);
 		color: #9a9a9a;
@@ -65,9 +66,8 @@
 
 	.icon {
 		position: absolute;
-		bottom: 0rem;
+		bottom: 1rem;
 		left: 40%;
-		transform: translateX(-50%);
 		z-index: 100;
 
 		visibility: hidden;
@@ -83,9 +83,8 @@
 	}
 
 	.content {
+		height: 20rem;
 		position: relative;
-		top: -1.25rem;
-		height: 100%;
 		width: min-content;
 
 		:global(*) {
@@ -109,7 +108,7 @@
 		bottom: -2.25rem;
 		right: 5rem;
 		position: absolute;
-		width: fit-content;
+		width: 30rem;
 		height: 70%;
 		z-index: -1;
 		object-fit: contain;
@@ -120,13 +119,12 @@
 			display: flex;
 			text-align: left;
 			align-items: flex-end;
-			height: 100%;
+			height: 4rem;
 			padding: 1rem 0;
 		}
 
 		.icon {
 			left: 2rem;
-			bottom: -12rem;
 		}
 
 		.content {
@@ -148,6 +146,10 @@
 			:global(h2) {
 				font-size: 2.25rem;
 			}
+		}
+
+		.profilePicture {
+			width: unset;
 		}
 	}
 </style>
