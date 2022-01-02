@@ -6,6 +6,7 @@
 	import Desktop from './Desktop.svelte';
 	import { onMount } from 'svelte';
 	import { MenuIcon, XIcon } from 'svelte-feather-icons';
+	import { fly } from 'svelte/transition';
 
 	const nav: Navigation | null = $navigation;
 
@@ -27,11 +28,11 @@
 </script>
 
 {#if visible}
-	<h1 title="Matias Kumpulainen">
+	<h1 title="Matias Kumpulainen" transition:fly={{ duration: 200, y: -10 }}>
 		<a href="/">MK</a>
 	</h1>
 
-	<nav class:visible class:difference={!isMobile}>
+	<nav class:visible class:difference={!isMobile} transition:fly={{ duration: 200, y: -10 }}>
 		<svelte:component this={isMobile ? Mobile : Desktop} {nav} bind:isOpen />
 	</nav>
 
@@ -78,14 +79,13 @@
 	.burger {
 		position: fixed;
 		top: 1.25rem;
-		right: 1rem;
+		right: 2rem;
 		padding: 0;
 		display: grid;
 		place-content: center;
 		background: none;
 		border: none;
 		margin-left: auto;
-		margin-right: 1.25rem;
 		color: #fff;
 		mix-blend-mode: difference;
 		z-index: 1000;
@@ -107,6 +107,10 @@
 	@media screen and (max-width: 500px) {
 		h1 {
 			left: 1rem;
+		}
+
+		.burger {
+			right: 1rem;
 		}
 	}
 </style>

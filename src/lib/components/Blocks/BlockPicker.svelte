@@ -3,6 +3,7 @@
 	import GridBlock from './GridBlock/GridBlock.svelte';
 	import IntroBlock from './IntroBlock/IntroBlock.svelte';
 	import HeroBlock from './HeroBlock/HeroBlock.svelte';
+	import TextBlock from './TextBlock/TextBlock.svelte';
 
 	export let block: PageBlocks;
 	export let index: number;
@@ -12,7 +13,8 @@
 	const components = {
 		introBlock: IntroBlock,
 		fullPageBlock: HeroBlock,
-		gridBlock: GridBlock
+		gridBlock: GridBlock,
+		textBlock: TextBlock
 	};
 
 	$: component = components?.[blockType] ?? null;

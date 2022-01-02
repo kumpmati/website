@@ -23,7 +23,7 @@
 		<div slot="right" class="content">
 			{@html documentToHtmlString(content)}
 
-			<SideNavigation />
+			<SideNavigation style="margin-top: 3rem" />
 		</div>
 
 		<div slot="background">
@@ -100,6 +100,13 @@
 			font-weight: 800;
 			font-size: 4rem;
 			letter-spacing: var(--letter-spacing-100);
+			margin-bottom: 1rem;
+		}
+
+		:global(p) {
+			letter-spacing: var(--letter-spacing-normal);
+			color: var(--text100);
+			margin: 0;
 		}
 	}
 

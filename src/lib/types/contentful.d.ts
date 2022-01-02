@@ -19,13 +19,21 @@ export type Page = Entry<{
 	blocks: PageBlocks[];
 }>;
 
-export type PageBlocks = IntroBlock | HeroBlock | GridBlock;
+export type PageBlocks = IntroBlock | HeroBlock | GridBlock | TextBlock;
 
 export type IntroBlock = Entry<{
 	subheading?: string;
 	content: Document;
 	profilePicture?: Asset;
 	divider: boolean;
+}>;
+
+export type TextBlock = Entry<{
+	subheading?: boolean;
+	content: Document;
+	divider: boolean;
+	textColor?: string;
+	subheadingColor?: string;
 }>;
 
 export type HeroBlock = Entry<{
@@ -36,7 +44,6 @@ export type HeroBlock = Entry<{
 	subheadingColor?: string;
 	style: 'Normal' | 'Difference';
 	divider: boolean;
-	size: 'Full Page' | 'Normal';
 }>;
 
 export type GridBlockLayout = 'Normal' | 'Mason';

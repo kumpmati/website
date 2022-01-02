@@ -3,6 +3,7 @@
 	import { pageTransition } from '$lib/utils/transition';
 
 	export let key: any;
+	export let backgroundColor: string;
 </script>
 
 {#key key}
@@ -23,7 +24,7 @@
 			opacity: 1,
 			yOffset: $scrollPosition
 		}}
-		style="position: absolute; width: 100%;"
+		style={`position: absolute; width: 100%; background-color: ${backgroundColor ?? '#fff'};`}
 	>
 		<slot />
 	</span>
