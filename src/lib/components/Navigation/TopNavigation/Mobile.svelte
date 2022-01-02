@@ -56,8 +56,9 @@
 			transition: font-size 200ms, margin 200ms;
 
 			&.active {
-				margin: 2rem 0;
-				font-size: 4rem;
+				font-weight: 800;
+				margin: 1rem 0;
+				font-size: 3rem;
 			}
 		}
 	}

@@ -31,7 +31,7 @@
 		<a href="/">MK</a>
 	</h1>
 
-	<nav class:visible>
+	<nav class:visible class:difference={!isMobile}>
 		<svelte:component this={isMobile ? Mobile : Desktop} {nav} bind:isOpen />
 	</nav>
 
@@ -69,6 +69,10 @@
 		padding: 0 2rem;
 		z-index: 100;
 		isolation: unset;
+
+		&.difference {
+			mix-blend-mode: difference;
+		}
 	}
 
 	.burger {
