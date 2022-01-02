@@ -1,31 +1,53 @@
 <script context="module">
 	/** @type {import('@sveltejs/kit').ErrorLoad} */
-	export function load({ error, status }) {
+	export function load({ error }) {
 		return {
 			props: {
-				title: `${status}: ${error.message}`
+				title: error.message
 			}
 		};
 	}
 </script>
 
 <script>
+	import { pageSettings } from '$lib/stores/page';
+
 	export let title;
+
+	$pageSettings.navigationVisibleThreshold = 0;
 </script>
 
-<div>
+<div class="outer">
 	<h1>{title}</h1>
 </div>
 
 <style lang="scss">
-	div {
-		display: grid;
-		place-content: center;
+	:global(:root) {
+		background-color: #fff;
+	}
+
+	.outer {
+		font-size: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		height: 100vh;
 		background-color: #fff;
 	}
 
 	h1 {
-		margin: 0;
+		margin-left: calc(25% + 2rem);
+	}
+
+	@media screen and (max-width: 950px) {
+		h1 {
+			margin-left: 2rem;
+		}
+	}
+
+	@media screen and (max-width: 500px) {
+		h1 {
+			margin-left: 1.25rem;
+		}
 	}
 </style>

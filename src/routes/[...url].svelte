@@ -17,7 +17,7 @@
 
 		return {
 			status: res.status,
-			error: new Error('Error fetching page')
+			error: new Error('Page not found')
 		};
 	};
 </script>
@@ -34,13 +34,14 @@
 	$: blocks = page.fields.blocks;
 	$: title = page.fields.title;
 
+	// hide navigation when intro block is first
 	$: {
 		const hasIntroBlockFirst = blocks?.[0].sys.contentType.sys.id === 'introBlock';
-
-		// hide navigation when intro block is first
 		$pageSettings.navigationVisibleThreshold = hasIntroBlockFirst ? 800 : 0;
+	}
 
-		// set background color
+	// set background color
+	$: {
 		if (browser) {
 			$pageSettings.backgroundColor = backgroundColor;
 			document.body.style.backgroundColor = backgroundColor;

@@ -1,16 +1,24 @@
 <script lang="ts">
 	import type { Navigation } from '$lib/types/contentful';
-	import { page } from '$app/stores';
 	import { navigation } from '$lib/stores/navigation';
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 
 	export let style: string = '';
 
 	const nav: Navigation | null = $navigation;
+
+	let path: string;
+
+	onMount(() => {
+		// only get path when mounting, do not update when page changes
+		path = $page.path;
+	});
 </script>
 
 <nav {style}>
 	{#each nav?.fields.links ?? [] as link (link.sys.id)}
-		<a class="link" class:active={$page.path === link.fields.url} href={link.fields.url}>
+		<a class="link" class:active={path === link.fields.url} href={link.fields.url}>
 			{link.fields.text}
 		</a>
 	{/each}
@@ -22,6 +30,7 @@
 		flex-direction: column;
 		align-items: flex-start;
 		margin: 1.25rem 0;
+		margin-top: 5rem;
 	}
 
 	.link {
@@ -30,7 +39,7 @@
 		position: relative;
 		padding: 0.4rem 0;
 		font-weight: 700;
-		font-size: 14px;
+		font-size: 1rem;
 		text-decoration: none;
 		letter-spacing: var(--letter-spacing-100);
 		color: var(--text100);

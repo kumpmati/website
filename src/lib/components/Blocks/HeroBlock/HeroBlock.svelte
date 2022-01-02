@@ -7,16 +7,15 @@
 
 	export let block: HeroBlock;
 
-	const { subheading, content, backgroundImage, textColor, subheadingColor, style, divider, size } =
+	const { subheading, content, backgroundImage, textColor, subheadingColor, style, divider } =
 		block.fields;
 	const imageUrl = backgroundImage?.fields.file.url;
 
 	let visible: boolean;
-	let isFullPage = size === 'Full Page';
 </script>
 
-<Visible threshold={isFullPage ? 100 : 250} bind:visible once>
-	<SplitSection {divider} fullHeight={isFullPage} style={`background-color: #fff;`}>
+<Visible threshold={100} bind:visible once>
+	<SplitSection {divider} fullHeight style={`background-color: #fff;`}>
 		<p slot="left" class="subheading" style={`color: ${subheadingColor};`}>
 			{subheading ?? ''}
 		</p>
@@ -65,6 +64,7 @@
 		color: var(--text200);
 		font-size: 1.25rem;
 		margin: 0;
+		margin-right: 6rem;
 
 		will-change: transform;
 
@@ -94,6 +94,10 @@
 			letter-spacing: var(--letter-spacing-200);
 			font-size: 5rem;
 		}
+
+		:global(p) {
+			opacity: 0.75;
+		}
 	}
 
 	.backgroundContainer {
@@ -101,10 +105,11 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 		z-index: -1;
 		transform: scale(1.25);
 		overflow: hidden;
+		background: #fff;
 
 		transition: transform 500ms;
 
@@ -131,6 +136,10 @@
 				font-size: 3.5rem;
 			}
 		}
+
+		.subheading {
+			height: unset;
+		}
 	}
 
 	@media screen and (max-width: 950px) {
@@ -138,7 +147,6 @@
 			margin: 0;
 			text-align: left;
 			max-width: 10rem;
-			padding-top: 5rem;
 			width: 100%;
 			height: 100%;
 			display: flex;

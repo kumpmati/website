@@ -27,7 +27,7 @@
 	import type { Navigation as NavigationT } from '$lib/types/contentful';
 	import { navigation } from '$lib/stores/navigation';
 	import PageTransition from '$lib/components/PageTransition/PageTransition.svelte';
-	import { mousePosition, scrollPosition } from '$lib/stores/page';
+	import { mousePosition, pageSettings, scrollPosition } from '$lib/stores/page';
 
 	export let nav: NavigationT;
 	export let key: string;
@@ -37,13 +37,16 @@
 </script>
 
 <svelte:window
-	on:mousemove={(e) => ($mousePosition = { x: e.clientX, y: e.clientY })}
+	on:mousedown={(e) => ($mousePosition = { x: e.clientX, y: e.clientY })}
 	on:resize={() => ($scrollPosition = window.scrollY)}
 	on:scroll={() => ($scrollPosition = window.scrollY)}
 />
 
 <TopNavigation />
 
-<PageTransition {key}>
+<PageTransition {key} backgroundColor={$pageSettings.backgroundColor}>
+	<!-- Page content -->
 	<slot />
+
+	<!-- Footer -->
 </PageTransition>
