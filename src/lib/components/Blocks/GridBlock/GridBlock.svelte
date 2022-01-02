@@ -16,40 +16,44 @@
 		layout === 'Normal' ? 'grid' : 'flex'
 	}; grid-template-columns: repeat(${columns}, 1fr)`;
 
-	let visible;
+	let contentVisible: boolean;
+	let itemsVisible: boolean;
 </script>
 
-<Visible threshold={300} bind:visible once style="z-index: 0">
-	<SplitSection fullHeight={false} {divider} style="overflow: hidden">
-		<span slot="left">
-			{#if subheading}
-				<p class="subheading">{subheading}</p>
-			{/if}
-		</span>
+<Visible threshold={400} bind:visible={contentVisible} once style="z-index: 0">
+	<SplitSection
+		fullHeight={false}
+		{divider}
+		noContent={!subheading && !content}
+		style="overflow: hidden;min-height: 0;"
+	>
+		<Parallax amount={0} slot="left">
+			<p class="subheading">{subheading}</p>
+		</Parallax>
 
 		<Parallax amount={5} slot="right">
-			<div class="content" class:visible>
-				{#if content}
-					{@html documentToHtmlString(content)}
-				{/if}
+			<div class="content" class:visible={contentVisible}>
+				{@html documentToHtmlString(content)}
 			</div>
 		</Parallax>
 	</SplitSection>
 </Visible>
 
-<div class="container" style={`min-height: ${Math.ceil(items.length / 2) * 10}rem;${style}`}>
-	{#each items as item, index (item.sys.id)}
-		{#if visible}
-			<div
-				in:scaleDelayed|local={{ duration: 500, delay: index * 200 }}
-				out:fade|local={{ duration: 200 }}
-				style={`width: ${getTileWidth(layout, index)}`}
-			>
-				<GridItemPicker {item} {index} />
-			</div>
-		{/if}
-	{/each}
-</div>
+<Visible threshold={800} bind:visible={itemsVisible} once style="z-index: 0">
+	<div class="container" style={`min-height: ${Math.ceil(items.length / 2) * 10}rem;${style}`}>
+		{#each items as item, index (item.sys.id)}
+			{#if itemsVisible}
+				<div
+					in:scaleDelayed|local={{ duration: 500, delay: index * 200 }}
+					out:fade|local={{ duration: 200 }}
+					style={`width: ${getTileWidth(layout, index)}`}
+				>
+					<GridItemPicker {item} {index} />
+				</div>
+			{/if}
+		{/each}
+	</div>
+</Visible>
 
 <style lang="scss">
 	.container {

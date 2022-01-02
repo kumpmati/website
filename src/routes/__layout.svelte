@@ -3,12 +3,13 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ fetch }) => {
+	export const load: Load = async ({ fetch, page }) => {
 		const res = await fetch('/api/navigation');
 
 		if (res.ok) {
 			return {
 				props: {
+					key: page.path,
 					nav: await res.json()
 				}
 			};
@@ -22,19 +23,27 @@
 </script>
 
 <script lang="ts">
-	import TopNavigation from '$lib/components/Navigation/TopNavigation.svelte';
+	import TopNavigation from '$lib/components/Navigation/TopNavigation/TopNavigation.svelte';
 	import type { Navigation as NavigationT } from '$lib/types/contentful';
-	import { scrollPosition } from '$lib/stores/scroll';
 	import { navigation } from '$lib/stores/navigation';
+	import PageTransition from '$lib/components/PageTransition/PageTransition.svelte';
+	import { mousePosition, scrollPosition } from '$lib/stores/page';
 
 	export let nav: NavigationT;
+	export let key: string;
 
 	$navigation = nav;
 	$scrollPosition = 0;
 </script>
 
-<svelte:window on:scroll={() => ($scrollPosition = window.scrollY)} />
+<svelte:window
+	on:mousemove={(e) => ($mousePosition = { x: e.clientX, y: e.clientY })}
+	on:resize={() => ($scrollPosition = window.scrollY)}
+	on:scroll={() => ($scrollPosition = window.scrollY)}
+/>
 
 <TopNavigation />
 
-<slot />
+<PageTransition {key}>
+	<slot />
+</PageTransition>

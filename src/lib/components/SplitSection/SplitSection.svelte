@@ -3,9 +3,10 @@
 	export let fullHeight: boolean = true;
 	export let divider: boolean = true;
 	export let style: string = '';
+	export let noContent: boolean = false;
 </script>
 
-<section class="container" class:fullHeight class:divider {style}>
+<section class="container" class:fullHeight class:divider class:noContent {style}>
 	<div class="left">
 		<slot name="left" />
 	</div>
@@ -22,26 +23,41 @@
 <style lang="scss">
 	.container {
 		position: relative;
+		overflow: hidden;
 
 		display: grid;
 		grid-template-areas: 'left divider right';
 		grid-template-columns: 1fr 2px 3fr;
+		grid-template-rows: 1fr;
 		gap: 1rem;
 
 		z-index: 1;
+
+		&:not(.fullHeight) {
+			min-height: 35rem;
+			.left,
+			.right {
+				margin: 10em 0;
+			}
+		}
 
 		&.fullHeight {
 			min-height: 100vh;
 
 			.left,
 			.right {
-				margin-top: 40vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 			}
 		}
-		&:not(.fullHeight) {
+
+		&.noContent {
+			min-height: 0;
+
 			.left,
 			.right {
-				margin: 10em 0;
+				display: none;
 			}
 		}
 
@@ -54,6 +70,7 @@
 				background: #ff7070;
 				mix-blend-mode: difference;
 				position: absolute;
+				top: 0;
 			}
 		}
 	}
@@ -73,16 +90,18 @@
 				'left'
 				'right';
 			grid-template-columns: 1fr;
+			grid-template-rows: auto 1fr;
 
 			&.fullHeight {
 				.left {
-					margin-top: 10em;
+					margin-top: 10rem;
 					margin-bottom: 0;
 				}
 
 				.right {
 					margin-top: 0;
-					margin-bottom: 12em;
+					margin-bottom: 0;
+					justify-content: flex-start;
 				}
 			}
 			&:not(.fullHeight) {
@@ -101,7 +120,7 @@
 		.left,
 		.right {
 			width: 100%;
-			padding: 0 4rem;
+			padding: 0 2rem;
 			transform: none !important;
 		}
 

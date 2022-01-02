@@ -1,38 +1,30 @@
 <script lang="ts">
 	import type { GridColorTile } from '$lib/types/contentful';
-	import Parallax from '$lib/components/Parallax/Parallax.svelte';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 	export let item: GridColorTile;
-	export let index: number = 0;
 	const { title, content, image, link, color, textColor } = item.fields;
 
 	const imageUrl = image.fields.file.url;
 	const isExternalLink = link?.startsWith('http');
-
-	let multiplier = (index % 2) * 1 - 0.5;
 </script>
 
 <a
 	class:link
 	href={link || ''}
-	target={isExternalLink ? '_blank' : '_self'}
+	target={isExternalLink ? '_blank' : ''}
 	class="container"
 	style={`background: ${color ?? '#000'};`}
 >
-	<Parallax direction="x" amount={multiplier * 9}>
-		<h2 class="title" style={`color: ${textColor ?? '#fff'}`}>
-			{title}
-		</h2>
-	</Parallax>
+	<h2 class="title" style={`color: ${textColor ?? '#fff'}`}>
+		{title}
+	</h2>
 
-	<Parallax direction="x" amount={-multiplier * 4}>
-		{#if content}
-			<div class="content" style={`color: ${textColor ?? '#fff'};`}>
-				{@html documentToHtmlString(content)}
-			</div>
-		{/if}
-	</Parallax>
+	{#if content}
+		<div class="content" style={`color: ${textColor ?? '#fff'};`}>
+			{@html documentToHtmlString(content)}
+		</div>
+	{/if}
 
 	<img class="background" src={imageUrl} alt={image.fields.title} />
 </a>
@@ -63,7 +55,7 @@
 			}
 
 			.background {
-				opacity: 0.3;
+				opacity: 0.25;
 				transform: scale(1.05);
 			}
 		}
@@ -90,7 +82,7 @@
 	.content {
 		margin: 0 2rem 0;
 		opacity: 0.7;
-		z-index: 1;
+		z-index: 5;
 	}
 
 	.background {

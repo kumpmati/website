@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { scrollPosition } from '$lib/stores/scroll';
+	import { scrollPosition } from '$lib/stores/page';
+
 	import { createEventDispatcher, onMount } from 'svelte';
 
 	export let style: string = '';

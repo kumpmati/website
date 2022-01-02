@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { scrollPosition } from '$lib/stores/scroll';
-	import { onDestroy, onMount, tick } from 'svelte';
+	import { scrollPosition } from '$lib/stores/page';
+	import { onMount } from 'svelte';
 
 	export let direction: 'x' | 'y' = 'y';
 	export let amount: number = 1;
@@ -13,17 +13,15 @@
 
 	$: styleString = `transform: translate${direction.toUpperCase()}(${
 		offset * multiplier
-	}px) ${style}`;
+	}px); ${style}`;
 
 	const updatePosition = () => {
 		const rect = element?.getBoundingClientRect();
 		if (rect) offset = rect.top;
 	};
 
-	const unsubscribe = scrollPosition.subscribe(updatePosition);
-
+	scrollPosition.subscribe(updatePosition);
 	onMount(updatePosition);
-	onDestroy(unsubscribe);
 </script>
 
 <div bind:this={element} class={`container ${className}`} style={styleString}>
@@ -34,6 +32,6 @@
 	.container {
 		margin: 0;
 		padding: 0;
-		transition: transform 50ms;
+		will-change: transform;
 	}
 </style>

@@ -6,7 +6,10 @@ type ScaleDelayedOpts = {
 	delay?: number;
 };
 
-export const scaleDelayed = (_: any, { duration, delay }: ScaleDelayedOpts): TransitionConfig => {
+export const scaleDelayed = (
+	_: HTMLElement,
+	{ duration, delay }: ScaleDelayedOpts
+): TransitionConfig => {
 	return {
 		delay,
 		duration,
@@ -16,3 +19,69 @@ export const scaleDelayed = (_: any, { duration, delay }: ScaleDelayedOpts): Tra
 		}
 	};
 };
+
+export const pageTransition = (
+	node: HTMLElement,
+	{
+		delay = 0,
+		duration = 400,
+		easing = quartOut,
+		x = 0,
+		y = 0,
+		dir = 'close',
+		opacity = 0,
+		yOffset = 0
+	} = {}
+): TransitionConfig => {
+	const style = getComputedStyle(node);
+	const target_opacity = +style.opacity;
+	const transform = style.transform === 'none' ? '' : style.transform;
+	const od = target_opacity * (1 - opacity);
+	const isOpening = dir === 'open';
+
+	return {
+		delay,
+		duration,
+		easing,
+		css: (t, u) => `
+		transform: ${transform} translateY(${-yOffset}px);
+		opacity: ${target_opacity - od * u};
+		clip-path: circle(${isOpening ? t * 150 : 150}% at ${x}px ${y}px);
+		${!isOpening ? 'overflow:hidden' : ''}`
+	};
+};
+
+/*
+old page transition
+
+export const pageTransition = (
+	node: HTMLElement,
+	{
+		delay = 0,
+		duration = 400,
+		easing = quartOut,
+		x = 0,
+		y = 0,
+		dir = 'close',
+		opacity = 0,
+		yOffset = 0
+	} = {}
+): TransitionConfig => {
+	const style = getComputedStyle(node);
+	const target_opacity = +style.opacity;
+	const transform = style.transform === 'none' ? '' : style.transform;
+	const od = target_opacity * (1 - opacity);
+	const isOpening = dir === 'open';
+
+	return {
+		delay,
+		duration,
+		easing,
+		css: (t, u) => `
+		transform: ${transform} translate(${(1 - t) * x}px, ${(1 - t) * y - yOffset}px);
+		opacity: ${target_opacity - od * u};
+		clip-path: inset(0% ${isOpening ? (1 - t) * 100 : 0}% 0% ${!isOpening ? (1 - t) * 100 : 0}%)`
+	};
+};
+
+ */
