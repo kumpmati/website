@@ -114,6 +114,12 @@
 		object-fit: contain;
 	}
 
+	@media screen and (max-width: 1200px) {
+		.profilePicture {
+			right: -6rem;
+		}
+	}
+
 	@media screen and (max-width: 950px) {
 		.subheading {
 			display: flex;
@@ -136,6 +142,7 @@
 		}
 
 		.profilePicture {
+			width: unset;
 			height: 60%;
 			right: -2rem;
 		}
@@ -146,10 +153,6 @@
 			:global(h2) {
 				font-size: 2.25rem;
 			}
-		}
-
-		.profilePicture {
-			width: unset;
 		}
 	}
 </style>
