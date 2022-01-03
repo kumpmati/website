@@ -12,6 +12,7 @@
 		{#each nav?.fields.links ?? [] as link, index (link.sys.id)}
 			<a
 				class="link"
+				sveltekit:prefetch
 				on:click={() => (isOpen = false)}
 				class:active={$page.path === link.fields.url}
 				href={link.fields.url}

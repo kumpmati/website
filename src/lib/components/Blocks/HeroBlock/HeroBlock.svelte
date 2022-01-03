@@ -40,6 +40,7 @@
 					style="width: 100%; height: calc(100% + 10rem); top: -5rem; position: relative"
 				>
 					<Image
+						loading="eager"
 						className="background"
 						src={imageUrl}
 						alt={backgroundImage.fields.title}

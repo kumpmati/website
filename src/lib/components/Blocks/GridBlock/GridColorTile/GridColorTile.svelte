@@ -12,6 +12,7 @@
 <a
 	class:link
 	href={link || ''}
+	sveltekit:prefetch
 	target={isExternalLink ? '_blank' : ''}
 	class="container"
 	style={`background: ${color ?? '#000'};`}

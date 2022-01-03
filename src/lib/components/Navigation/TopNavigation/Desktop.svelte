@@ -7,7 +7,12 @@
 </script>
 
 {#each nav?.fields.links ?? [] as link (link.sys.id)}
-	<a class="link" class:active={$page.path === link.fields.url} href={link.fields.url}>
+	<a
+		class="link"
+		sveltekit:prefetch
+		class:active={$page.path === link.fields.url}
+		href={link.fields.url}
+	>
 		{link.fields.text}
 	</a>
 {/each}
