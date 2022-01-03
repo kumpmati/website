@@ -5,6 +5,7 @@
 	import Visible from '$lib/components/Visible/Visible.svelte';
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import { ChevronDownIcon } from 'svelte-feather-icons';
+	import Image from '$lib/components/Image/Image.svelte';
 
 	export let block: IntroBlock;
 
@@ -26,13 +27,13 @@
 			<SideNavigation style="margin-top: 3rem" />
 		</div>
 
-		<div slot="background">
+		<div slot="background" class="background">
 			<span class="icon" class:visible={!visible}>
 				<ChevronDownIcon size="20" />
 			</span>
 
 			{#if imageUrl}
-				<img src={imageUrl} class="profilePicture" alt={profilePicture.fields.title} />
+				<Image src={imageUrl} className="profilePicture" alt={profilePicture.fields.title} />
 			{/if}
 		</div>
 	</SplitSection>
@@ -110,7 +111,7 @@
 		}
 	}
 
-	.profilePicture {
+	.background :global(.profilePicture) {
 		overflow: hidden;
 		bottom: -2.25rem;
 		right: 5rem;
@@ -122,7 +123,7 @@
 	}
 
 	@media screen and (max-width: 1200px) {
-		.profilePicture {
+		.background :global(.profilePicture) {
 			right: -6rem;
 		}
 	}
@@ -148,7 +149,7 @@
 			}
 		}
 
-		.profilePicture {
+		.background :global(.profilePicture) {
 			width: unset;
 			height: 60%;
 			right: -2rem;

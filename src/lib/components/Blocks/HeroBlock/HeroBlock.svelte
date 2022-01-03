@@ -4,6 +4,7 @@
 	import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 	import Parallax from '../../Parallax/Parallax.svelte';
 	import Visible from '../../Visible/Visible.svelte';
+	import Image from '$lib/components/Image/Image.svelte';
 
 	export let block: HeroBlock;
 
@@ -38,8 +39,8 @@
 					amount={-20}
 					style="width: 100%; height: calc(100% + 10rem); top: -5rem; position: relative"
 				>
-					<img
-						class="background"
+					<Image
+						className="background"
 						src={imageUrl}
 						alt={backgroundImage.fields.title}
 						style={`transform: scale(0.8)`}
@@ -116,15 +117,12 @@
 		&.visible {
 			transform: scale(1.3);
 		}
-	}
 
-	.background {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-
-		/* This prevents white edges when scrolling fast */
-		will-change: transform;
+		:global(.background) {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	@media screen and (max-width: 1200px) {
