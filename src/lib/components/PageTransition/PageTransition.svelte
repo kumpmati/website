@@ -9,7 +9,7 @@
 {#key key}
 	<span
 		in:pageTransition={{
-			duration: 1500,
+			duration: 2000,
 			delay: 0,
 			opacity: 1,
 			x: $mousePosition.x,
@@ -17,7 +17,7 @@
 			dir: 'open'
 		}}
 		out:pageTransition={{
-			duration: 200,
+			duration: 500,
 			x: $mousePosition.x,
 			y: $mousePosition.y,
 			delay: 0,

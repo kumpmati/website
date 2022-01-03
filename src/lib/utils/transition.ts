@@ -46,7 +46,7 @@ export const pageTransition = (
 		css: (t, u) => `
 		transform: ${transform} translateY(${-yOffset}px);
 		opacity: ${target_opacity - od * u};
-		clip-path: circle(${isOpening ? t * 150 : 150}% at ${x}px ${y}px);
+		clip-path: circle(${isOpening ? t * 125 : 125}% at ${x}px ${y}px);
 		${!isOpening ? 'overflow:hidden' : ''}`
 	};
 };
