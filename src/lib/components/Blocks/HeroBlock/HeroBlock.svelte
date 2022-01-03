@@ -7,6 +7,7 @@
 	import Image from '$lib/components/Image/Image.svelte';
 
 	export let block: HeroBlock;
+	export let index: number;
 
 	const { subheading, content, backgroundImage, textColor, subheadingColor, style, divider } =
 		block.fields;
@@ -40,7 +41,7 @@
 					style="width: 100%; height: calc(100% + 10rem); top: -5rem; position: relative"
 				>
 					<Image
-						loading="eager"
+						loading={index === 0 ? 'eager' : 'lazy'}
 						className="background"
 						src={imageUrl}
 						alt={backgroundImage.fields.title}

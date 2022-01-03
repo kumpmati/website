@@ -11,6 +11,7 @@
 
 	const { subheading, content, profilePicture, divider } = block.fields;
 	const imageUrl = profilePicture?.fields.file.url;
+	const { width, height } = profilePicture?.fields.file.details.image;
 
 	let visible: boolean;
 </script>
@@ -33,7 +34,14 @@
 			</span>
 
 			{#if imageUrl}
-				<Image src={imageUrl} className="profilePicture" alt={profilePicture.fields.title} />
+				<Image
+					loading="eager"
+					{width}
+					{height}
+					src={imageUrl}
+					className="profilePicture"
+					alt={profilePicture.fields.title}
+				/>
 			{/if}
 		</div>
 	</SplitSection>
