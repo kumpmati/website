@@ -12,7 +12,7 @@
 
 	onMount(() => {
 		// only get path when mounting, do not update when page changes
-		path = $page.path;
+		path = $page.url.pathname;
 	});
 </script>
 

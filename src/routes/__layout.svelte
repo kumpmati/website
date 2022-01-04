@@ -3,13 +3,13 @@
 
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ fetch, page }) => {
+	export const load: Load = async ({ fetch, url }) => {
 		const res = await fetch('/api/navigation');
 
 		if (res.ok) {
 			return {
 				props: {
-					key: page.path,
+					key: url.pathname,
 					nav: await res.json()
 				}
 			};

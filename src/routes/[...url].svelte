@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load<{ pageParams: { url: string } }> = async ({ page, fetch }) => {
-		const url = page.params.url;
+	export const load: Load<{ pageParams: { url: string } }> = async ({ params, fetch }) => {
+		const url = params.url;
 
 		const res = await fetch(`/api/page?url=${url}`);
 

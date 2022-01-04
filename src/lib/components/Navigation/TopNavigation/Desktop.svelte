@@ -10,7 +10,7 @@
 	<a
 		class="link"
 		sveltekit:prefetch
-		class:active={$page.path === link.fields.url}
+		class:active={$page.url.pathname === link.fields.url}
 		href={link.fields.url}
 	>
 		{link.fields.text}

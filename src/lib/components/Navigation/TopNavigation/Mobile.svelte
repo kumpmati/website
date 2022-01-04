@@ -14,7 +14,7 @@
 				class="link"
 				sveltekit:prefetch
 				on:click={() => (isOpen = false)}
-				class:active={$page.path === link.fields.url}
+				class:active={$page.url.pathname === link.fields.url}
 				href={link.fields.url}
 				in:fly={{ duration: 200, y: -20, delay: index * 50 }}
 				out:fade={{ duration: 200 }}
