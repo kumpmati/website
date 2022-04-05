@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { PageBlocks } from '$lib/types/contentful';
 	import GridBlock from './GridBlock/GridBlock.svelte';
-	import IntroBlock from './IntroBlock/IntroBlock.svelte';
 	import HeroBlock from './HeroBlock/HeroBlock.svelte';
 	import TextBlock from './TextBlock/TextBlock.svelte';
 
@@ -11,7 +10,6 @@
 
 	// map of components for each block type
 	const components = {
-		introBlock: IntroBlock,
 		fullPageBlock: HeroBlock,
 		gridBlock: GridBlock,
 		textBlock: TextBlock

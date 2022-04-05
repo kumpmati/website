@@ -1,4 +1,4 @@
-import type { Navigation, Page } from '$lib/types/contentful';
+import type { Homepage, Navigation, Page } from '$lib/types/contentful';
 import contentful from 'contentful';
 
 const MAX_FETCH_DEPTH = 5;
@@ -17,6 +17,12 @@ export const getPageByURL = async (url: string): Promise<Page | null> => {
 	});
 
 	return (pages?.items?.[0] as Page) ?? null;
+};
+
+export const getHomePage = async (): Promise<Homepage | null> => {
+	const homepage = await client.getEntries({ content_type: 'homepage' });
+
+	return (homepage?.items?.[0] as Homepage) ?? null;
 };
 
 export const getNavigation = async (): Promise<Navigation | null> => {

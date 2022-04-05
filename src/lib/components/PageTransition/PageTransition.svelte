@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { mousePosition, scrollPosition } from '$lib/stores/page';
+	import { scrollPosition } from '$lib/stores/page';
 	import { pageTransition } from '$lib/utils/transition';
 
 	export let key: any;
@@ -12,14 +12,10 @@
 			duration: 2000,
 			delay: 0,
 			opacity: 1,
-			x: $mousePosition.x,
-			y: $mousePosition.y,
 			dir: 'open'
 		}}
 		out:pageTransition={{
 			duration: 500,
-			x: $mousePosition.x,
-			y: $mousePosition.y,
 			delay: 0,
 			opacity: 1,
 			yOffset: $scrollPosition

@@ -22,16 +22,7 @@ export const scaleDelayed = (
 
 export const pageTransition = (
 	node: HTMLElement,
-	{
-		delay = 0,
-		duration = 400,
-		easing = quartOut,
-		x = 0,
-		y = 0,
-		dir = 'close',
-		opacity = 0,
-		yOffset = 0
-	} = {}
+	{ delay = 0, duration = 400, easing = quartOut, dir = 'close', opacity = 0, yOffset = 0 } = {}
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
 	const target_opacity = +style.opacity;
@@ -46,7 +37,7 @@ export const pageTransition = (
 		css: (t, u) => `
 		transform: ${transform} translateY(${-yOffset}px);
 		opacity: ${target_opacity - od * u};
-		clip-path: circle(${isOpening ? t * 125 : 125}% at ${x}px ${y}px);
+		clip-path: inset(0% ${isOpening ? (1 - t) * 100 : 0}% 0% ${isOpening ? 0 : t * 100}%);
 		${!isOpening ? 'overflow:hidden' : ''}`
 	};
 };
