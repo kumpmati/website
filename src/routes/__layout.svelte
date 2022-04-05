@@ -1,6 +1,4 @@
 <script context="module" lang="ts">
-	import '../globals.scss';
-
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ fetch, url }) => {
@@ -23,11 +21,12 @@
 </script>
 
 <script lang="ts">
-	import TopNavigation from '$lib/components/Navigation/TopNavigation/TopNavigation.svelte';
+	import Navigation from '$lib/components/Navigation/Navigation.svelte';
 	import type { Navigation as NavigationT } from '$lib/types/contentful';
 	import { navigation } from '$lib/stores/navigation';
 	import PageTransition from '$lib/components/PageTransition/PageTransition.svelte';
 	import { mousePosition, pageSettings, scrollPosition } from '$lib/stores/page';
+	import '../globals.scss'; // global css file
 
 	export let nav: NavigationT;
 	export let key: string;
@@ -42,7 +41,7 @@
 	on:scroll={() => ($scrollPosition = window.scrollY)}
 />
 
-<TopNavigation />
+<Navigation />
 
 <PageTransition {key} backgroundColor={$pageSettings.backgroundColor}>
 	<!-- Page content -->
