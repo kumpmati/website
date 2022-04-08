@@ -1,25 +1,61 @@
 <script lang="ts">
+	import { pageSettings } from '$lib/stores/page';
+
 	import type { Navigation } from '$lib/types/contentful';
-	import { navigation } from '$lib/stores/navigation';
-	import Mobile from './Mobile.svelte';
-	import Desktop from './Desktop.svelte';
-	import { onMount } from 'svelte';
+	import Menu from '../icons/Menu.svelte';
+	import X from '../icons/X.svelte';
 
-	const nav: Navigation | null = $navigation;
+	export let nav: Navigation;
 
-	$: isMobile = false;
-
-	onMount(() => {
-		const update = () => {
-			isMobile = window.matchMedia('(max-width: 900px)').matches;
-		};
-
-		// call function on mount
-		update();
-
-		window.addEventListener('resize', update);
-		return () => window.removeEventListener('resize', update);
-	});
+	let open = false;
 </script>
 
-<svelte:component this={isMobile ? Mobile : Desktop} {nav} />
+<nav style="--text-color: {$pageSettings.textColor === 'Dark' ? '#000' : '#fff'}">
+	<a href="/">mk</a>
+
+	<button on:click={() => (open = !open)}>
+		{#if !open}
+			<Menu />
+		{:else}
+			<X />
+		{/if}
+	</button>
+</nav>
+
+<style lang="scss">
+	nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		width: 100%;
+		height: 6.75rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		padding-inline: 40px;
+
+		@media screen and (max-width: 400px) {
+			padding-inline: 20px;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		font-weight: 900;
+		color: var(--text-color);
+	}
+
+	button {
+		display: grid;
+		place-content: center;
+		background: none;
+		border: none;
+		border-radius: 100%;
+		width: 2rem;
+		height: 2rem;
+		cursor: pointer;
+		color: var(--text-color);
+	}
+</style>

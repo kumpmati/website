@@ -16,8 +16,12 @@
 	const timeline = getContext<TimelineStore>('timeline');
 
 	$: if (visible) {
-		$pageSettings.backgroundColor = backgroundColor;
 		timeline.setCurrent(index, false);
+	}
+
+	$: if ($timeline.current === index) {
+		$pageSettings.backgroundColor = backgroundColor;
+		$pageSettings.textColor = textColor;
 	}
 
 	// register element so that it can be scrolled into view by timeline
@@ -51,7 +55,7 @@
 
 	.container {
 		position: relative;
-		height: max(100vh, 40rem);
+		height: max(100vh, 50rem);
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;

@@ -29,8 +29,6 @@ export type Page = Entry<{
 	blocks: PageBlock[];
 }>;
 
-export type PageBlock = HeroBlock | TextBlock | SkillsBlock | GridBlock;
-
 export type TextBlock = Entry<{
 	entryTitle: boolean;
 	content: Document;
@@ -55,7 +53,25 @@ export type SkillsBlock = Entry<{
 
 export type GridBlock = Entry<{
 	entryTitle: string;
+	content?: string; // markdown
 	backgroundColor: string;
 	textColor: 'Dark' | 'Light';
-	items: any[];
+	items: GridItem[];
 }>;
+
+export type GridItem = Entry<{
+	title: string;
+	description?: string; // markdown
+	link?: string;
+	theme: 'Accent' | 'Light' | 'Dark';
+}>;
+
+export type AccordionBlock = Entry<{
+	entryTitle: string;
+	content?: string; // markdown
+	backgroundColor: string;
+	textColor: 'Dark' | 'Light';
+	items: GridItem[];
+}>;
+
+export type PageBlock = HeroBlock | TextBlock | SkillsBlock | GridBlock | AccordionBlock;

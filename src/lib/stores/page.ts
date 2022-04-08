@@ -3,11 +3,13 @@ import { writable, type Readable } from 'svelte/store';
 
 export type PageStore = {
 	backgroundColor: string;
+	textColor: 'Dark' | 'Light';
 	navigationVisibleThreshold: number;
 };
 
 export const pageSettings = writable<PageStore>({
 	backgroundColor: '#000',
+	textColor: 'Dark',
 	navigationVisibleThreshold: 0
 });
 
