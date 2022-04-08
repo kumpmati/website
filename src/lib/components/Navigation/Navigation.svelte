@@ -1,16 +1,23 @@
 <script lang="ts">
+	import { navigating, page } from '$app/stores';
+	import { navigation } from '$lib/stores/navigation';
 	import { pageSettings } from '$lib/stores/page';
-
-	import type { Navigation } from '$lib/types/contentful';
 	import Menu from '../icons/Menu.svelte';
 	import X from '../icons/X.svelte';
+	import { fly, fade } from 'svelte/transition';
 
-	export let nav: Navigation;
-
+	let nav = $navigation;
 	let open = false;
+
+	const closeOnNavigateComplete = () => {
+		setTimeout(() => (open = false), 250);
+	};
 </script>
 
-<nav style="--text-color: {$pageSettings.textColor === 'Dark' ? '#000' : '#fff'}">
+<nav
+	transition:fade={{ duration: 200 }}
+	style="--text-color: {$pageSettings.textColor === 'Dark' || open ? '#000' : '#fff'}"
+>
 	<a href="/">mk</a>
 
 	<button on:click={() => (open = !open)}>
@@ -21,6 +28,32 @@
 		{/if}
 	</button>
 </nav>
+
+{#if open}
+	<div class="menu">
+		<div
+			class="backdrop"
+			in:fly={{ x: -2000, duration: 500 }}
+			out:fly={{ x: 0, duration: 500, delay: 200 }}
+		/>
+
+		<h2 transition:fly={{ x: 20 }}>menu</h2>
+		<ul transition:fly={{ x: 10, delay: 100 }}>
+			{#each nav.fields.links as link, index (link.sys.id)}
+				<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
+					<a
+						href={link.fields.url}
+						target={link.fields.openInNewTab ? '_blank' : null}
+						class:active={$page.url.pathname === link.fields.url}
+						on:click={closeOnNavigateComplete}
+					>
+						{link.fields.text}
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
+{/if}
 
 <style lang="scss">
 	nav {
@@ -45,6 +78,7 @@
 		text-decoration: none;
 		font-weight: 900;
 		color: var(--text-color);
+		transition: color 200ms;
 	}
 
 	button {
@@ -57,5 +91,55 @@
 		height: 2rem;
 		cursor: pointer;
 		color: var(--text-color);
+		transition: color 200ms;
+	}
+
+	.menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 15vh;
+		z-index: 60;
+
+		h2 {
+			color: #000;
+			font-size: 64px;
+			letter-spacing: -0.075em;
+			z-index: 1;
+		}
+
+		ul {
+			z-index: 10;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+
+			a {
+				font-size: 32px;
+				font-weight: 900;
+				opacity: 0.5;
+
+				&.active {
+					opacity: 1;
+				}
+			}
+		}
+
+		.backdrop {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background: #fff;
+			z-index: 0;
+		}
 	}
 </style>

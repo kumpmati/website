@@ -39,7 +39,7 @@
 	// sets the body and html element background color to match the page settings
 	$: {
 		if (browser) {
-			document.body.style.backgroundColor = $pageSettings.backgroundColor;
+			//document.body.style.backgroundColor = $pageSettings.backgroundColor;
 			document.querySelector('html').style.backgroundColor = $pageSettings.backgroundColor;
 		}
 	}

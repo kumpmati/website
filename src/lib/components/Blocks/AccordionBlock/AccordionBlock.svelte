@@ -23,6 +23,8 @@
 	$: {
 		if (visible) {
 			timeline.setCurrent(index, false);
+			$pageSettings.backgroundColor = backgroundColor;
+			$pageSettings.textColor = textColor;
 		} else {
 			// close modal when not visible any more
 			activeItem = null;
@@ -43,7 +45,7 @@
 	// register element so that it can be scrolled into view by timeline
 	onMount(() => {
 		const unregister = timeline.register(index, element);
-		return () => unregister();
+		return () => unregister?.();
 	});
 </script>
 
@@ -64,7 +66,7 @@
 		{#if visible}
 			{#each items as item, index (item.sys.id)}
 				<a
-					in:fly={{ y: -25, delay: index * 100 }}
+					in:fly={{ y: -25, delay: (index + 1) * 100 }}
 					animate:flip={{ duration: 200 }}
 					href={item.fields.link}
 					class="item {item.fields.theme}"
@@ -195,7 +197,7 @@
 				min-height: 42rem;
 				padding: 6rem 4.5rem;
 				transform: translateY(-25%);
-				transition: height 200ms;
+				transition: height 200ms; // dont transition transform to prevent jumping
 
 				@media screen and (max-width: 900px) {
 					transform: none;

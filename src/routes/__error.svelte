@@ -14,8 +14,7 @@
 
 	export let title;
 
-	$pageSettings.navigationVisibleThreshold = 0;
-
+	$pageSettings.textColor = 'Dark';
 	$pageSettings.backgroundColor = '#fff';
 </script>
 

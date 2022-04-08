@@ -41,7 +41,7 @@
 		position: fixed;
 		margin: 0;
 		top: 50%;
-		z-index: 100;
+		z-index: 50;
 
 		transform: translateY(-50%);
 	}
