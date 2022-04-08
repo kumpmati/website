@@ -15,6 +15,8 @@
 	export let title;
 
 	$pageSettings.navigationVisibleThreshold = 0;
+
+	$pageSettings.backgroundColor = '#fff';
 </script>
 
 <div class="outer">
@@ -22,21 +24,16 @@
 </div>
 
 <style lang="scss">
-	:global(:root) {
-		background-color: #fff;
-	}
-
 	.outer {
 		font-size: 1.5rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		height: 100vh;
-		background-color: #fff;
 	}
 
 	h1 {
-		margin-left: calc(25% + 2rem);
+		text-align: center;
 	}
 
 	@media screen and (max-width: 950px) {

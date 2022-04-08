@@ -1,11 +1,10 @@
 <script lang="ts">
-	import type { Navigation } from '$lib/types/contentful';
-	import { navigation } from '$lib/stores/navigation';
-	import Mobile from './Mobile.svelte';
-	import Desktop from './Desktop.svelte';
+	import type { PageBlock } from '$lib/types/contentful';
 	import { onMount } from 'svelte';
+	import DesktopTimeline from './Desktop.svelte';
+	import MobileTimeline from './Mobile.svelte';
 
-	const nav: Navigation | null = $navigation;
+	export let blocks: PageBlock[];
 
 	$: isMobile = false;
 
@@ -22,4 +21,4 @@
 	});
 </script>
 
-<svelte:component this={isMobile ? Mobile : Desktop} {nav} />
+<svelte:component this={isMobile ? MobileTimeline : DesktopTimeline} {blocks} />

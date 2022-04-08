@@ -26,10 +26,10 @@ export type Page = Entry<{
 	title: string;
 	url: string;
 	timeline: boolean;
-	blocks: PageBlocks[];
+	blocks: PageBlock[];
 }>;
 
-export type PageBlocks = HeroBlock | TextBlock | SkillsBlock | GridBlock;
+export type PageBlock = HeroBlock | TextBlock | SkillsBlock | GridBlock;
 
 export type TextBlock = Entry<{
 	entryTitle: boolean;
@@ -38,7 +38,7 @@ export type TextBlock = Entry<{
 
 export type HeroBlock = Entry<{
 	entryTitle: string;
-	content: Document;
+	content: string; // markdown
 	backgroundColor: string;
 	textColor: 'Dark' | 'Light';
 }>;
