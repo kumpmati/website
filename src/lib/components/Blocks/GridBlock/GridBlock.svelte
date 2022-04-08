@@ -17,6 +17,8 @@
 
 	$: if (visible) {
 		timeline.setCurrent(index, false);
+		$pageSettings.backgroundColor = backgroundColor;
+		$pageSettings.textColor = textColor;
 	}
 
 	$: if ($timeline.current === index) {
@@ -27,7 +29,7 @@
 	// register element so that it can be scrolled into view by timeline
 	onMount(() => {
 		const unregister = timeline.register(index, element);
-		return () => unregister();
+		return () => unregister?.();
 	});
 </script>
 
@@ -46,13 +48,12 @@
 	<ul class="items">
 		{#if visible}
 			{#each items as item, index (item.sys.id)}
-				{@const { title, link, description, theme } = item.fields}
-				<li transition:fly={{ y: -25, delay: index * 100 }}>
-					<a href={link} class="item {theme}">
-						<h2>{title}</h2>
+				<li in:fly={{ y: -25, delay: (index + 1) * 100 }} out:fly|local={{ y: -25, delay: 0 }}>
+					<a href={item.fields.link} class="item {item.fields.theme}">
+						<h2>{item.fields.title}</h2>
 
 						<span class="description">
-							<SvelteMarkdown source={description} />
+							<SvelteMarkdown source={item.fields.description} />
 						</span>
 					</a>
 				</li>
@@ -63,11 +64,11 @@
 
 <style lang="scss">
 	.container {
-		min-height: max(90vh, 50rem);
+		height: fit-content;
 		color: var(--text-color);
 		position: relative;
 		max-width: 45rem;
-		margin: 0 auto;
+		margin: 15rem auto;
 		padding: 5rem 0;
 	}
 
@@ -90,10 +91,10 @@
 	.items {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-		gap: .75rem;
+		gap: 0.75rem;
 		list-style: none;
 		margin: 5rem 0 0 0;
-		
+
 		padding: 0;
 
 		.item {
@@ -117,7 +118,7 @@
 
 			&.Accent {
 				--text-color: #000;
-				--bg-color: #A6FF8F;
+				--bg-color: #a6ff8f;
 				--border-color: transparent;
 			}
 
@@ -140,8 +141,6 @@
 					opacity: 0.5;
 				}
 			}
-
-			
 
 			h2 {
 				font-size: 24px;

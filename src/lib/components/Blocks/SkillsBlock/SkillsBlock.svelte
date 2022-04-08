@@ -17,6 +17,8 @@
 
 	$: if (visible) {
 		timeline.setCurrent(index, false);
+		$pageSettings.backgroundColor = backgroundColor;
+		$pageSettings.textColor = textColor;
 	}
 
 	$: if ($timeline.current === index) {
@@ -26,7 +28,7 @@
 
 	onMount(() => {
 		const unregister = timeline.register(index, element);
-		return () => unregister();
+		return () => unregister?.();
 	});
 </script>
 
@@ -44,7 +46,7 @@
 				<p class="small">{leftColumnTitle}</p>
 
 				<h1 style="color: var(--text-color)">Next.js</h1>
-				<h2 style="color: #2B7C29">Node.js</h2>
+				<h2 style="color: #6CBE49">Node.js</h2>
 				<h2 style="color: #5570FF">TypeScript</h2>
 				<h2 style="color: var(--text-color)">SCSS</h2>
 			</section>
@@ -76,10 +78,8 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: 10rem auto;
+		margin: 15rem auto;
 		max-width: 45rem;
-		max-height: 90vh;
-		min-height: 50rem;
 		height: fit-content;
 	}
 

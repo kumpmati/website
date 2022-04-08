@@ -17,6 +17,8 @@
 
 	$: if (visible) {
 		timeline.setCurrent(index, false);
+		$pageSettings.backgroundColor = backgroundColor;
+		$pageSettings.textColor = textColor;
 	}
 
 	$: if ($timeline.current === index) {
@@ -27,7 +29,7 @@
 	// register element so that it can be scrolled into view by timeline
 	onMount(() => {
 		const unregister = timeline.register(index, element);
-		return () => unregister();
+		return () => unregister?.();
 	});
 </script>
 
@@ -55,8 +57,8 @@
 
 	.container {
 		position: relative;
-		height: max(100vh, 50rem);
-		margin: 0 auto;
+		height: fit-content;
+		margin: 15rem auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
