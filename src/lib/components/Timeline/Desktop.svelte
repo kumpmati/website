@@ -9,6 +9,10 @@
 	$: currentPos = Math.max($timeline.current, 0) / (blocks.length - 1);
 
 	$: theme = (blocks[$timeline.current] as HeroBlock).fields?.textColor ?? 'Dark';
+
+	const handleSetCurrent = (index: number) => {
+		timeline.setCurrent(index, true); // scroll to newly selected element
+	};
 </script>
 
 <aside class="wrapper" style="--color: {theme === 'Dark' ? '#000' : '#fff'}">
@@ -17,7 +21,7 @@
 			<button
 				class="section"
 				class:visible={$timeline.current === index}
-				on:click={() => timeline.setCurrent(index, true)}
+				on:click={() => handleSetCurrent(index)}
 			>
 				{block.fields.entryTitle}
 			</button>
@@ -37,6 +41,7 @@
 		position: fixed;
 		margin: 0;
 		top: 50%;
+		z-index: 100;
 
 		transform: translateY(-50%);
 	}
@@ -49,6 +54,13 @@
 		flex-direction: column;
 		justify-content: space-between;
 		list-style: none;
+
+		&:hover {
+			.section {
+				opacity: 0.5;
+				outline: none;
+			}
+		}
 
 		.section {
 			font-size: 14px;
@@ -64,28 +76,26 @@
 
 			padding: 0;
 			margin: 0;
-			padding-left: 1rem;
-			height: 3rem;
+			padding-inline: 1rem;
+			height: 2rem;
 			opacity: 0;
 
-			transition: opacity 200ms;
+			transition: opacity 200ms, color 200ms;
 
+			&:hover,
+			&:focus-visible,
 			&.visible {
 				opacity: 1;
-				outline: none;
-			}
-			&:hover,
-			&:focus-visible {
-				opacity: 0.5;
-				outline: none;
 			}
 		}
 	}
 
 	.bar-container {
+		--section-height: 2rem;
+
 		position: absolute;
-		height: calc(100% - 3rem + 8px);
-		top: calc(1.5rem - 4px);
+		height: calc(100% - var(--section-height) + 8px);
+		top: calc((var(--section-height) / 2) - 4px);
 		display: flex;
 		pointer-events: none;
 
@@ -94,10 +104,10 @@
 			top: 50%;
 			width: 8px;
 			height: 8px;
-			background: var(--color);
+			background-color: var(--color);
 			border-radius: 100%;
 
-			transition: top 200ms;
+			transition: top 400ms, background-color 200ms;
 		}
 
 		.bar {
@@ -105,9 +115,11 @@
 			display: flex;
 			width: 8px;
 			height: 100%;
-			background: var(--color);
+			background-color: var(--color);
 			border-radius: 16px;
 			opacity: 0.15;
+
+			transition: background-color 200ms;
 		}
 	}
 </style>

@@ -56,6 +56,12 @@ export const createTimeline = (blocks: PageBlock[], enabled: boolean): TimelineS
 			// scroll to the element
 			const element = elements?.[index];
 			element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+			// disable updating the timeline for the duration of
+			// scrolling to the newly selected element
+			setEnabled(false);
+			// re-enable after scrolling has happened
+			setTimeout(() => setEnabled(true), 500);
 		}
 	};
 
