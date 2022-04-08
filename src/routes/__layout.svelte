@@ -21,31 +21,54 @@
 </script>
 
 <script lang="ts">
+	import '../globals.scss'; // global css file
 	import Navigation from '$lib/components/Navigation/Navigation.svelte';
 	import type { Navigation as NavigationT } from '$lib/types/contentful';
 	import { navigation } from '$lib/stores/navigation';
 	import PageTransition from '$lib/components/PageTransition/PageTransition.svelte';
-	import { mousePosition, pageSettings, scrollPosition } from '$lib/stores/page';
-	import '../globals.scss'; // global css file
+	import { pageSettings, scrollPosition } from '$lib/stores/page';
+	import { browser } from '$app/env';
+	import { page } from '$app/stores';
 
 	export let nav: NavigationT;
 	export let key: string;
 
 	$navigation = nav;
 	$scrollPosition = 0;
+
+	// sets the body and html element background color to match the page settings
+	$: {
+		if (browser) {
+			document.body.style.backgroundColor = $pageSettings.backgroundColor;
+			document.querySelector('html').style.backgroundColor = $pageSettings.backgroundColor;
+		}
+	}
 </script>
 
 <svelte:window
-	on:mousedown={(e) => ($mousePosition = { x: e.clientX, y: e.clientY })}
 	on:resize={() => ($scrollPosition = window.scrollY)}
 	on:scroll={() => ($scrollPosition = window.scrollY)}
 />
 
-<Navigation />
+{#if $page.url.pathname !== '/'}
+	<Navigation />
+{/if}
 
-<PageTransition {key} backgroundColor={$pageSettings.backgroundColor}>
-	<!-- Page content -->
-	<slot />
+<PageTransition {key}>
+	<main>
+		<!-- Page content -->
+		<slot />
 
-	<!-- Footer -->
+		<!-- Footer -->
+	</main>
 </PageTransition>
+
+<style lang="scss">
+	main {
+		margin-inline: 40px;
+
+		@media screen and (max-width: 400px) {
+			margin-inline: 20px;
+		}
+	}
+</style>

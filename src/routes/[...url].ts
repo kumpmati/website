@@ -9,7 +9,7 @@ export const get: RequestHandler<{ url: string }, { page: any }> = async ({ para
 	if (!page) {
 		return {
 			status: 404,
-			body: { page: null }
+			error: new Error('page not found')
 		};
 	}
 

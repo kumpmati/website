@@ -1,18 +1,21 @@
 <script lang="ts">
-	import type { PageBlocks } from '$lib/types/contentful';
+	import type { PageBlock } from '$lib/types/contentful';
 	import GridBlock from './GridBlock/GridBlock.svelte';
 	import HeroBlock from './HeroBlock/HeroBlock.svelte';
+	import SkillsBlock from './SkillsBlock/SkillsBlock.svelte';
 	import TextBlock from './TextBlock/TextBlock.svelte';
 
-	export let block: PageBlocks;
+	export let block: PageBlock;
 	export let index: number;
+
 	$: blockType = block.sys.contentType.sys.id;
 
 	// map of components for each block type
 	const components = {
 		fullPageBlock: HeroBlock,
 		gridBlock: GridBlock,
-		textBlock: TextBlock
+		textBlock: TextBlock,
+		skillsBlock: SkillsBlock
 	};
 
 	$: component = components?.[blockType] ?? null;

@@ -37,7 +37,7 @@ export const pageTransition = (
 		css: (t, u) => `
 		transform: ${transform} translateY(${-yOffset}px);
 		opacity: ${target_opacity - od * u};
-		clip-path: inset(0% ${isOpening ? (1 - t) * 100 : 0}% 0% ${isOpening ? 0 : t * 100}%);
+		clip-path: inset(0% ${isOpening ? (1 - t) * 100 : 0}% 0% ${isOpening ? 0 : (1 - t) * 100}%);
 		${!isOpening ? 'overflow:hidden' : ''}`
 	};
 };
