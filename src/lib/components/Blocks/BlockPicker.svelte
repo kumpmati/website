@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageBlock } from '$lib/types/contentful';
+	import AccordionBlock from './AccordionBlock/AccordionBlock.svelte';
 	import GridBlock from './GridBlock/GridBlock.svelte';
 	import HeroBlock from './HeroBlock/HeroBlock.svelte';
 	import SkillsBlock from './SkillsBlock/SkillsBlock.svelte';
@@ -15,7 +16,8 @@
 		fullPageBlock: HeroBlock,
 		gridBlock: GridBlock,
 		textBlock: TextBlock,
-		skillsBlock: SkillsBlock
+		skillsBlock: SkillsBlock,
+		accordionBlock: AccordionBlock
 	};
 
 	$: component = components?.[blockType] ?? null;

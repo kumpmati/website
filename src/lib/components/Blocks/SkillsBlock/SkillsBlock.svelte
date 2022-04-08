@@ -16,8 +16,12 @@
 	let visible;
 
 	$: if (visible) {
-		$pageSettings.backgroundColor = backgroundColor;
 		timeline.setCurrent(index, false);
+	}
+
+	$: if ($timeline.current === index) {
+		$pageSettings.backgroundColor = backgroundColor;
+		$pageSettings.textColor = textColor;
 	}
 
 	onMount(() => {
@@ -27,7 +31,7 @@
 </script>
 
 <!-- Checks visibility of 'trigger' element -->
-<IntersectionObserver {element} threshold={0.9} bind:intersecting={visible} />
+<IntersectionObserver {element} threshold={0.3} bind:intersecting={visible} />
 
 <div class="container" style="--text-color: {textColor === 'Dark' ? '#000' : '#fff'};">
 	<span class="trigger" bind:this={element} />
@@ -75,8 +79,15 @@
 		margin: 10rem auto;
 		max-width: 45rem;
 		max-height: 90vh;
-		min-height: 40rem;
+		min-height: 50rem;
 		height: fit-content;
+	}
+
+	.trigger {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		visibility: hidden;
 	}
 
 	.content {
@@ -88,13 +99,6 @@
 			opacity: 1;
 			transform: translateX(0);
 		}
-	}
-
-	.trigger {
-		position: absolute;
-		top: 25%;
-		height: 10rem;
-		visibility: hidden;
 	}
 
 	.top {
