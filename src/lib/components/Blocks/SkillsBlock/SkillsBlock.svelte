@@ -3,6 +3,7 @@
 	import type { SkillsBlock } from '$lib/types/contentful';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { getContext, onMount } from 'svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let block: SkillsBlock;
 	export let index: number;
@@ -39,7 +40,9 @@
 	<span class="trigger" bind:this={element} />
 
 	<span class="content" class:visible>
-		<p class="top">{topContent}</p>
+		<span class="top">
+			<SvelteMarkdown source={topContent} />
+		</span>
 
 		<div class="section-container">
 			<section class="left">
@@ -101,20 +104,22 @@
 		}
 	}
 
-	.top {
-		margin-bottom: 6.25rem;
-		max-width: 32rem;
+	p.small {
+		opacity: 0.5;
+		font-size: 14px;
 	}
 
-	p {
-		font-size: 22px;
-		color: var(--text-color);
-		opacity: 0.5;
-		margin: 0;
-		margin-bottom: 0.5rem;
+	.top {
+		display: block;
+		margin-bottom: 6.25rem;
+		max-width: 32rem;
 
-		&.small {
-			font-size: 14px;
+		:global(p) {
+			font-size: 22px;
+			color: var(--text-color);
+			opacity: 0.5;
+			margin: 0;
+			margin-bottom: 0.5rem;
 		}
 	}
 

@@ -45,7 +45,7 @@ export type SkillsBlock = Entry<{
 	entryTitle: string;
 	backgroundColor: string;
 	textColor: 'Dark' | 'Light';
-	topContent: string;
+	topContent: string; // markdown
 	leftColumnTitle?: string;
 	rightColumnTitle?: string;
 	bottomTitle?: string;

@@ -18,7 +18,7 @@
 	transition:fade={{ duration: 200 }}
 	style="--text-color: {$pageSettings.textColor === 'Dark' || open ? '#000' : '#fff'}"
 >
-	<a href="/">mk</a>
+	<a class="logo" href="/">mk</a>
 
 	<button on:click={() => (open = !open)}>
 		{#if !open}
@@ -37,10 +37,10 @@
 			out:fly={{ x: 0, duration: 500, delay: 200 }}
 		/>
 
-		<h2 transition:fly={{ x: 20 }}>menu</h2>
-		<ul transition:fly={{ x: 10, delay: 100 }}>
+		<h2 transition:fly={{ x: 20, delay: 200 }}>menu</h2>
+		<ul transition:fly={{ x: 10, delay: 300 }}>
 			{#each nav.fields.links as link, index (link.sys.id)}
-				<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
+				<li in:fly={{ x: 10, delay: (index + 2) * 150 }}>
 					<a
 						href={link.fields.url}
 						target={link.fields.openInNewTab ? '_blank' : null}
@@ -76,8 +76,11 @@
 
 	a {
 		text-decoration: none;
-		font-weight: 900;
 		color: var(--text-color);
+	}
+
+	.logo {
+		font-weight: 900;
 		transition: color 200ms;
 	}
 
@@ -120,11 +123,41 @@
 			margin: 0;
 			display: flex;
 			flex-direction: column;
+			gap: 0.5rem;
 
 			a {
+				position: relative;
+				display: block;
 				font-size: 32px;
-				font-weight: 900;
+				font-weight: 500;
 				opacity: 0.5;
+				transition: color 200ms, opacity 200ms;
+				margin-bottom: 0.5rem;
+				padding: 0.25rem 1.5rem;
+
+				&::after {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 0;
+					height: 100%;
+					background: #000;
+					border-radius: 3px;
+					z-index: -1;
+					opacity: 0;
+					transition: width 200ms, opacity 200ms;
+				}
+
+				&:hover {
+					opacity: 1;
+					color: #fff;
+
+					&::after {
+						opacity: 1;
+						width: 100%;
+					}
+				}
 
 				&.active {
 					opacity: 1;
