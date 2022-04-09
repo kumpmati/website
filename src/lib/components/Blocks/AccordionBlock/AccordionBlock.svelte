@@ -7,6 +7,7 @@
 	import { flip } from 'svelte/animate';
 	import { fly } from 'svelte/transition';
 	import X from '$lib/components/icons/X.svelte';
+	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 
 	export let block: AccordionBlock;
 	export let index: number;
@@ -58,37 +59,38 @@
 
 	{#if content}
 		<span class="content">
-			<SvelteMarkdown source={content} />
+			<Markdown value={content} />
 		</span>
 	{/if}
 
 	<ul class="items" class:opened={!!activeItem}>
-		{#if visible}
-			{#each items as item, index (item.sys.id)}
-				<a
-					in:fly={{ y: -25, delay: (index + 1) * 100 }}
-					animate:flip={{ duration: 200 }}
-					href={item.fields.link}
-					class="item {item.fields.theme}"
-					class:collapsed={activeItem && activeItem.sys.id !== item.sys.id}
-					class:opened={activeItem?.sys.id === item.sys.id}
-				>
-					{#if activeItem?.sys.id === item.sys.id}
-						<button class="closeButton" on:click={handleCloseModal}>
-							<X />
-						</button>
+		{#each items as item, index (item.sys.id)}
+			<li>
+				{#if visible}
+					<a
+						in:fly={{ y: -25, delay: (index + 1) * 100 }}
+						href={item.fields.link}
+						class="item {item.fields.theme}"
+						class:collapsed={activeItem && activeItem.sys.id !== item.sys.id}
+						class:opened={activeItem?.sys.id === item.sys.id}
+					>
+						{#if activeItem?.sys.id === item.sys.id}
+							<button class="closeButton" on:click={handleCloseModal}>
+								<X />
+							</button>
 
-						<span class="itemContent">
-							<SvelteMarkdown source={item.fields.description} />
-						</span>
-					{:else}
-						<button class="openButton" on:click={() => handleOpenModal(item)}>
-							{item.fields.title}
-						</button>
-					{/if}
-				</a>
-			{/each}
-		{/if}
+							<span class="itemContent">
+								<SvelteMarkdown source={item.fields.description} />
+							</span>
+						{:else}
+							<button class="openButton" on:click={() => handleOpenModal(item)}>
+								{item.fields.title}
+							</button>
+						{/if}
+					</a>
+				{/if}
+			</li>
+		{/each}
 	</ul>
 </div>
 
@@ -111,21 +113,26 @@
 
 	.content {
 		color: var(--text-color);
-
-		:global(p) {
-			opacity: 0.5;
-			font-size: 20px;
-		}
 	}
+
+	/* Grid */
 
 	.items {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+		grid-auto-rows: 1fr;
 		gap: 0.75rem;
 		list-style: none;
-		margin: 5rem 0 0 0;
-
+		margin: 4rem 0 0 0;
 		padding: 0;
+
+		@media screen and (max-width: 500px) {
+			grid-template-columns: 1fr;
+		}
+
+		li {
+			display: flex;
+		}
 
 		&.opened {
 			display: flex;
@@ -134,109 +141,113 @@
 				flex-direction: column;
 			}
 		}
+	}
 
-		.item {
-			position: relative;
-			width: 100%;
+	/* Grid item */
+
+	.item {
+		display: flex;
+		position: relative;
+		width: 100%;
+		height: 13rem;
+		height: 100%;
+		padding: 0;
+		border-radius: 3px;
+		text-decoration: none;
+
+		transition: transform 200ms;
+
+		// theme colors
+		color: var(--text-color, #000);
+		background: var(--bg-color, #fff);
+		border: 2px solid var(--border-color, transparent);
+
+		&.Accent {
+			--text-color: #000;
+			--bg-color: #a6ff8f;
+			--border-color: var(--bg-color);
+		}
+
+		&.Light {
+			--text-color: #000;
+			--bg-color: #fff;
+			--border-color: var(--bg-color);
+		}
+
+		&.Dark {
+			--text-color: #fff;
+			--bg-color: #000;
+			--border-color: #fff;
+		}
+
+		// Modal stuff
+		&.collapsed {
+			min-width: unset;
+			width: 1.5rem;
 			height: 13rem;
-			padding: 0;
-			border-radius: 3px;
-			text-decoration: none;
 
-			transition: height 200ms, transform 200ms;
+			// hide janky flip animation
+			//opacity: 0;
+			//animation: fade-in 200ms both;
 
-			// theme colors
-			color: var(--text-color, #000);
-			background: var(--bg-color, #fff);
-			border: 2px solid var(--border-color, transparent);
-
-			&.Accent {
-				--text-color: #000;
-				--bg-color: #a6ff8f;
-				--border-color: var(--bg-color);
-			}
-
-			&.Light {
-				--text-color: #000;
-				--bg-color: #fff;
-				--border-color: var(--bg-color);
-			}
-
-			&.Dark {
-				--text-color: #fff;
-				--bg-color: #000;
-				--border-color: #fff;
-			}
-
-			// Modal stuff
-			&.collapsed {
-				min-width: unset;
-				width: 1.5rem;
-
-				// hide janky flip animation
-				opacity: 0;
-				animation: fade-in 200ms both;
-
-				@media screen and (max-width: 900px) {
-					width: 90%;
-					margin: 0 auto;
-					height: 1.5rem;
-				}
-
-				.openButton {
-					overflow: hidden;
-					padding: 0;
-					opacity: 0;
-				}
-			}
-
-			&.opened {
+			@media screen and (max-width: 900px) {
+				width: 90%;
 				margin: 0 auto;
-				width: 100%;
-				max-width: 42rem;
-				min-height: 42rem;
-				padding: 6rem 4.5rem;
-				transform: translateY(-25%);
-				transition: height 200ms; // dont transition transform to prevent jumping
-
-				@media screen and (max-width: 900px) {
-					transform: none;
-					padding: 5rem 1.75rem;
-					height: fit-content;
-					min-height: 30rem;
-				}
-			}
-
-			&:not(.opened):hover {
-				transform: translateY(-0.25rem);
+				height: 1.5rem;
 			}
 
 			.openButton {
-				border: none;
-				width: 100%;
-				height: 100%;
-				background: none;
-				font-size: 22px;
-				font-family: var(--font-main);
-				font-weight: 900;
-				color: var(--text-color);
-				cursor: pointer;
-				padding-inline: 2rem;
-				transition: padding 200ms, opacity 200ms;
+				overflow: hidden;
+				padding: 0;
+				opacity: 0;
+				min-height: 0;
 			}
+		}
 
-			.closeButton {
-				position: absolute;
-				right: 1.75rem;
-				top: 1.75rem;
-				border: none;
-				background: transparent;
-				color: var(--text-color);
-				cursor: pointer;
+		&.opened {
+			margin: 0 auto;
+			width: 100%;
+			max-width: 42rem;
+			min-height: 42rem;
+			padding: 6rem 4.5rem;
 
-				@media screen and (max-width: 900px) {
-					right: 1rem;
-				}
+			@media screen and (max-width: 900px) {
+				padding: 3.5rem 1.25rem;
+				height: fit-content;
+				min-height: 30rem;
+			}
+		}
+
+		&:not(.opened):hover {
+			transform: translateY(-0.25rem);
+		}
+
+		.openButton {
+			border: none;
+			width: 100%;
+			height: 100%;
+			min-height: 13rem;
+			background: none;
+			font-size: 22px;
+			font-family: var(--font-main);
+			font-weight: 900;
+			color: var(--text-color);
+			cursor: pointer;
+			padding-inline: 2rem;
+			transition: padding 200ms;
+		}
+
+		.closeButton {
+			position: absolute;
+			right: 1.75rem;
+			top: 1.75rem;
+			border: none;
+			background: transparent;
+			color: var(--text-color);
+			cursor: pointer;
+
+			@media screen and (max-width: 900px) {
+				right: 1rem;
 			}
 		}
 	}

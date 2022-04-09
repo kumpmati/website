@@ -70,7 +70,8 @@
 		padding-inline: 40px;
 
 		@media screen and (max-width: 400px) {
-			padding-inline: 20px;
+			padding-inline: 16px;
+			height: 4rem;
 		}
 	}
 

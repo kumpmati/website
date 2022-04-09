@@ -115,7 +115,7 @@
 		list-style: none;
 		display: flex;
 		margin: 0;
-		padding: 2rem 0 0 1rem;
+		padding: 2rem 0 0 0;
 
 		@media screen and (max-width: 300px) {
 			padding-left: 0;
@@ -125,17 +125,18 @@
 		a {
 			position: relative;
 			font-size: 14px;
-			margin-right: 3rem;
+			margin-right: 1rem;
 			color: rgba(0, 0, 0, 0.5);
 			text-decoration: none;
 			transition: color 200ms;
+			padding: 0.25rem 1rem;
 
 			&::after {
 				content: '';
 				position: absolute;
-				top: -4px;
-				left: -1rem;
-				height: calc(100% + 8px);
+				top: 0;
+				left: 0;
+				height: 100%;
 				background: #000;
 				border-radius: 3px;
 				z-index: -1;
@@ -149,7 +150,7 @@
 
 				&::after {
 					opacity: 1;
-					width: calc(100% + 2rem);
+					width: 100%;
 				}
 			}
 

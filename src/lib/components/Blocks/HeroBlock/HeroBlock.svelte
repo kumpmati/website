@@ -4,6 +4,7 @@
 	import SvelteMarkdown from 'svelte-markdown';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { getContext, onMount } from 'svelte';
+	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 
 	export let block: HeroBlock;
 	export let index: number;
@@ -64,11 +65,16 @@
 		justify-content: center;
 		max-width: 45rem;
 		color: var(--text-color);
+	}
 
-		:global(p) {
-			font-size: 22px;
-			margin: 0;
-			opacity: 0.5;
+	.content {
+		opacity: 0;
+		transform: translateX(1rem);
+		transition: opacity 300ms, transform 300ms;
+
+		&.visible {
+			opacity: 1;
+			transform: translateX(0);
 		}
 
 		:global(h1) {
@@ -83,25 +89,36 @@
 			margin-bottom: 1.25rem;
 		}
 
+		:global(p) {
+			font-size: 22px;
+			margin: 0;
+			opacity: 0.5;
+		}
+
+		// tablet
 		@media screen and (max-width: 900px) {
 			:global(h1) {
-				font-size: 64px;
+				font-size: 80px;
 			}
 
 			:global(h2) {
 				font-size: 40px;
 			}
+
+			:global(p) {
+				font-size: 18px;
+			}
 		}
-	}
 
-	.content {
-		opacity: 0;
-		transform: translateX(1rem);
-		transition: opacity 300ms, transform 300ms;
+		// mobile
+		@media screen and (max-width: 500px) {
+			:global(h1) {
+				font-size: 48px;
+			}
 
-		&.visible {
-			opacity: 1;
-			transform: translateX(0);
+			:global(h2) {
+				font-size: 36px;
+			}
 		}
 	}
 </style>

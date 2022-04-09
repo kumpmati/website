@@ -4,6 +4,7 @@
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { getContext, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
+	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 
 	export let block: SkillsBlock;
 	export let index: number;
@@ -41,7 +42,7 @@
 
 	<span class="content" class:visible>
 		<span class="top">
-			<SvelteMarkdown source={topContent} />
+			<Markdown value={topContent} />
 		</span>
 
 		<div class="section-container">
@@ -113,14 +114,6 @@
 		display: block;
 		margin-bottom: 6.25rem;
 		max-width: 32rem;
-
-		:global(p) {
-			font-size: 22px;
-			color: var(--text-color);
-			opacity: 0.5;
-			margin: 0;
-			margin-bottom: 0.5rem;
-		}
 	}
 
 	.section-container {
