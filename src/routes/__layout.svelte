@@ -68,7 +68,7 @@
 		margin-inline: 40px;
 
 		@media screen and (max-width: 400px) {
-			margin-inline: 20px;
+			margin-inline: 16px;
 		}
 	}
 </style>

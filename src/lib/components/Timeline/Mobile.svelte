@@ -1,101 +1,83 @@
 <script lang="ts">
-	import type { PageBlock } from '$lib/types/contentful';
-	import { createEventDispatcher } from 'svelte';
+	import type { TimelineStore } from '$lib/stores/page';
+	import type { HeroBlock, PageBlock } from '$lib/types/contentful';
+	import { getContext } from 'svelte';
 
 	export let blocks: PageBlock[];
-	export let current: number;
 
-	const dispatch = createEventDispatcher();
+	const timeline = getContext<TimelineStore>('timeline');
 
-	$: currentPos = Math.max(current, 0) / (blocks.length - 1);
-
-	const onClick = (index: number) => {
-		dispatch('setCurrent', index);
-	};
+	$: currentPos = Math.max($timeline.current, 0) / (blocks.length - 1);
+	$: theme = (blocks[$timeline.current] as HeroBlock).fields?.textColor ?? 'Dark';
 </script>
 
-<aside class="wrapper" style="--color: #000">
-	<ul class="sections">
-		{#each blocks as block, index (block.sys.id + index)}
-			<button class="section" class:visible={current === index} on:click={() => onClick(index)}>
-				{block.fields.entryTitle}
-			</button>
-		{/each}
+<div class="wrapper" style="--text-color: {theme === 'Dark' ? '#000' : '#fff'}">
+	<div class="barContainer">
+		<div class="bar" />
 
-		<div class="bar-container">
-			<div class="bar" />
-
-			<!-- Point that tells where in the timeline we are currently -->
-			<div class="pointer" style="top: calc({currentPos}*(100% - 8px))" />
+		<!-- Point that tells where in the timeline we are currently -->
+		<div class="pointer" style="left: calc({currentPos} * (100% - 8px))">
+			<p class="sectionTitle">{blocks[$timeline.current]?.fields.entryTitle}</p>
 		</div>
-	</ul>
-</aside>
+	</div>
+</div>
 
 <style lang="scss">
 	.wrapper {
 		position: fixed;
 		margin: 0;
-		top: 2rem;
+		top: calc(6.75rem / 2);
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		z-index: 100;
+		width: 5rem;
 
-		transform: translateY(-50%);
-	}
+		@media screen and (max-width: 400px) {
+			top: calc(4rem / 2);
+		}
 
-	.sections {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-
-		.section {
-			font-family: var(--font-main);
-			color: var(--color);
-
-			padding-left: 1rem;
-			height: 3rem;
-			border: none;
-			cursor: pointer;
-			background: none;
-			opacity: 0;
-
-			transition: opacity 200ms;
-
-			&:hover,
-			&:focus-visible,
-			&.visible {
-				opacity: 1;
-				outline: none;
-			}
+		&:hover .sectionTitle {
+			opacity: 1;
 		}
 	}
 
-	.bar-container {
-		position: absolute;
-		height: calc(100% - 3rem + 8px);
-		top: calc(1.5rem - 4px);
+	.barContainer {
+		width: 100%;
+		height: 8px;
+		top: 0;
 		display: flex;
 		pointer-events: none;
 
 		.pointer {
 			position: absolute;
-			top: 50%;
+			top: 0;
 			width: 8px;
 			height: 8px;
-			background: var(--color);
+			background-color: var(--text-color);
 			border-radius: 100%;
 
-			transition: top 200ms;
+			transition: left 400ms, background-color 200ms;
 		}
 
 		.bar {
 			position: absolute;
 			display: flex;
-			width: 8px;
-			height: 100%;
-			background: var(--color);
+			width: 100%;
+			height: 8px;
+			background-color: var(--text-color);
 			border-radius: 16px;
 			opacity: 0.15;
+
+			transition: background-color 200ms;
 		}
+	}
+
+	.sectionTitle {
+		color: var(--text-color);
+		position: absolute;
+		width: max-content;
+		transform: translateX(-50%);
+		opacity: 0;
+		transition: opacity 200ms;
 	}
 </style>

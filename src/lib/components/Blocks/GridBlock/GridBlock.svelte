@@ -5,6 +5,7 @@
 	import { getContext, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
+	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 
 	export let block: GridBlock;
 	export let index: number;
@@ -41,24 +42,29 @@
 
 	{#if content}
 		<span class="content">
-			<SvelteMarkdown source={content} />
+			<Markdown value={content} />
 		</span>
 	{/if}
 
 	<ul class="items">
-		{#if visible}
-			{#each items as item, index (item.sys.id)}
-				<li in:fly={{ y: -25, delay: (index + 1) * 100 }} out:fly|local={{ y: -25, delay: 0 }}>
-					<a href={item.fields.link} class="item {item.fields.theme}">
+		{#each items as item, index (item.sys.id)}
+			<li>
+				{#if visible}
+					<a
+						href={item.fields.link}
+						class="item {item.fields.theme}"
+						in:fly={{ y: -10, duration: 200, delay: (index + 1) * 150 }}
+						out:fly={{ y: 0 }}
+					>
 						<h2>{item.fields.title}</h2>
 
 						<span class="description">
 							<SvelteMarkdown source={item.fields.description} />
 						</span>
 					</a>
-				</li>
-			{/each}
-		{/if}
+				{/if}
+			</li>
+		{/each}
 	</ul>
 </div>
 
@@ -81,11 +87,6 @@
 
 	.content {
 		color: var(--text-color);
-
-		:global(p) {
-			opacity: 0.5;
-			font-size: 22px;
-		}
 	}
 
 	.items {
@@ -94,8 +95,15 @@
 		gap: 0.75rem;
 		list-style: none;
 		margin: 5rem 0 0 0;
-
 		padding: 0;
+
+		@media screen and (max-width: 500px) {
+			grid-template-columns: 1fr;
+		}
+
+		li {
+			min-height: 13rem;
+		}
 
 		.item {
 			height: 13rem;
