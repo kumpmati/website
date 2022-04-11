@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TimelineStore } from '$lib/stores/page';
+	import type { TimelineStore } from '$lib/stores/timeline';
 	import type { HeroBlock, PageBlock } from '$lib/types/contentful';
 	import { getContext } from 'svelte';
 

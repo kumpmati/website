@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { Page } from '$lib/types/contentful';
 	import BlockPicker from '$lib/components/Blocks/BlockPicker.svelte';
-	import { createTimeline, pageSettings } from '$lib/stores/page';
+	import { pageSettings } from '$lib/stores/page';
 	import Timeline from '$lib/components/Timeline/Timeline.svelte';
 	import { setContext } from 'svelte';
+	import { createTimeline } from '$lib/stores/timeline';
 
 	export let page: Page;
 

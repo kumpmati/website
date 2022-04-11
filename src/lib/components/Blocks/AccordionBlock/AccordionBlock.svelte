@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { pageSettings, type TimelineStore } from '$lib/stores/page';
+	import { pageSettings } from '$lib/stores/page';
 	import type { AccordionBlock, GridItem } from '$lib/types/contentful';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { getContext, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
-	import { flip } from 'svelte/animate';
 	import { fly } from 'svelte/transition';
 	import X from '$lib/components/icons/X.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
+	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 
 	export let block: AccordionBlock;
 	export let index: number;
@@ -21,15 +21,9 @@
 	// item currently shown
 	let activeItem: GridItem | null = null;
 
-	$: {
-		if (visible) {
-			timeline.setCurrent(index, false);
-			$pageSettings.backgroundColor = backgroundColor;
-			$pageSettings.textColor = textColor;
-		} else {
-			// close modal when not visible any more
-			activeItem = null;
-		}
+	$: if (!visible) {
+		// close modal when not visible any more
+		activeItem = null;
 	}
 
 	$: {
@@ -42,21 +36,18 @@
 
 	const handleOpenModal = (item: GridItem) => (activeItem = item);
 	const handleCloseModal = () => (activeItem = null);
-
-	// register element so that it can be scrolled into view by timeline
-	onMount(() => {
-		const unregister = timeline.register(index, element);
-		return () => unregister?.();
-	});
 </script>
 
 <!-- Checks visibility of 'trigger' element -->
-<IntersectionObserver {element} threshold={0.5} bind:intersecting={visible} />
+<IntersectionObserver {element} threshold={0} bind:intersecting={visible} />
 
 <!-- Content -->
-<div class="container" style="--text-color: {textColor === 'Dark' ? '#000' : '#fff'}">
-	<span class="trigger" bind:this={element} />
-
+<div
+	class="container"
+	bind:this={element}
+	use:timelineSection={{ timeline, index }}
+	style="--text-color: {textColor === 'Dark' ? '#000' : '#fff'}"
+>
 	{#if content}
 		<span class="content">
 			<Markdown value={content} />
@@ -69,6 +60,7 @@
 				{#if visible}
 					<a
 						in:fly={{ y: -25, delay: (index + 1) * 100 }}
+						out:fly|local={{ y: 0 }}
 						href={item.fields.link}
 						class="item {item.fields.theme}"
 						class:collapsed={activeItem && activeItem.sys.id !== item.sys.id}
@@ -106,8 +98,9 @@
 
 	.trigger {
 		position: absolute;
-		top: 0;
-		height: 100%;
+		top: 25%;
+		left: -10px;
+		height: 75%;
 		visibility: hidden;
 	}
 
@@ -132,6 +125,7 @@
 
 		li {
 			display: flex;
+			min-height: 13.25rem;
 		}
 
 		&.opened {
@@ -150,7 +144,6 @@
 		position: relative;
 		width: 100%;
 		height: 13rem;
-		height: 100%;
 		padding: 0;
 		border-radius: 3px;
 		text-decoration: none;

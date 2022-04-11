@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { pageSettings, type TimelineStore } from '$lib/stores/page';
+	import { pageSettings } from '$lib/stores/page';
 	import type { SkillsBlock } from '$lib/types/contentful';
-	import IntersectionObserver from 'svelte-intersection-observer';
-	import { getContext, onMount } from 'svelte';
-	import SvelteMarkdown from 'svelte-markdown';
+	import { getContext } from 'svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
+	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 
 	export let block: SkillsBlock;
 	export let index: number;
@@ -14,33 +13,20 @@
 
 	const timeline = getContext<TimelineStore>('timeline');
 
-	let element;
-	let visible;
+	$: isCurrent = $timeline.current === index;
 
-	$: if (visible) {
-		timeline.setCurrent(index, false);
+	$: if (isCurrent) {
 		$pageSettings.backgroundColor = backgroundColor;
 		$pageSettings.textColor = textColor;
 	}
-
-	$: if ($timeline.current === index) {
-		$pageSettings.backgroundColor = backgroundColor;
-		$pageSettings.textColor = textColor;
-	}
-
-	onMount(() => {
-		const unregister = timeline.register(index, element);
-		return () => unregister?.();
-	});
 </script>
 
-<!-- Checks visibility of 'trigger' element -->
-<IntersectionObserver {element} threshold={0.3} bind:intersecting={visible} />
-
-<div class="container" style="--text-color: {textColor === 'Dark' ? '#000' : '#fff'};">
-	<span class="trigger" bind:this={element} />
-
-	<span class="content" class:visible>
+<div
+	class="container"
+	use:timelineSection={{ timeline, index }}
+	style="--text-color: {textColor === 'Dark' ? '#000' : '#fff'};"
+>
+	<span class="content" class:visible={isCurrent}>
 		<span class="top">
 			<Markdown value={topContent} />
 		</span>
@@ -85,13 +71,6 @@
 		margin: 15rem auto;
 		max-width: 45rem;
 		height: fit-content;
-	}
-
-	.trigger {
-		position: absolute;
-		top: 0;
-		height: 100%;
-		visibility: hidden;
 	}
 
 	.content {

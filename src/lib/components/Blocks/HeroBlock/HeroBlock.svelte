@@ -1,61 +1,35 @@
 <script lang="ts">
 	import type { HeroBlock } from '$lib/types/contentful';
-	import { pageSettings, type TimelineStore } from '$lib/stores/page';
+	import { pageSettings } from '$lib/stores/page';
 	import SvelteMarkdown from 'svelte-markdown';
-	import IntersectionObserver from 'svelte-intersection-observer';
-	import { getContext, onMount } from 'svelte';
-	import Markdown from '$lib/components/Markdown/Markdown.svelte';
+	import { getContext } from 'svelte';
+	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 
 	export let block: HeroBlock;
 	export let index: number;
 
-	let element;
-	let visible;
-
 	const { backgroundColor, textColor } = block.fields;
-
 	const timeline = getContext<TimelineStore>('timeline');
 
-	$: if (visible) {
-		timeline.setCurrent(index, false);
+	$: isCurrent = $timeline.current === index;
+
+	$: if (isCurrent) {
 		$pageSettings.backgroundColor = backgroundColor;
 		$pageSettings.textColor = textColor;
 	}
-
-	$: if ($timeline.current === index) {
-		$pageSettings.backgroundColor = backgroundColor;
-		$pageSettings.textColor = textColor;
-	}
-
-	// register element so that it can be scrolled into view by timeline
-	onMount(() => {
-		const unregister = timeline.register(index, element);
-		return () => unregister?.();
-	});
 </script>
-
-<!-- Checks visibility of 'trigger' element -->
-<IntersectionObserver {element} threshold={0.9} bind:intersecting={visible} />
 
 <div
 	class="container"
+	use:timelineSection={{ timeline, index }}
 	style="--bg-color: {backgroundColor}; --text-color: {textColor === 'Dark' ? '#000' : '#fff'}"
 >
-	<span class="trigger" bind:this={element} />
-
-	<span class="content" class:visible>
+	<span class="content" class:visible={isCurrent}>
 		<SvelteMarkdown source={block.fields.content} />
 	</span>
 </div>
 
 <style lang="scss">
-	.trigger {
-		position: absolute;
-		top: 25%;
-		height: 10rem;
-		visibility: hidden;
-	}
-
 	.container {
 		position: relative;
 		height: fit-content;
