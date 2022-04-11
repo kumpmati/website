@@ -95,7 +95,7 @@
 		height: 2rem;
 		cursor: pointer;
 		color: var(--text-color);
-		transition: color 200ms;
+		transition: color 200ms 300ms;
 	}
 
 	.menu {

@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { pageSettings, type TimelineStore } from '$lib/stores/page';
+	import { pageSettings } from '$lib/stores/page';
 	import type { GridBlock } from '$lib/types/contentful';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { getContext, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
+	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 
 	export let block: GridBlock;
 	export let index: number;
@@ -16,30 +17,21 @@
 	let element;
 	let visible;
 
-	$: if (visible) {
-		timeline.setCurrent(index, false);
-		$pageSettings.backgroundColor = backgroundColor;
-		$pageSettings.textColor = textColor;
-	}
-
 	$: if ($timeline.current === index) {
 		$pageSettings.backgroundColor = backgroundColor;
 		$pageSettings.textColor = textColor;
 	}
-
-	// register element so that it can be scrolled into view by timeline
-	onMount(() => {
-		const unregister = timeline.register(index, element);
-		return () => unregister?.();
-	});
 </script>
 
 <!-- Checks visibility of 'trigger' element -->
-<IntersectionObserver {element} threshold={0.75} bind:intersecting={visible} />
+<IntersectionObserver {element} threshold={0} bind:intersecting={visible} />
 
-<div class="container" style="--text-color: {textColor === 'Dark' ? '#000' : '#fff'}">
-	<span class="trigger" bind:this={element} />
-
+<div
+	class="container"
+	bind:this={element}
+	use:timelineSection={{ timeline, index }}
+	style="--text-color: {textColor === 'Dark' ? '#000' : '#fff'}"
+>
 	{#if content}
 		<span class="content">
 			<Markdown value={content} />
@@ -54,7 +46,7 @@
 						href={item.fields.link}
 						class="item {item.fields.theme}"
 						in:fly={{ y: -10, duration: 200, delay: (index + 1) * 150 }}
-						out:fly={{ y: 0 }}
+						out:fly|local={{ y: 0 }}
 					>
 						<h2>{item.fields.title}</h2>
 
@@ -80,8 +72,9 @@
 
 	.trigger {
 		position: absolute;
-		top: 0;
-		height: 100%;
+		top: 25%;
+		left: -10px;
+		height: 75%;
 		visibility: hidden;
 	}
 

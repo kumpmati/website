@@ -34,12 +34,11 @@
 	export let key: string;
 
 	$navigation = nav;
-	$scrollPosition = 0;
+	$scrollPosition = browser ? window.scrollY : 0;
 
 	// sets the body and html element background color to match the page settings
 	$: {
 		if (browser) {
-			//document.body.style.backgroundColor = $pageSettings.backgroundColor;
 			document.querySelector('html').style.backgroundColor = $pageSettings.backgroundColor;
 		}
 	}
