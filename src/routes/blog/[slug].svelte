@@ -89,15 +89,15 @@
 		padding-bottom: 12rem;
 
 		:global(h1) {
-			font-size: 40px;
+			font-size: 40px !important;
 		}
 
 		:global(h2) {
-			font-size: 30px;
+			font-size: 30px !important;
 		}
 
 		:global(pre) {
-			font-size: 16px;
+			font-size: 16px !important;
 		}
 
 		:global(p) {
