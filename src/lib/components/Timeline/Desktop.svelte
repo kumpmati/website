@@ -18,7 +18,8 @@
 <aside
 	class="wrapper"
 	style="--color: {theme === 'Dark' ? '#000' : '#fff'}"
-	transition:fade={{ duration: 200 }}
+	in:fade={{ duration: 200 }}
+	out:fade|local={{ duration: 200 }}
 >
 	<ul class="sections">
 		{#each blocks as block, index (block.sys.id + index)}

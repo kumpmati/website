@@ -29,6 +29,7 @@
 	import { pageSettings, scrollPosition } from '$lib/stores/page';
 	import { browser } from '$app/env';
 	import { page } from '$app/stores';
+	import Footer from '$lib/components/Footer/Footer.svelte';
 
 	export let nav: NavigationT;
 	export let key: string;
@@ -57,17 +58,20 @@
 	<main>
 		<!-- Page content -->
 		<slot />
-
-		<!-- Footer -->
 	</main>
+
+	{#if $page.url.pathname !== '/'}
+		<Footer />
+	{/if}
 </PageTransition>
 
 <style lang="scss">
 	main {
-		margin-inline: 40px;
+		margin: 0 40px;
+		min-height: calc(100vh - 10rem);
 
 		@media screen and (max-width: 400px) {
-			margin-inline: 16px;
+			margin: 0 16px;
 		}
 	}
 </style>

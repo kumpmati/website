@@ -9,6 +9,7 @@
 	import Timeline from '$lib/components/Timeline/Timeline.svelte';
 	import { setContext } from 'svelte';
 	import { createTimeline } from '$lib/stores/timeline';
+	import Footer from '$lib/components/Footer/Footer.svelte';
 
 	export let page: Page;
 
