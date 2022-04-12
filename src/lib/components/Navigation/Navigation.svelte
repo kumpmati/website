@@ -143,7 +143,6 @@
 				font-weight: 500;
 				opacity: 0.5;
 				transition: color 200ms, opacity 200ms;
-				margin-bottom: 0.5rem;
 				padding: 0.25rem 1.5rem;
 
 				@media screen and (max-width: 500px) {
