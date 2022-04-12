@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Link from '../icons/Link.svelte';
 
-	export let raw;
-	export let text;
+	export let raw: string;
+	export let text: string;
 
 	const num = raw.split('#').length - 1;
 	const tag = 'h' + num;
@@ -27,7 +27,7 @@
 	a {
 		position: absolute;
 		left: -2rem;
-		transform: scale(.8);
+		transform: scale(0.8);
 
 		&:hover {
 			border-bottom: 1px solid black;
