@@ -16,7 +16,6 @@
 
 	const timelineStore = createTimeline(blocks.length, timelineEnabled);
 	$: timelineStore.setEnabled(timelineEnabled); // change enabled status based on page
-
 	setContext('timeline', timelineStore);
 
 	// set fallback background color
