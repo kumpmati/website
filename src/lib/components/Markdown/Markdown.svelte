@@ -1,11 +1,12 @@
 <script lang="ts">
-	import SvelteMarkdown from 'svelte-markdown';
+	import SvelteMarkdown, { type Renderers } from 'svelte-markdown';
 
 	export let value: string;
+	export let renderers: Partial<Renderers> = {};
 </script>
 
 <span class="wrapper">
-	<SvelteMarkdown source={value} />
+	<SvelteMarkdown source={value} {renderers} />
 </span>
 
 <style lang="scss">

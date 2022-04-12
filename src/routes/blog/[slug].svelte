@@ -4,13 +4,13 @@
 
 <script lang="ts">
 	import Arrow from '$lib/components/icons/Arrow.svelte';
+	import AnchoredHeading from '$lib/components/Markdown/AnchoredHeading.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { pageSettings } from '$lib/stores/page';
 	import type { BlogPost } from '$lib/types/blog';
 
 	export let post: BlogPost;
-	const { title, summary, content } = post.fields;
-	const { createdAt } = post.sys;
+	const { title, summary, content, published } = post.fields;
 
 	$pageSettings.backgroundColor = '#fff';
 	$pageSettings.textColor = 'Dark';
@@ -28,12 +28,12 @@
 
 		<div class="details">
 			<p class="summary">{summary}</p>
-			<p>{new Date(createdAt).toLocaleDateString('fi')}</p>
+			<p>{new Date(published).toLocaleDateString('fi')}</p>
 		</div>
 	</section>
 
 	<article class="content" style="--text-color-subtle: rgba(0,0,0,0.6)">
-		<Markdown value={content} />
+		<Markdown value={content} renderers={{ heading: AnchoredHeading }} />
 	</article>
 </div>
 
@@ -41,7 +41,7 @@
 	.container {
 		margin: 0 auto;
 		margin-top: 10rem;
-		max-width: 45rem;
+		max-width: 40rem;
 	}
 
 	a {
@@ -96,10 +96,14 @@
 			font-size: 30px;
 		}
 
+		:global(pre) {
+			font-size: 16px;
+		}
+
 		:global(p) {
 			opacity: 1;
 			font-size: 18px;
-			line-height: 1.5;
+			line-height: 1.6;
 		}
 	}
 </style>
