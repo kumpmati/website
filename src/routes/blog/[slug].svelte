@@ -32,7 +32,7 @@
 		</div>
 	</section>
 
-	<article class="content" style="--text-color-subtle: rgba(0,0,0,0.6)">
+	<article id="content" style="--text-color-subtle: rgba(0,0,0,0.6)">
 		<Markdown value={content} renderers={{ heading: AnchoredHeading }} />
 	</article>
 </div>
@@ -85,24 +85,26 @@
 		}
 	}
 
-	.content {
+	// has to be an ID so that css specifity doesn't break when built
+	// (could be some kind of bug)
+	#content {
 		padding-bottom: 12rem;
 
 		:global(h1) {
-			font-size: 40px !important;
+			font-size: 40px;
 		}
 
 		:global(h2) {
-			font-size: 30px !important;
+			font-size: 30px;
 		}
 
 		:global(pre) {
-			font-size: 16px !important;
+			font-size: 16px;
 		}
 
 		:global(p) {
 			opacity: 1;
-			font-size: 18px !important;
+			font-size: 18px;
 			line-height: 1.6;
 		}
 	}
