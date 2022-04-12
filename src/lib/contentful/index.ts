@@ -1,4 +1,4 @@
-import type { Homepage, Navigation, Page } from '$lib/types/contentful';
+import type { Homepage, Navigation, Page } from '$lib/types/page';
 import contentful from 'contentful';
 
 const MAX_FETCH_DEPTH = 5;
@@ -29,4 +29,23 @@ export const getNavigation = async (): Promise<Navigation | null> => {
 	const nav = await client.getEntries({ content_type: 'navigation' });
 
 	return (nav?.items?.[0] as Navigation) ?? null;
+};
+
+export const getBlogPostBySlug = async (slug: string): Promise<any | null> => {
+	const posts = await client.getEntries({
+		content_type: 'blogPost',
+		[`fields.slug[in]`]: slug,
+		include: MAX_FETCH_DEPTH
+	});
+
+	return (posts?.items?.[0] as any) ?? null;
+};
+
+export const getBlogPosts = async (): Promise<any[]> => {
+	const posts = await client.getEntries({
+		content_type: 'blogPost',
+		include: MAX_FETCH_DEPTH
+	});
+
+	return posts?.items as any;
 };

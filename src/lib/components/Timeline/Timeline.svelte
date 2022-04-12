@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageBlock } from '$lib/types/contentful';
+	import type { PageBlock } from '$lib/types/page';
 	import { onMount } from 'svelte';
 	import DesktopTimeline from './Desktop.svelte';
 	import MobileTimeline from './Mobile.svelte';

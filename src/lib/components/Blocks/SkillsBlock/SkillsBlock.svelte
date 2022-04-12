@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { pageSettings } from '$lib/stores/page';
-	import type { SkillsBlock } from '$lib/types/contentful';
+	import type { SkillsBlock } from '$lib/types/page';
 	import { getContext } from 'svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';

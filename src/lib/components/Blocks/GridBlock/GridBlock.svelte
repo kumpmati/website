@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { pageSettings } from '$lib/stores/page';
-	import type { GridBlock } from '$lib/types/contentful';
+	import type { GridBlock } from '$lib/types/page';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { getContext, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
@@ -127,6 +127,7 @@
 				--text-color: #000;
 				--bg-color: #fff;
 				--border-color: transparent;
+				box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
 			}
 
 			&.Dark {

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { pageSettings } from '$lib/stores/page';
-	import type { AccordionBlock, GridItem } from '$lib/types/contentful';
+	import type { AccordionBlock, GridItem } from '$lib/types/page';
 	import IntersectionObserver from 'svelte-intersection-observer';
-	import { getContext, onMount } from 'svelte';
+	import { getContext } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
 	import X from '$lib/components/icons/X.svelte';
@@ -15,7 +15,7 @@
 
 	const timeline = getContext<TimelineStore>('timeline');
 
-	let element;
+	let element: HTMLElement;
 	let visible;
 
 	// item currently shown
@@ -34,7 +34,7 @@
 		}
 	}
 
-	const handleOpenModal = (item: GridItem) => (activeItem = item);
+	const handleOpenModal = (item: GridItem, event: any) => (activeItem = item);
 	const handleCloseModal = () => (activeItem = null);
 </script>
 
@@ -75,7 +75,7 @@
 								<SvelteMarkdown source={item.fields.description} />
 							</span>
 						{:else}
-							<button class="openButton" on:click={() => handleOpenModal(item)}>
+							<button class="openButton" on:click={(event) => handleOpenModal(item, event)}>
 								{item.fields.title}
 							</button>
 						{/if}
@@ -88,7 +88,6 @@
 
 <style lang="scss">
 	.container {
-		min-height: max(90vh, 50rem);
 		color: var(--text-color);
 		position: relative;
 		max-width: 45rem;
@@ -203,6 +202,7 @@
 			max-width: 42rem;
 			min-height: 42rem;
 			padding: 6rem 4.5rem;
+			box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 
 			@media screen and (max-width: 900px) {
 				padding: 3.5rem 1.25rem;

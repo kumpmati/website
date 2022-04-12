@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { HeroBlock } from '$lib/types/contentful';
+	import type { HeroBlock } from '$lib/types/page';
 	import { pageSettings } from '$lib/stores/page';
 	import SvelteMarkdown from 'svelte-markdown';
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 
 	export let block: HeroBlock;
@@ -45,6 +45,8 @@
 		opacity: 0;
 		transform: translateX(1rem);
 		transition: opacity 300ms, transform 300ms;
+
+		animation: fly 500ms both;
 
 		&.visible {
 			opacity: 1;
@@ -93,6 +95,17 @@
 			:global(h2) {
 				font-size: 36px;
 			}
+		}
+	}
+
+	@keyframes fly {
+		from {
+			transform: translateX(-1rem);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0);
+			opacity: 1;
 		}
 	}
 </style>

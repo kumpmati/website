@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { navigating, page } from '$app/stores';
+	import { page } from '$app/stores';
 	import { navigation } from '$lib/stores/navigation';
 	import { pageSettings } from '$lib/stores/page';
 	import Menu from '../icons/Menu.svelte';
@@ -9,8 +9,10 @@
 	let nav = $navigation;
 	let open = false;
 
-	const closeOnNavigateComplete = () => {
-		setTimeout(() => (open = false), 250);
+	const closeDelayed = () => {
+		setTimeout(() => {
+			open = false;
+		}, 250);
 	};
 </script>
 
@@ -20,7 +22,7 @@
 >
 	<a class="logo" href="/">mk</a>
 
-	<button on:click={() => (open = !open)}>
+	<button on:click={() => (open = !open)} class:open>
 		{#if !open}
 			<Menu />
 		{:else}
@@ -30,22 +32,22 @@
 </nav>
 
 {#if open}
-	<div class="menu">
+	<div class="menu" class:visible={open} transition:fade={{ duration: 200 }}>
 		<div
 			class="backdrop"
-			in:fly={{ x: -2000, duration: 500 }}
+			in:fly={{ x: -2000, duration: 500, opacity: 1 }}
 			out:fly={{ x: 0, duration: 500, delay: 200 }}
 		/>
 
 		<h2 transition:fly={{ x: 20, delay: 200 }}>menu</h2>
 		<ul transition:fly={{ x: 10, delay: 300 }}>
 			{#each nav.fields.links as link, index (link.sys.id)}
-				<li in:fly={{ x: 10, delay: (index + 2) * 150 }}>
+				<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
 					<a
 						href={link.fields.url}
 						target={link.fields.openInNewTab ? '_blank' : null}
 						class:active={$page.url.pathname === link.fields.url}
-						on:click={closeOnNavigateComplete}
+						on:click={closeDelayed}
 					>
 						{link.fields.text}
 					</a>
@@ -56,6 +58,10 @@
 {/if}
 
 <style lang="scss">
+	.menu {
+		background-color: rgba(0, 0, 0, 0.25);
+	}
+
 	nav {
 		position: fixed;
 		top: 0;
@@ -95,7 +101,11 @@
 		height: 2rem;
 		cursor: pointer;
 		color: var(--text-color);
-		transition: color 200ms 300ms;
+		transition: color 200ms 300ms, transform 200ms;
+
+		&.open {
+			transform: rotate(90deg);
+		}
 	}
 
 	.menu {
@@ -135,6 +145,10 @@
 				transition: color 200ms, opacity 200ms;
 				margin-bottom: 0.5rem;
 				padding: 0.25rem 1.5rem;
+
+				@media screen and (max-width: 500px) {
+					font-size: 24px;
+				}
 
 				&::after {
 					content: '';

@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "^1.0.0-next.306",
+		"@sveltejs/kit": "^1.0.0-next.311",
 		"@typescript-eslint/eslint-plugin": "^4.31.1",
 		"@typescript-eslint/parser": "^4.31.1",
 		"contentful": "^9.1.18",
@@ -23,7 +23,7 @@
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
 		"sass": "^1.45.1",
-		"svelte": "^3.46.6",
+		"svelte": "^3.47.0",
 		"svelte-check": "^2.2.6",
 		"svelte-markdown": "^0.2.2",
 		"svelte-preprocess": "^4.9.4",

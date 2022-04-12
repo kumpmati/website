@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { pageSettings } from '$lib/stores/page';
-	import type { Homepage } from '$lib/types/contentful';
+	import type { Homepage } from '$lib/types/page';
 	import { onDestroy, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
@@ -114,6 +114,7 @@
 		z-index: 1;
 		list-style: none;
 		display: flex;
+		gap: 0.5rem;
 		margin: 0;
 		padding: 2rem 0 0 0;
 
@@ -123,9 +124,9 @@
 		}
 
 		a {
+			display: block;
 			position: relative;
 			font-size: 14px;
-			margin-right: 1rem;
 			color: rgba(0, 0, 0, 0.5);
 			text-decoration: none;
 			transition: color 200ms;

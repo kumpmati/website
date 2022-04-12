@@ -23,7 +23,7 @@
 <script lang="ts">
 	import '../globals.scss'; // global css file
 	import Navigation from '$lib/components/Navigation/Navigation.svelte';
-	import type { Navigation as NavigationT } from '$lib/types/contentful';
+	import type { Navigation as NavigationT } from '$lib/types/page';
 	import { navigation } from '$lib/stores/navigation';
 	import PageTransition from '$lib/components/PageTransition/PageTransition.svelte';
 	import { pageSettings, scrollPosition } from '$lib/stores/page';
