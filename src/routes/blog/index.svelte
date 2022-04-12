@@ -8,6 +8,10 @@
 	$pageSettings.textColor = 'Dark';
 </script>
 
+<svelte:head>
+	<title>Blog</title>
+</svelte:head>
+
 <div class="container">
 	<h1>blog</h1>
 

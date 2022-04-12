@@ -12,6 +12,10 @@
 	$pageSettings.textColor = 'Dark';
 </script>
 
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
+
 <div class="container" style="--text-color: {$pageSettings.textColor === 'Dark' ? '#000' : '#fff'}">
 	<a href="/blog"> <Arrow /></a>
 
