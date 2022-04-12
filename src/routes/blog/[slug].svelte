@@ -102,7 +102,7 @@
 
 		:global(p) {
 			opacity: 1;
-			font-size: 18px;
+			font-size: 18px !important;
 			line-height: 1.6;
 		}
 	}
