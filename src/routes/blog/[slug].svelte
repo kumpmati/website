@@ -37,8 +37,6 @@
 	}
 
 	a {
-		position: sticky;
-		top: 6.75rem;
 		display: grid;
 		place-content: center;
 		align-content: center;
