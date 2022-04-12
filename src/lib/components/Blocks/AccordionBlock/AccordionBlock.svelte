@@ -56,7 +56,7 @@
 
 	<ul class="items" class:opened={!!activeItem}>
 		{#each items as item, index (item.sys.id)}
-			<li>
+			<li class:collapsed={activeItem && activeItem.sys.id !== item.sys.id}>
 				{#if visible}
 					<a
 						in:fly={{ y: -25, delay: (index + 1) * 100 }}
@@ -125,6 +125,10 @@
 		li {
 			display: flex;
 			min-height: 13.25rem;
+
+			&.collapsed {
+				min-height: unset;
+			}
 		}
 
 		&.opened {
