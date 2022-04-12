@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <script lang="ts">
 	import Arrow from '$lib/components/icons/Arrow.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';

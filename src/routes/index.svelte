@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <script lang="ts">
 	import { pageSettings } from '$lib/stores/page';
 	import type { Homepage } from '$lib/types/page';

@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <script lang="ts">
 	import type { Page } from '$lib/types/page';
 	import BlockPicker from '$lib/components/Blocks/BlockPicker.svelte';
