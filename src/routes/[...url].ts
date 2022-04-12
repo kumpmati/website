@@ -3,7 +3,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 
 export const get: RequestHandler<{ url: string }, { page: any }> = async ({ params }) => {
 	const url = '/' + params.url;
-	const page = await getPageByURL(url);
+	const page = await getPageByURL(url).catch(() => null);
 
 	if (!page) {
 		return {

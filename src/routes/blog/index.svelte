@@ -95,6 +95,7 @@
 			color: inherit;
 			opacity: 0.6;
 			margin-bottom: 2rem;
+			transition: opacity 200ms;
 
 			h2 {
 				font-size: 22px;
