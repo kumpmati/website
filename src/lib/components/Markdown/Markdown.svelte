@@ -10,7 +10,7 @@
 
 <style lang="scss">
 	.wrapper {
-		color: inherit;
+		color: var(--text-color, inherit);
 
 		:global(h1) {
 			font-size: 96px;
@@ -24,10 +24,53 @@
 			margin-bottom: 1.25rem;
 		}
 
+		:global(h3) {
+			font-size: 32px;
+			margin-top: 0;
+			margin-bottom: 1.25rem;
+		}
+
+		:global(h4) {
+			font-size: 24px;
+			margin-top: 0;
+			margin-bottom: 1.25rem;
+		}
+
 		:global(p) {
 			font-size: 22px;
-			margin: 0;
-			opacity: 0.5;
+			opacity: 0.6;
+			color: var(--text-color-subtle, inherit);
+		}
+
+		:global(a) {
+			font-weight: 900;
+			color: inherit;
+			text-decoration-thickness: 1px;
+		}
+
+		:global(img) {
+			width: 100%;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			border-radius: 3px;
+		}
+
+		:global(code) {
+			background-color: rgba(128, 128, 128, 0.1);
+			border-radius: 3px;
+			padding: 0 0.25rem;
+		}
+
+		:global(pre) {
+			font-size: 22px;
+			overflow-x: auto;
+			font-size: 18px;
+			background: rgba(128, 128, 128, 0.1);
+			padding: 1rem;
+			border-radius: 3px;
+		}
+
+		:global(pre) > :global(code) {
+			background: none;
 		}
 
 		// tablet

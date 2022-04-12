@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { TimelineStore } from '$lib/stores/timeline';
-	import type { HeroBlock, PageBlock } from '$lib/types/contentful';
+	import type { HeroBlock, PageBlock } from '$lib/types/page';
 	import { getContext } from 'svelte';
+	import { fade } from 'svelte/transition';
 
 	export let blocks: PageBlock[];
 	const timeline = getContext<TimelineStore>('timeline');
 
 	$: currentPos = Math.max($timeline.current, 0) / (blocks.length - 1);
-
 	$: theme = (blocks[$timeline.current] as HeroBlock).fields?.textColor ?? 'Dark';
 
 	const handleSetCurrent = (index: number) => {
@@ -15,7 +15,11 @@
 	};
 </script>
 
-<aside class="wrapper" style="--color: {theme === 'Dark' ? '#000' : '#fff'}">
+<aside
+	class="wrapper"
+	style="--color: {theme === 'Dark' ? '#000' : '#fff'}"
+	transition:fade={{ duration: 200 }}
+>
 	<ul class="sections">
 		{#each blocks as block, index (block.sys.id + index)}
 			<button

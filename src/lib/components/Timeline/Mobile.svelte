@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { TimelineStore } from '$lib/stores/page';
-	import type { HeroBlock, PageBlock } from '$lib/types/contentful';
+	import type { TimelineStore } from '$lib/stores/timeline';
+	import type { HeroBlock, PageBlock } from '$lib/types/page';
 	import { getContext } from 'svelte';
 
 	export let blocks: PageBlock[];
@@ -29,7 +29,7 @@
 		top: calc(6.75rem / 2);
 		left: 50%;
 		transform: translateX(-50%) translateY(-50%);
-		z-index: 100;
+		z-index: 50;
 		width: 5rem;
 
 		@media screen and (max-width: 400px) {

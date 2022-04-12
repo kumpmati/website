@@ -1,5 +1,4 @@
 import type { Asset, Entry } from 'contentful';
-import type { Document } from '@contentful/rich-text-html-renderer';
 
 export type Navigation = Entry<{
 	name: string;
@@ -31,7 +30,7 @@ export type Page = Entry<{
 
 export type TextBlock = Entry<{
 	entryTitle: boolean;
-	content: Document;
+	content: string; // markdown
 }>;
 
 export type HeroBlock = Entry<{

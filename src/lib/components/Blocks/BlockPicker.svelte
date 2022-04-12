@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageBlock } from '$lib/types/contentful';
+	import type { PageBlock } from '$lib/types/page';
 	import AccordionBlock from './AccordionBlock/AccordionBlock.svelte';
 	import GridBlock from './GridBlock/GridBlock.svelte';
 	import HeroBlock from './HeroBlock/HeroBlock.svelte';
