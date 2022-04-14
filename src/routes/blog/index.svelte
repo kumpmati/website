@@ -36,17 +36,21 @@
 	<div>
 		{#each Object.entries(splitByMonth) as [month, posts] (month)}
 			<h3>{month}</h3>
-			<ul>
+			<ul class="posts">
 				{#each posts as post (post.sys.id)}
-					<li>
+					<li class="post">
 						<a href="/blog/{post.fields.slug}">
 							<h2>{post.fields.title}</h2>
 							<div>
-								<p>{new Date(post.fields.published).toLocaleDateString('fi')}</p>
-								<p>-</p>
 								<p>{post.fields.summary}</p>
 							</div>
 						</a>
+
+						<ul class="tags">
+							{#each post.fields?.tags ?? [] as tag}
+								<li class="tag">{tag}</li>
+							{/each}
+						</ul>
 					</li>
 				{/each}
 			</ul>
@@ -81,24 +85,32 @@
 		margin: 0;
 	}
 
-	ul {
+	.posts {
 		list-style: none;
 		padding-left: 1rem;
 		display: flex;
 		flex-direction: column;
+
+		.post {
+			margin-bottom: 2rem;
+		}
 
 		a {
 			display: block;
 			font-weight: 900;
 			text-decoration: none;
 			color: inherit;
-			opacity: 0.6;
-			margin-bottom: 2rem;
-			transition: opacity 200ms;
+			margin-bottom: 0.5rem;
+			transition: transform 200ms;
+
+			&:hover {
+				transform: translateY(-2px);
+			}
 
 			h2 {
 				font-size: 22px;
 				margin: 0;
+				margin-bottom: 0.25rem;
 			}
 
 			p {
@@ -110,12 +122,24 @@
 
 			div {
 				display: flex;
-				flex-direction: row;
+				flex-direction: column;
 				gap: 0.5rem;
 			}
+		}
 
-			&:hover {
-				opacity: 1;
+		.tags {
+			display: flex;
+			list-style: none;
+			padding: 0;
+
+			.tag {
+				font-size: 12px;
+				font-weight: 500;
+				background-color: var(--accent);
+				border-radius: 1rem;
+				color: #000;
+				padding: 0.15rem 0.65rem;
+				margin-right: 0.5rem;
 			}
 		}
 	}

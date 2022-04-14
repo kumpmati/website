@@ -27,10 +27,17 @@
 	a {
 		position: absolute;
 		left: -2rem;
+		opacity: 0.6;
 		transform: scale(0.8);
+		transition: opacity 200ms;
 
 		&:hover {
-			border-bottom: 1px solid black;
+			opacity: 1;
+		}
+
+		@media screen and (max-width: 400px) {
+			position: static;
+			margin-right: 0.25rem;
 		}
 	}
 </style>

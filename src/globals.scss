@@ -9,6 +9,10 @@ body {
 	--text200: #b4b4b4;
 	--text300: #ffffff;
 
+	--accent: #a6ff8f;
+
+	--border-radius: 3px;
+
 	--letter-spacing-normal: normal;
 	--letter-spacing-100: 0.15em;
 	--letter-spacing-200: 0.2em;
@@ -23,6 +27,7 @@ body {
 
 html {
 	height: 100%;
+	scroll-padding-top: 6.75rem;
 }
 
 * {

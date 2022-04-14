@@ -18,7 +18,10 @@
 
 <nav
 	transition:fade={{ duration: 200 }}
-	style="--text-color: {$pageSettings.textColor === 'Dark' || open ? '#000' : '#fff'}"
+	style="
+		--text-color: {$pageSettings.textColor === 'Dark' || open ? '#000' : '#fff'};
+		--bg-color: {$pageSettings.backgroundColor};
+	"
 >
 	<a class="logo" href="/">mk</a>
 
@@ -72,7 +75,6 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
 		padding-inline: 40px;
 
 		@media screen and (max-width: 400px) {
@@ -158,7 +160,7 @@
 					width: 0;
 					height: 100%;
 					background: #000;
-					border-radius: 3px;
+					border-radius: var(--border-radius);
 					z-index: -1;
 					opacity: 0;
 					transition: width 200ms, opacity 200ms;

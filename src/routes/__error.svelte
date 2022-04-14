@@ -87,7 +87,7 @@
 			left: 0;
 			width: 0%;
 			height: 100%;
-			border-radius: 3px;
+			border-radius: var(--border-radius);
 			background: #000;
 			opacity: 0;
 			z-index: -1;

@@ -148,7 +148,7 @@
 		width: 100%;
 		height: 13rem;
 		padding: 0;
-		border-radius: 3px;
+		border-radius: var(--border-radius);
 		text-decoration: none;
 
 		transition: transform 200ms;
@@ -160,7 +160,7 @@
 
 		&.Accent {
 			--text-color: #000;
-			--bg-color: #a6ff8f;
+			--bg-color: var(--accent);
 			--border-color: var(--bg-color);
 		}
 
