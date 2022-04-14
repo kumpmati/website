@@ -3,7 +3,6 @@
 </script>
 
 <script lang="ts">
-	import Arrow from '$lib/components/icons/Arrow.svelte';
 	import AnchoredHeading from '$lib/components/Markdown/AnchoredHeading.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { pageSettings } from '$lib/stores/page';

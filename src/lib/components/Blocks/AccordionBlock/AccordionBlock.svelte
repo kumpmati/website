@@ -34,7 +34,7 @@
 		}
 	}
 
-	const handleOpenModal = (item: GridItem, event: any) => (activeItem = item);
+	const handleOpenModal = (item: GridItem) => (activeItem = item);
 	const handleCloseModal = () => (activeItem = null);
 </script>
 
@@ -75,7 +75,7 @@
 								<SvelteMarkdown source={item.fields.description} />
 							</span>
 						{:else}
-							<button class="openButton" on:click={(event) => handleOpenModal(item, event)}>
+							<button class="openButton" on:click={() => handleOpenModal(item)}>
 								{item.fields.title}
 							</button>
 						{/if}

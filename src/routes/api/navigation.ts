@@ -1,7 +1,7 @@
 import { getNavigation } from '$lib/contentful';
 import type { RequestHandler } from '@sveltejs/kit';
 
-const get: RequestHandler<unknown, unknown, any> = async () => {
+const get: RequestHandler<Record<string, never>, any> = async () => {
 	const nav = await getNavigation();
 
 	return {

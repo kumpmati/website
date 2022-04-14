@@ -2,7 +2,7 @@
 	import { pageSettings } from '$lib/stores/page';
 	import type { GridBlock } from '$lib/types/page';
 	import IntersectionObserver from 'svelte-intersection-observer';
-	import { getContext, onMount } from 'svelte';
+	import { getContext } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';

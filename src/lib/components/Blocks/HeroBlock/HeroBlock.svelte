@@ -2,7 +2,7 @@
 	import type { HeroBlock } from '$lib/types/page';
 	import { pageSettings } from '$lib/stores/page';
 	import SvelteMarkdown from 'svelte-markdown';
-	import { getContext, onMount } from 'svelte';
+	import { getContext } from 'svelte';
 	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 
 	export let block: HeroBlock;
