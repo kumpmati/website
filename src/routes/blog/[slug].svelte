@@ -3,6 +3,8 @@
 </script>
 
 <script lang="ts">
+	import ThumbsDown from '$lib/components/Icons/ThumbsDown.svelte';
+	import ThumbsUp from '$lib/components/Icons/ThumbsUp.svelte';
 	import AnchoredHeading from '$lib/components/Markdown/AnchoredHeading.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { pageSettings } from '$lib/stores/page';
@@ -20,10 +22,6 @@
 </svelte:head>
 
 <div class="container" style="--text-color: {$pageSettings.textColor === 'Dark' ? '#000' : '#fff'}">
-	<!--
-	<a class="backButton" href="/blog"> <Arrow /> Back</a>
-	-->
-
 	{#if coverImage}
 		<img
 			class="coverImage"
@@ -52,6 +50,18 @@
 	<article id="content" style="--text-color-subtle: rgba(0,0,0,0.6)">
 		<Markdown value={content} renderers={{ heading: AnchoredHeading }} />
 	</article>
+
+	<!--
+		<div class="feedback">
+			<h2>Feedback</h2>
+			<p>Let me know how you liked / didn't like this post</p>
+	
+			<div class="buttons">
+				<button class="positive"><ThumbsUp /></button>
+				<button class="negative"><ThumbsDown /></button>
+			</div>
+		</div>
+	-->
 </div>
 
 <style lang="scss">
@@ -75,24 +85,6 @@
 		margin-bottom: 2rem;
 		object-fit: cover;
 	}
-
-	/*
-	.backButton {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		text-decoration: none;
-		color: var(--text-color);
-		border-radius: 100%;
-		width: fit-content;
-		height: 2rem;
-		margin-bottom: 2rem;
-
-		@media screen and (max-width: 500px) {
-			display: none;
-		}
-	}
-	*/
 
 	section {
 		position: relative;
@@ -152,7 +144,7 @@
 	// has to be an ID so that css specifity doesn't break when built
 	// (could be some kind of bug)
 	#content {
-		padding-bottom: 12rem;
+		padding-bottom: 5rem;
 
 		:global(h1) {
 			font-size: 40px;
@@ -172,4 +164,31 @@
 			line-height: 1.6;
 		}
 	}
+
+	/*
+	.feedback {
+		margin: 4rem 0;
+		max-width: 20rem;
+
+		.buttons {
+			display: flex;
+		}
+
+		button {
+			border: none;
+			background: none;
+			cursor: pointer;
+			opacity: 0.6;
+			transition: opacity 200ms;
+			width: 2rem;
+			height: 2rem;
+			display: grid;
+			place-content: center;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+	*/
 </style>

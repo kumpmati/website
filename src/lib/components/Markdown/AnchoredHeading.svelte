@@ -12,32 +12,44 @@
 
 <svelte:element this={tag} id={link} class="heading">
 	<a href="#{link}">
-		<Link />
+		{text}
+		<span class="icon">
+			<Link />
+		</span>
 	</a>
-	{text}
 </svelte:element>
 
 <style lang="scss">
 	.heading {
-		display: flex;
-		align-items: center;
 		position: relative;
+
+		a {
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+		}
+
+		&:hover {
+			text-decoration: underline;
+
+			.icon {
+				opacity: 1;
+			}
+		}
 	}
 
-	a {
+	.icon {
+		display: flex;
+		align-items: center;
 		position: absolute;
 		left: -2rem;
-		opacity: 0.6;
+		opacity: 0;
 		transform: scale(0.8);
 		transition: opacity 200ms;
 
-		&:hover {
-			opacity: 1;
-		}
-
 		@media screen and (max-width: 400px) {
 			position: static;
-			margin-right: 0.25rem;
+			margin-left: 0.25rem;
 		}
 	}
 </style>
