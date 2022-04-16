@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import ThumbsUp from '$lib/components/Icons/ThumbsUp.svelte';
+	import Like from '$lib/components/Icons/Like.svelte';
 	import AnchoredHeading from '$lib/components/Markdown/AnchoredHeading.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { submitFeedback } from '$lib/services/feedback';
@@ -73,7 +73,7 @@
 
 			<div class="buttonContainer">
 				<button disabled={feedbackSent || submitting} on:click={onSubmitFeedback}>
-					<ThumbsUp />
+					<Like />
 				</button>
 
 				{#key feedback.positive}

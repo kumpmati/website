@@ -5,7 +5,7 @@
 	import { getContext } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
-	import X from '$lib/components/icons/X.svelte';
+	import X from '$lib/components/Icons/X.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 

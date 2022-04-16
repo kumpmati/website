@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Link from '../icons/Link.svelte';
+	import Link from '../Icons/Link.svelte';
 
 	export let raw: string;
 	export let text: string;

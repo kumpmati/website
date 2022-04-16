@@ -1,6 +1,6 @@
 <script lang="ts">
-	import GitHub from '../icons/GitHub.svelte';
-	import LinkedIn from '../icons/LinkedIn.svelte';
+	import GitHub from '../Icons/GitHub.svelte';
+	import LinkedIn from '../Icons/LinkedIn.svelte';
 </script>
 
 <footer>

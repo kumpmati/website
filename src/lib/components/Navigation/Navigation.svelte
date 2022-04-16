@@ -2,18 +2,15 @@
 	import { page } from '$app/stores';
 	import { navigation } from '$lib/stores/navigation';
 	import { pageSettings } from '$lib/stores/page';
-	import Menu from '../icons/Menu.svelte';
-	import X from '../icons/X.svelte';
+	import X from '../Icons/X.svelte';
+	import Menu from '../Icons/Menu.svelte';
 	import { fly, fade } from 'svelte/transition';
+	import { afterNavigate } from '$app/navigation';
 
 	let nav = $navigation;
 	let open = false;
 
-	const closeDelayed = () => {
-		setTimeout(() => {
-			open = false;
-		}, 250);
-	};
+	afterNavigate(() => (open = false));
 </script>
 
 <nav
@@ -50,7 +47,6 @@
 						href={link.fields.url}
 						target={link.fields.openInNewTab ? '_blank' : null}
 						class:active={$page.url.pathname === link.fields.url}
-						on:click={closeDelayed}
 					>
 						{link.fields.text}
 					</a>
