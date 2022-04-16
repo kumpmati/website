@@ -62,6 +62,7 @@
 	.container {
 		margin: 0 auto;
 		margin-top: 10rem;
+		margin-bottom: 7rem;
 		max-width: 45rem;
 		display: flex;
 		flex-direction: column;
