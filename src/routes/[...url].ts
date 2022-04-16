@@ -1,4 +1,4 @@
-import { getPageByURL } from '$lib/contentful';
+import { getPageByURL } from '$lib/services/contentful';
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const get: RequestHandler<{ url: string }, { page: any }> = async ({ params }) => {

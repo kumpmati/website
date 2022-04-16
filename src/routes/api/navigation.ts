@@ -1,4 +1,4 @@
-import { getNavigation } from '$lib/contentful';
+import { getNavigation } from '$lib/services/contentful';
 import type { RequestHandler } from '@sveltejs/kit';
 
 const get: RequestHandler<Record<string, never>, any> = async () => {

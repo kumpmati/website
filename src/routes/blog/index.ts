@@ -1,4 +1,4 @@
-import { getBlogPosts } from '$lib/contentful';
+import { getBlogPosts } from '$lib/services/contentful';
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const get: RequestHandler<Record<string, never>, { posts: any }> = async () => {

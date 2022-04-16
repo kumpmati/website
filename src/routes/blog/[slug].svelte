@@ -3,16 +3,34 @@
 </script>
 
 <script lang="ts">
+	import ThumbsUp from '$lib/components/Icons/ThumbsUp.svelte';
 	import AnchoredHeading from '$lib/components/Markdown/AnchoredHeading.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
+	import { submitFeedback } from '$lib/services/feedback';
 	import { pageSettings } from '$lib/stores/page';
-	import type { BlogPost } from '$lib/types/blog';
+	import type { BlogPost, BlogPostFeedback } from '$lib/types/blog';
+	import { fly } from 'svelte/transition';
 
 	export let post: BlogPost;
-	const { title, summary, content, published, coverImage, tags } = post.fields;
+	export let feedback: BlogPostFeedback | null;
+
+	const { slug, title, summary, content, published, coverImage, tags } = post.fields;
+
+	let feedbackSent = false;
+	let submitting = false;
 
 	$pageSettings.backgroundColor = '#fff';
 	$pageSettings.textColor = 'Dark';
+
+	const onSubmitFeedback = async () => {
+		submitting = true;
+		const response = await submitFeedback(slug);
+		if (response.positive) {
+			feedback = response;
+			feedbackSent = true;
+		}
+		submitting = false;
+	};
 </script>
 
 <svelte:head>
@@ -49,17 +67,21 @@
 		<Markdown value={content} renderers={{ heading: AnchoredHeading }} />
 	</article>
 
-	<!--
+	{#if feedback}
 		<div class="feedback">
-			<h2>Feedback</h2>
-			<p>Let me know how you liked / didn't like this post</p>
-	
-			<div class="buttons">
-				<button class="positive"><ThumbsUp /></button>
-				<button class="negative"><ThumbsDown /></button>
+			<p>{feedbackSent ? 'Thank you!' : 'Liked this post?'}</p>
+
+			<div class="buttonContainer">
+				<button disabled={feedbackSent || submitting} on:click={onSubmitFeedback}>
+					<ThumbsUp />
+				</button>
+
+				{#key feedback.positive}
+					<p in:fly={{ y: -5, duration: 200 }}>{feedback.positive}</p>
+				{/key}
 			</div>
 		</div>
-	-->
+	{/if}
 </div>
 
 <style lang="scss">
@@ -163,30 +185,41 @@
 		}
 	}
 
-	/*
 	.feedback {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		margin: 4rem 0;
-		max-width: 20rem;
 
-		.buttons {
+		p {
+			margin: 0;
+		}
+
+		.buttonContainer {
 			display: flex;
+			align-items: center;
+			margin-top: 0.5rem;
 		}
 
 		button {
+			display: flex;
+			align-items: center;
+			font-size: 16px;
 			border: none;
 			background: none;
-			cursor: pointer;
+			height: 2rem;
 			opacity: 0.6;
 			transition: opacity 200ms;
-			width: 2rem;
-			height: 2rem;
-			display: grid;
-			place-content: center;
 
-			&:hover {
+			&:not(:disabled):hover {
+				cursor: pointer;
 				opacity: 1;
+			}
+
+			&:disabled {
+				opacity: 0.8;
 			}
 		}
 	}
-	*/
 </style>

@@ -9,3 +9,8 @@ export type BlogPost = Entry<{
 	published: Date; // date
 	content: string; // markdown
 }>;
+
+export type BlogPostFeedback = {
+	slug: string;
+	positive: number;
+};
