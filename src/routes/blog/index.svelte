@@ -88,7 +88,7 @@
 
 	.posts {
 		list-style: none;
-		padding-left: 1rem;
+		padding: 0;
 		display: flex;
 		flex-direction: column;
 
