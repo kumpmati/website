@@ -3,8 +3,6 @@
 </script>
 
 <script lang="ts">
-	import ThumbsDown from '$lib/components/Icons/ThumbsDown.svelte';
-	import ThumbsUp from '$lib/components/Icons/ThumbsUp.svelte';
 	import AnchoredHeading from '$lib/components/Markdown/AnchoredHeading.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { pageSettings } from '$lib/stores/page';
