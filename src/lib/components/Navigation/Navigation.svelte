@@ -15,40 +15,55 @@
 	afterNavigate(() => (open = false));
 </script>
 
-<a class="logo" href="/" style="color: {textColor};">mk</a>
+<a
+	aria-roledescription="logo that links to the homepage"
+	class="logo"
+	href="/"
+	style="color: {textColor};"
+>
+	mk
+</a>
 
-<button on:click={() => (open = !open)} class:open style="color: {textColor}">
-	{#if !open}
-		<Menu />
-	{:else}
-		<X />
+<nav>
+	<button
+		aria-roledescription="hamburger menu"
+		aria-expanded={open}
+		on:click={() => (open = !open)}
+		class:open
+		style="color: {textColor}"
+	>
+		{#if !open}
+			<Menu />
+		{:else}
+			<X />
+		{/if}
+	</button>
+
+	{#if open}
+		<div class="menu" class:visible={open} transition:fade={{ duration: 200 }}>
+			<div
+				class="backdrop"
+				in:fly={{ x: -2000, duration: 500, opacity: 1 }}
+				out:fly={{ x: 0, duration: 500, delay: 200 }}
+			/>
+
+			<h2 transition:fly={{ x: 20, delay: 200 }}>menu</h2>
+			<ul transition:fly={{ x: 10, delay: 300 }}>
+				{#each nav.fields.links as link, index (link.sys.id)}
+					<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
+						<a
+							href={link.fields.url}
+							target={link.fields.openInNewTab ? '_blank' : null}
+							class:active={$page.url.pathname === link.fields.url}
+						>
+							{link.fields.text}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
 	{/if}
-</button>
-
-{#if open}
-	<div class="menu" class:visible={open} transition:fade={{ duration: 200 }}>
-		<div
-			class="backdrop"
-			in:fly={{ x: -2000, duration: 500, opacity: 1 }}
-			out:fly={{ x: 0, duration: 500, delay: 200 }}
-		/>
-
-		<h2 transition:fly={{ x: 20, delay: 200 }}>menu</h2>
-		<ul transition:fly={{ x: 10, delay: 300 }}>
-			{#each nav.fields.links as link, index (link.sys.id)}
-				<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
-					<a
-						href={link.fields.url}
-						target={link.fields.openInNewTab ? '_blank' : null}
-						class:active={$page.url.pathname === link.fields.url}
-					>
-						{link.fields.text}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</div>
-{/if}
+</nav>
 
 <style lang="scss">
 	.menu {
