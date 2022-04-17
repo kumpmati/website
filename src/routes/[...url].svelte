@@ -38,6 +38,6 @@
 
 <style>
 	div {
-		padding-bottom: 20rem;
+		padding-bottom: 10rem;
 	}
 </style>

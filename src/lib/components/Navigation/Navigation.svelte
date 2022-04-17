@@ -10,26 +10,20 @@
 	let nav = $navigation;
 	let open = false;
 
+	$: textColor = $pageSettings.textColor === 'Dark' || open ? '#000' : '#fff';
+
 	afterNavigate(() => (open = false));
 </script>
 
-<nav
-	transition:fade={{ duration: 200 }}
-	style="
-		--text-color: {$pageSettings.textColor === 'Dark' || open ? '#000' : '#fff'};
-		--bg-color: {$pageSettings.backgroundColor};
-	"
->
-	<a class="logo" href="/">mk</a>
+<a class="logo" href="/" style="color: {textColor};">mk</a>
 
-	<button on:click={() => (open = !open)} class:open>
-		{#if !open}
-			<Menu />
-		{:else}
-			<X />
-		{/if}
-	</button>
-</nav>
+<button on:click={() => (open = !open)} class:open style="color: {textColor}">
+	{#if !open}
+		<Menu />
+	{:else}
+		<X />
+	{/if}
+</button>
 
 {#if open}
 	<div class="menu" class:visible={open} transition:fade={{ duration: 200 }}>
@@ -61,35 +55,32 @@
 		background-color: rgba(0, 0, 0, 0.25);
 	}
 
-	nav {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 100;
-		width: 100%;
-		height: 6.75rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-inline: 40px;
-
-		@media screen and (max-width: 400px) {
-			padding-inline: 16px;
-			height: 4rem;
-		}
-	}
-
 	a {
 		text-decoration: none;
 		color: var(--text-color);
 	}
 
 	.logo {
+		position: fixed;
+		display: grid;
+		place-content: center;
+		top: 3rem;
+		left: 40px;
+		height: 2rem;
 		font-weight: 900;
 		transition: color 200ms;
+		z-index: 100;
+
+		@media screen and (max-width: 400px) {
+			top: 16px;
+			left: 16px;
+		}
 	}
 
 	button {
+		position: fixed;
+		top: 3rem;
+		right: 40px;
 		display: grid;
 		place-content: center;
 		background: none;
@@ -99,10 +90,16 @@
 		height: 2rem;
 		cursor: pointer;
 		color: var(--text-color);
+		z-index: 100;
 		transition: color 200ms 300ms, transform 200ms;
 
 		&.open {
 			transform: rotate(90deg);
+		}
+
+		@media screen and (max-width: 400px) {
+			right: 16px;
+			top: 16px;
 		}
 	}
 
