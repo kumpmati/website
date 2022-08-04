@@ -5,7 +5,7 @@
 	import { getContext } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
-	import X from '$lib/components/icons/X.svelte';
+	import X from '$lib/components/Icons/X.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
 
@@ -34,7 +34,7 @@
 		}
 	}
 
-	const handleOpenModal = (item: GridItem, event: any) => (activeItem = item);
+	const handleOpenModal = (item: GridItem) => (activeItem = item);
 	const handleCloseModal = () => (activeItem = null);
 </script>
 
@@ -75,7 +75,7 @@
 								<SvelteMarkdown source={item.fields.description} />
 							</span>
 						{:else}
-							<button class="openButton" on:click={(event) => handleOpenModal(item, event)}>
+							<button class="openButton" on:click={() => handleOpenModal(item)}>
 								{item.fields.title}
 							</button>
 						{/if}
@@ -148,7 +148,7 @@
 		width: 100%;
 		height: 13rem;
 		padding: 0;
-		border-radius: 3px;
+		border-radius: var(--border-radius);
 		text-decoration: none;
 
 		transition: transform 200ms;
@@ -160,7 +160,7 @@
 
 		&.Accent {
 			--text-color: #000;
-			--bg-color: #a6ff8f;
+			--bg-color: var(--accent);
 			--border-color: var(--bg-color);
 		}
 

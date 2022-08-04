@@ -1,12 +1,12 @@
 <script lang="ts">
 	export let src: string;
-	export let width: number = 100;
-	export let height: number = 100;
-	export let alt: string = '';
+	export let width = 100;
+	export let height = 100;
+	export let alt = '';
 	export let loading: 'lazy' | 'eager' = 'lazy';
 	export let decoding: 'sync' | 'async' | 'auto' = 'auto';
-	export let style: string = '';
-	export let className: string = '';
+	export let style = '';
+	export let className = '';
 
 	const breakpoints = [500, 900, 1300, 1700, 1920, 2100];
 

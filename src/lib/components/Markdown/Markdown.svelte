@@ -52,12 +52,12 @@
 		:global(img) {
 			width: 100%;
 			border: 1px solid rgba(0, 0, 0, 0.1);
-			border-radius: 3px;
+			border-radius: var(--border-radius);
 		}
 
 		:global(code) {
 			background-color: rgba(128, 128, 128, 0.1);
-			border-radius: 3px;
+			border-radius: var(--border-radius);
 			padding: 0 0.25rem;
 		}
 
@@ -67,7 +67,7 @@
 			font-size: 18px;
 			background: rgba(128, 128, 128, 0.1);
 			padding: 1rem;
-			border-radius: 3px;
+			border-radius: var(--border-radius);
 		}
 
 		:global(pre) > :global(code) {

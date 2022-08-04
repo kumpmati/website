@@ -2,83 +2,72 @@
 	import { page } from '$app/stores';
 	import { navigation } from '$lib/stores/navigation';
 	import { pageSettings } from '$lib/stores/page';
-	import Menu from '../icons/Menu.svelte';
-	import X from '../icons/X.svelte';
+	import X from '../Icons/X.svelte';
+	import Menu from '../Icons/Menu.svelte';
 	import { fly, fade } from 'svelte/transition';
+	import { afterNavigate } from '$app/navigation';
 
 	let nav = $navigation;
 	let open = false;
 
-	const closeDelayed = () => {
-		setTimeout(() => {
-			open = false;
-		}, 250);
-	};
+	$: textColor = $pageSettings.textColor === 'Dark' || open ? '#000' : '#fff';
+
+	afterNavigate(() => (open = false));
 </script>
 
-<nav
-	transition:fade={{ duration: 200 }}
-	style="--text-color: {$pageSettings.textColor === 'Dark' || open ? '#000' : '#fff'}"
+<a
+	aria-roledescription="logo that links to the homepage"
+	class="logo"
+	href="/"
+	style="color: {textColor};"
 >
-	<a class="logo" href="/">mk</a>
+	mk
+</a>
 
-	<button on:click={() => (open = !open)} class:open>
+<nav>
+	<button
+		aria-roledescription="hamburger menu"
+		aria-expanded={open}
+		on:click={() => (open = !open)}
+		class:open
+		style="color: {textColor}"
+	>
 		{#if !open}
 			<Menu />
 		{:else}
 			<X />
 		{/if}
 	</button>
+
+	{#if open}
+		<div class="menu" class:visible={open} transition:fade={{ duration: 200 }}>
+			<div
+				class="backdrop"
+				in:fly={{ x: -2000, duration: 500, opacity: 1 }}
+				out:fly={{ x: 0, duration: 500, delay: 200 }}
+			/>
+
+			<h2 transition:fly={{ x: 20, delay: 200 }}>menu</h2>
+			<ul transition:fly={{ x: 10, delay: 300 }}>
+				{#each nav.fields.links as link, index (link.sys.id)}
+					<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
+						<a
+							href={link.fields.url}
+							target={link.fields.openInNewTab ? '_blank' : null}
+							class:active={$page.url.pathname === link.fields.url}
+						>
+							{link.fields.text}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	{/if}
 </nav>
-
-{#if open}
-	<div class="menu" class:visible={open} transition:fade={{ duration: 200 }}>
-		<div
-			class="backdrop"
-			in:fly={{ x: -2000, duration: 500, opacity: 1 }}
-			out:fly={{ x: 0, duration: 500, delay: 200 }}
-		/>
-
-		<h2 transition:fly={{ x: 20, delay: 200 }}>menu</h2>
-		<ul transition:fly={{ x: 10, delay: 300 }}>
-			{#each nav.fields.links as link, index (link.sys.id)}
-				<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
-					<a
-						href={link.fields.url}
-						target={link.fields.openInNewTab ? '_blank' : null}
-						class:active={$page.url.pathname === link.fields.url}
-						on:click={closeDelayed}
-					>
-						{link.fields.text}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</div>
-{/if}
 
 <style lang="scss">
 	.menu {
 		background-color: rgba(0, 0, 0, 0.25);
-	}
-
-	nav {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 100;
-		width: 100%;
-		height: 6.75rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		padding-inline: 40px;
-
-		@media screen and (max-width: 400px) {
-			padding-inline: 16px;
-			height: 4rem;
-		}
 	}
 
 	a {
@@ -87,11 +76,26 @@
 	}
 
 	.logo {
+		position: fixed;
+		display: grid;
+		place-content: center;
+		top: 3rem;
+		left: 40px;
+		height: 2rem;
 		font-weight: 900;
 		transition: color 200ms;
+		z-index: 100;
+
+		@media screen and (max-width: 400px) {
+			top: 16px;
+			left: 16px;
+		}
 	}
 
 	button {
+		position: fixed;
+		top: 3rem;
+		right: 40px;
 		display: grid;
 		place-content: center;
 		background: none;
@@ -101,10 +105,16 @@
 		height: 2rem;
 		cursor: pointer;
 		color: var(--text-color);
+		z-index: 100;
 		transition: color 200ms 300ms, transform 200ms;
 
 		&.open {
 			transform: rotate(90deg);
+		}
+
+		@media screen and (max-width: 400px) {
+			right: 16px;
+			top: 16px;
 		}
 	}
 
@@ -157,7 +167,7 @@
 					width: 0;
 					height: 100%;
 					background: #000;
-					border-radius: 3px;
+					border-radius: var(--border-radius);
 					z-index: -1;
 					opacity: 0;
 					transition: width 200ms, opacity 200ms;

@@ -1,7 +1,7 @@
-import { getHomePage } from '$lib/contentful';
+import { getHomePage } from '$lib/services/contentful';
 import type { RequestHandler } from '@sveltejs/kit';
 
-export const get: RequestHandler<any, any> = async () => {
+export const get: RequestHandler<Record<string, never>, any> = async () => {
 	const page = await getHomePage();
 
 	if (!page) {

@@ -2,7 +2,7 @@
 	import { pageSettings } from '$lib/stores/page';
 	import type { GridBlock } from '$lib/types/page';
 	import IntersectionObserver from 'svelte-intersection-observer';
-	import { getContext, onMount } from 'svelte';
+	import { getContext } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
@@ -104,7 +104,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			border-radius: 3px;
+			border-radius: var(--border-radius);
 			text-decoration: none;
 			transition: transform 200ms;
 
@@ -119,7 +119,7 @@
 
 			&.Accent {
 				--text-color: #000;
-				--bg-color: #a6ff8f;
+				--bg-color: var(--accent);
 				--border-color: transparent;
 			}
 

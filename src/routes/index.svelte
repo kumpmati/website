@@ -143,7 +143,7 @@
 				left: 0;
 				height: 100%;
 				background: #000;
-				border-radius: 3px;
+				border-radius: var(--border-radius);
 				z-index: -1;
 				width: 0;
 				opacity: 0;
