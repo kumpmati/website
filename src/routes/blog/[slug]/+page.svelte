@@ -1,7 +1,3 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
 	import Like from '$lib/components/Icons/Like.svelte';
 	import AnchoredHeading from '$lib/components/Markdown/AnchoredHeading.svelte';

@@ -1,7 +1,3 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
 	import { pageSettings } from '$lib/stores/page';
 	import type { Homepage } from '$lib/types/page';
@@ -9,10 +5,10 @@
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
 
-	export let page: Homepage;
+	export let data: Homepage;
 
 	// set page background
-	$pageSettings.backgroundColor = page.fields.backgroundColor;
+	$pageSettings.backgroundColor = data.fields.backgroundColor;
 
 	let ready = false;
 	let showPicture = false;
@@ -37,25 +33,25 @@
 	<title>Matias Kumpulainen</title>
 </svelte:head>
 
-<div class="container" style="--bg-col:{page.fields.backgroundColor}">
+<div class="container" style="--bg-col:{data.fields.backgroundColor}">
 	<img
 		in:fly={{ x: -5 }}
 		class:show={showPicture}
-		src={page.fields.picture.fields.file.url}
-		alt={page.fields.picture.fields.description}
+		src={data.fields.picture.fields.file.url}
+		alt={data.fields.picture.fields.description}
 		on:click={onClickPicture}
 	/>
 
 	{#if showPicture}
-		<h2 in:fly|local={{ y: -5 }} class="hover-text">{page.fields.pictureHoverText}</h2>
+		<h2 in:fly|local={{ y: -5 }} class="hover-text">{data.fields.pictureHoverText}</h2>
 	{:else if ready}
 		<div in:fly|local={{ y: -10 }}>
 			<div class="content">
-				<SvelteMarkdown source={page.fields.content} />
+				<SvelteMarkdown source={data.fields.content} />
 			</div>
 
 			<ul class="links" in:fly|local={{ y: -10, delay: 100 }}>
-				{#each page.fields.links as link (link.sys.id)}
+				{#each data.fields.links as link (link.sys.id)}
 					<li>
 						<a href={link.fields.url}>
 							{link.fields.text}

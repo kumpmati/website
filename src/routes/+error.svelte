@@ -1,13 +1,15 @@
 <script context="module">
-	/** @type {import('@sveltejs/kit').ErrorLoad} */
-	export function load({ error, status }) {
-		return {
-			props: {
-				title: error.message,
-				status
-			}
-		};
-	}
+	throw new Error("@migration task: Replace error load function (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3293209)");
+
+	// /** @type {import('@sveltejs/kit').ErrorLoad} */
+	// export function load({ error, status }) {
+	// 	return {
+	// 		props: {
+	// 			title: error.message,
+	// 			status
+	// 		}
+	// 	};
+	// }
 </script>
 
 <script>

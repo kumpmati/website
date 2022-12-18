@@ -1,26 +1,6 @@
-<script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async ({ fetch, url }) => {
-		const res = await fetch('/api/navigation');
-
-		if (res.ok) {
-			return {
-				props: {
-					key: url.pathname,
-					nav: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load globals`)
-		};
-	};
-</script>
-
 <script lang="ts">
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import '../globals.scss'; // global css file
 	import Navigation from '$lib/components/Navigation/Navigation.svelte';
 	import type { Navigation as NavigationT } from '$lib/types/page';

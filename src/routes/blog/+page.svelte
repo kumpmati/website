@@ -1,7 +1,6 @@
-<script context="module">
-</script>
-
 <script lang="ts">
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import { pageSettings } from '$lib/stores/page';
 	import type { BlogPost } from '$lib/types/blog';
 

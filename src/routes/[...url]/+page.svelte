@@ -1,8 +1,6 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import type { Page } from '$lib/types/page';
 	import BlockPicker from '$lib/components/Blocks/BlockPicker.svelte';
 	import { pageSettings } from '$lib/stores/page';
