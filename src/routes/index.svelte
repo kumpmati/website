@@ -8,6 +8,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fly } from 'svelte/transition';
+	import { base } from '$app/paths';
 
 	export let page: Homepage;
 
@@ -57,7 +58,7 @@
 			<ul class="links" in:fly|local={{ y: -10, delay: 100 }}>
 				{#each page.fields.links as link (link.sys.id)}
 					<li>
-						<a href={link.fields.url}>
+						<a href={base + link.fields.url}>
 							{link.fields.text}
 						</a>
 					</li>

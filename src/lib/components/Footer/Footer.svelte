@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import GitHub from '../Icons/GitHub.svelte';
 	import LinkedIn from '../Icons/LinkedIn.svelte';
 </script>
 
 <footer>
 	<div class="content">
-		<a class="logo" href="/">mk</a>
+		<a class="logo" href={base}>mk</a>
 
 		<p class="divider">|</p>
 

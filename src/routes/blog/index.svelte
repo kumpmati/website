@@ -1,7 +1,10 @@
 <script context="module">
+	export const prerender = true;
 </script>
 
 <script lang="ts">
+	import { base } from '$app/paths';
+
 	import { pageSettings } from '$lib/stores/page';
 	import type { BlogPost } from '$lib/types/blog';
 
@@ -39,7 +42,7 @@
 			<ul class="posts">
 				{#each posts as post (post.sys.id)}
 					<li class="post">
-						<a href="/blog/{post.fields.slug}">
+						<a href="{base}/blog/{post.fields.slug}">
 							<h2>{post.fields.title}</h2>
 							<div>
 								<p>{post.fields.summary}</p>
