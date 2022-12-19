@@ -2,20 +2,19 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ fetch, url }) => {
-		const res = await fetch('/api/navigation');
-
-		if (res.ok) {
+		const nav = await getNavigation().catch(() => null);
+		if (!nav) {
 			return {
-				props: {
-					key: url.pathname,
-					nav: await res.json()
-				}
+				status: 404,
+				error: new Error(`Could not load globals`)
 			};
 		}
 
 		return {
-			status: res.status,
-			error: new Error(`Could not load globals`)
+			props: {
+				key: url.pathname,
+				nav: nav
+			}
 		};
 	};
 </script>
@@ -30,6 +29,8 @@
 	import { browser } from '$app/env';
 	import { page } from '$app/stores';
 	import Footer from '$lib/components/Footer/Footer.svelte';
+	import { getNavigation } from '$lib/services/contentful';
+	import { base } from '$app/paths';
 
 	export let nav: NavigationT;
 	export let key: string;
@@ -50,7 +51,7 @@
 	on:scroll={() => ($scrollPosition = window.scrollY)}
 />
 
-{#if $page.url.pathname !== '/'}
+{#if $page.url.pathname !== base}
 	<Navigation />
 {/if}
 
@@ -60,7 +61,7 @@
 		<slot />
 	</main>
 
-	{#if $page.url.pathname !== '/'}
+	{#if $page.url.pathname !== base}
 		<Footer />
 	{/if}
 </PageTransition>

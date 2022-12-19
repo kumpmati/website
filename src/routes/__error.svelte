@@ -11,6 +11,8 @@
 </script>
 
 <script>
+	import { base } from '$app/paths';
+
 	import { pageSettings } from '$lib/stores/page';
 
 	export let title;
@@ -33,7 +35,7 @@
 		<h1>{status}</h1>
 		<p>{text}</p>
 
-		<a href="/">home</a>
+		<a href={base}>home</a>
 	</div>
 </div>
 

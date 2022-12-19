@@ -7,6 +7,7 @@
 	import { fly } from 'svelte/transition';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
+	import { base } from '$app/paths';
 
 	export let block: GridBlock;
 	export let index: number;
@@ -43,7 +44,7 @@
 			<li>
 				{#if visible}
 					<a
-						href={item.fields.link}
+						href={base + item.fields.link}
 						class="item {item.fields.theme}"
 						in:fly={{ y: -10, duration: 200, delay: (index + 1) * 150 }}
 						out:fly|local={{ y: 0 }}

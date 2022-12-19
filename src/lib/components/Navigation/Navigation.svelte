@@ -6,6 +6,7 @@
 	import Menu from '../Icons/Menu.svelte';
 	import { fly, fade } from 'svelte/transition';
 	import { afterNavigate } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	let nav = $navigation;
 	let open = false;
@@ -18,7 +19,7 @@
 <a
 	aria-roledescription="logo that links to the homepage"
 	class="logo"
-	href="/"
+	href={base}
 	style="color: {textColor};"
 >
 	mk
@@ -52,7 +53,7 @@
 				{#each nav.fields.links as link, index (link.sys.id)}
 					<li in:fly={{ x: 10, delay: (index + 1) * 150 }}>
 						<a
-							href={link.fields.url}
+							href={base + link.fields.url}
 							target={link.fields.openInNewTab ? '_blank' : null}
 							class:active={$page.url.pathname === link.fields.url}
 						>

@@ -8,6 +8,7 @@
 	import X from '$lib/components/Icons/X.svelte';
 	import Markdown from '$lib/components/Markdown/Markdown.svelte';
 	import { type TimelineStore, timelineSection } from '$lib/stores/timeline';
+	import { base } from '$app/paths';
 
 	export let block: AccordionBlock;
 	export let index: number;
@@ -61,7 +62,7 @@
 					<a
 						in:fly={{ y: -25, delay: (index + 1) * 100 }}
 						out:fly|local={{ y: 0 }}
-						href={item.fields.link}
+						href={base + item.fields.link}
 						class="item {item.fields.theme}"
 						class:collapsed={activeItem && activeItem.sys.id !== item.sys.id}
 						class:opened={activeItem?.sys.id === item.sys.id}
