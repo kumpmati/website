@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matias Kumpulainen</title>
+  </head>
+  <body>
+    <main>
+      <h1>Matias Kumpulainen</h1>
+      <p class="sub">
+        Hello! 👋 I'm a student at UTU, a co-founder of Kvanttori Oy and a web
+        dev nerd.
+      </p>
+
+      <div class="links">
+        <a href="">GitHub</a>
+        <a href="">LinkedIn</a>
+      </div>
+    </main>
+  </body>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Urbanist:wght@400;500;900&display=swap");
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+
+      font-family: "Atkinson Hyperlegible", sans-serif;
+      background-color: #000;
+      color: #fff;
+
+      --accent: #a6ff8f;
+    }
+
+    main {
+      max-width: 40rem;
+      padding: 1rem;
+      margin: 0 auto;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .sub {
+      max-width: 20rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-family: "Urbanist", sans-serif;
+    }
+
+    p {
+      color: #aaa;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    h1,
+    p,
+    a {
+      margin: 0.25em 0;
+    }
+
+    .links {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+  </style>
+</html>
