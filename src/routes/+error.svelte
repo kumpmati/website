@@ -1,24 +1,8 @@
-<script context="module">
-	throw new Error("@migration task: Replace error load function (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3293209)");
-
-	// /** @type {import('@sveltejs/kit').ErrorLoad} */
-	// export function load({ error, status }) {
-	// 	return {
-	// 		props: {
-	// 			title: error.message,
-	// 			status
-	// 		}
-	// 	};
-	// }
-</script>
-
 <script>
 	import { pageSettings } from '$lib/stores/page';
+	import { page } from '$app/stores';
 
-	export let title;
-	export let status;
-
-	const text = status === 404 ? 'Page not found' : title;
+	const text = $page.status === 404 ? 'Page not found' : $page.error.message;
 
 	$pageSettings.textColor = 'Dark';
 	$pageSettings.backgroundColor = '#fff';
@@ -32,7 +16,7 @@
 	<img src="/error.png" alt="rest in peace, website" />
 
 	<div class="message">
-		<h1>{status}</h1>
+		<h1>{$page.status}</h1>
 		<p>{text}</p>
 
 		<a href="/">home</a>
