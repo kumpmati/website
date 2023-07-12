@@ -1,4 +1,5 @@
 <script>
+	import { size } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 
@@ -53,6 +54,7 @@
 		max-width: calc(100% - 2rem);
 		display: flex;
 		flex-direction: column;
+		z-index: 2;
 	}
 
 	span {

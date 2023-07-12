@@ -26,6 +26,9 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	// prevent cursor from causing scrollbars
+	overflow: hidden;
 }
 
 h1,
