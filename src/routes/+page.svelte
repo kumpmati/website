@@ -24,7 +24,9 @@
 		</h1>
 
 		<p transition:fly={{ duration: 500, delay: 600 + INITIAL_DELAY }}>
-			Hello 👋 I’m a student at UTU,<br /> co-founder of Kvanttori Oy and a web dev nerd.
+			Hello 👋 I’m a student at UTU,<br /> co-founder of
+			<a href="https://kvanttori.fi" target="_blank" referrerpolicy="no-referrer">Kvanttori Oy</a> and
+			a web nerd.
 		</p>
 
 		<div class="links" transition:fly={{ duration: 500, delay: 1000 + INITIAL_DELAY }}>
@@ -76,6 +78,15 @@
 
 	p {
 		max-width: 40ch;
+
+		a {
+			color: var(--orange);
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	.links {
