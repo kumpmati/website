@@ -1,0 +1,34 @@
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--font-heading: Kalam, sans-serif;
+	--font-body: 'Atkinson Hyperlegible', sans-serif;
+
+	--orange: #ff5c00;
+	--bg: #090909;
+	--white: #fff;
+	--subtle: rgba(255, 255, 255, 0.25);
+}
+
+body,
+html {
+	background-color: var(--bg);
+	color: var(--white);
+	font-family: var(--font-body);
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h1,
+h2 {
+	font-family: var(--font-heading);
+}
