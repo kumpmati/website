@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { shapes } from './stores';
 	import Shape from './Shape.svelte';
+	import Cursor from './Cursor.svelte';
 
 	export let zIndex: number;
 
@@ -13,6 +14,8 @@
 	{#each $shapes as data (data.id)}
 		<Shape {data} />
 	{/each}
+
+	<Cursor />
 </svg>
 
 <style lang="scss">

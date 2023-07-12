@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { spring } from 'svelte/motion';
 
+	let enabled = false;
 	const size = spring(1, { stiffness: 0.04, damping: 0.25, precision: 0.001 });
 
 	const pos = spring(
@@ -11,28 +12,40 @@
 
 <svelte:window
 	on:mousemove={(e) => {
+		enabled = true;
 		pos.set({ x: e.clientX, y: e.clientY });
 	}}
 	on:mousedown={() => size.set(0.7)}
 	on:mouseup={() => size.set(1)}
 />
 
-<div
-	style:transform="translate({$pos.x - 50}px, {$pos.y - 50}px) scale({$size})"
-	style:opacity={$size ** 4}
-/>
+{#if enabled}
+	<circle
+		r={$size * 50}
+		stroke="#eee"
+		fill="none"
+		stroke-width={2}
+		cx={$pos.x}
+		cy={$pos.y}
+		style:opacity={$size ** 4}
+	/>
+{/if}
 
 <style lang="scss">
-	div {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100px;
-		height: 100px;
-		border-radius: 100%;
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	circle {
 		background-color: transparent;
-		border: 2px solid #eee;
 		z-index: 10;
 		pointer-events: none;
+
+		animation: fade-in both 3s;
 	}
 </style>

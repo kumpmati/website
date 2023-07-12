@@ -41,6 +41,5 @@
 />
 
 <Background zIndex={1} />
-<Cursor />
 
 <slot />
