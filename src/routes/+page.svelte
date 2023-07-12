@@ -69,7 +69,7 @@
 		letter-spacing: -0.195rem;
 		color: var(--orange);
 		margin: 0;
-		box-shadow: 0 0 0 4px var(--bg);
+		text-shadow: 0 2px 0 var(--bg);
 
 		@media screen and (max-width: 450px) {
 			font-size: 3rem;
