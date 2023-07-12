@@ -27,7 +27,7 @@ export const addRandomCircle = (w: number, h: number) => {
 	addCircle({
 		x: Math.random() * w,
 		y: Math.random() * h,
-		r: 30 + Math.random() * 500,
+		r: 30 + Math.random() * 300,
 		xVel: (Math.random() - 0.5) * 0.2,
 		yVel: (Math.random() - 0.5) * 0.2,
 		color: random(),

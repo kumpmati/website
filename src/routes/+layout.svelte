@@ -16,7 +16,7 @@
 	onMount(() => {
 		const loop = () => {
 			addRandomCircle(w, h);
-			setTimeout(loop, Math.random() * 8000);
+			setTimeout(loop, Math.random() * 15000);
 		};
 
 		setTimeout(loop, 2000);
