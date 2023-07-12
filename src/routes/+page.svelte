@@ -57,7 +57,6 @@
 		display: flex;
 		flex-direction: column;
 		z-index: 2;
-		mix-blend-mode: difference;
 	}
 
 	span {
