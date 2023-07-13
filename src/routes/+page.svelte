@@ -73,6 +73,10 @@
 		@media screen and (max-width: 450px) {
 			font-size: 3rem;
 		}
+
+		@media screen and (max-width: 300px) {
+			font-size: 2.5rem;
+		}
 	}
 
 	p {

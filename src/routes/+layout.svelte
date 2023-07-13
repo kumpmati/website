@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import '../app.scss';
-	import { addCircle, addRandomCircle, size } from '../lib/stores';
+	import { addCircle, addRandomCircle, shapes, size } from '../lib/stores';
 	import { random } from '$lib/color';
 	import Background from '$lib/Background.svelte';
-	import Cursor from '$lib/Cursor.svelte';
 	import { browser } from '$app/environment';
 
 	let w: number, h: number;
+	let tabHidden = false;
 
 	$: if (browser && w && h) {
 		size.set({ w, h });
@@ -15,9 +15,19 @@
 
 	onMount(() => {
 		const loop = () => {
-			addRandomCircle(w, h);
+			if (!tabHidden) {
+				addRandomCircle(w, h);
+			}
+
 			setTimeout(loop, Math.random() * 15000);
 		};
+
+		document.addEventListener('visibilitychange', () => {
+			tabHidden = document.hidden;
+
+			// clear shapes when re-focusing to prevent lag
+			if (!tabHidden) $shapes = [];
+		});
 
 		setTimeout(loop, 2000);
 	});
