@@ -18,7 +18,7 @@
 	<main>
 		<h1>
 			<span transition:fly={{ duration: 1000, y: 20, delay: INITIAL_DELAY }}> MATIAS </span>
-			<span transition:fly={{ duration: 1000, y: 30, delay: 100 + INITIAL_DELAY }}>
+			<span transition:fly={{ duration: 1000, y: 30, delay: 150 + INITIAL_DELAY }}>
 				KUMPULAINEN
 			</span>
 		</h1>
@@ -64,7 +64,9 @@
 	}
 
 	h1 {
-		font-size: 4rem;
+		font-size: 2.5rem;
+		display: flex;
+		gap: 1ch;
 		line-height: 96.9%;
 		letter-spacing: -0.195rem;
 		color: var(--orange);
@@ -72,11 +74,9 @@
 		text-shadow: 0px 0px 80px rgba(0, 0, 0, 0.5);
 
 		@media screen and (max-width: 450px) {
-			font-size: 3rem;
-		}
-
-		@media screen and (max-width: 300px) {
-			font-size: 2.5rem;
+			font-size: 2rem;
+			flex-direction: column;
+			gap: 0;
 		}
 	}
 
