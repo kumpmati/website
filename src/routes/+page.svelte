@@ -9,7 +9,13 @@
 <div class="grid h-full w-full place-content-center">
 	<main class="flex flex-col items-center gap-4 p-4">
 		<div class="relative [&>#cheese-pointer]:hover:visible [&>#cheese-pointer]:hover:opacity-100">
-			<img src="/cheese.webp" alt="a 3d render of cheese" class="w-20 sm:w-28" />
+			<img
+				src="/cheese.webp"
+				alt="a 3d render of cheese"
+				class="w-20 sm:w-28"
+				width={228}
+				height={205}
+			/>
 			<img
 				id="cheese-pointer"
 				src="/pointer.svg"
