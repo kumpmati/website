@@ -1,5 +1,6 @@
 <svelte:head>
 	<title>matias kumpulainen</title>
+	<meta name="description" content="I like doing stuff." />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Matias Kumpulainen" />
