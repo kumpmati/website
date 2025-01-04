@@ -29,9 +29,11 @@
 			<a href="https://pieni.link/spotify" target="_blank" rel="noopener" class="hover:underline">
 				spotify
 			</a>
+			.
 			<a href="https://pieni.link/github" target="_blank" rel="noopener" class="hover:underline">
 				github
 			</a>
+			.
 			<a href="https://pieni.link/linkedin" target="_blank" rel="noopener" class="hover:underline">
 				linkedin
 			</a>
