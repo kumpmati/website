@@ -5,7 +5,11 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				heading: ['Kalam', 'sans-serif']
+			}
+		}
 	},
 
 	plugins: [typography]
