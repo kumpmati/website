@@ -1,3 +1,7 @@
+<script>
+	import Nav from '../lib/Nav.svelte';
+</script>
+
 <svelte:head>
 	<title>matias kumpulainen</title>
 	<meta name="description" content="I like doing stuff." />
@@ -26,18 +30,6 @@
 		</div>
 
 		<h1 class="text-center text-3xl sm:text-5xl">i like doing stuff.</h1>
-		<nav class="flex font-normal">
-			<a href="https://pieni.link/spotify" target="_blank" rel="noopener" class="hover:underline">
-				spotify
-			</a>
-			.
-			<a href="https://pieni.link/github" target="_blank" rel="noopener" class="hover:underline">
-				github
-			</a>
-			.
-			<a href="https://pieni.link/linkedin" target="_blank" rel="noopener" class="hover:underline">
-				linkedin
-			</a>
-		</nav>
+		<Nav />
 	</main>
 </div>

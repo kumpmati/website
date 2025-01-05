@@ -8,8 +8,6 @@ html {
 }
 
 body {
-	display: flex;
-
 	font-family: 'Kadwa', serif;
 	background-color: #faf9f3;
 	color: #5f481e;

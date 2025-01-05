@@ -6,8 +6,16 @@ export default {
 
 	theme: {
 		extend: {
+			colors: {
+				primary: '#5F481E',
+				secondary: '#D8B067',
+				bg: '#FAF9F3',
+				card: '#FFF4DF'
+			},
+
 			fontFamily: {
-				heading: ['Kalam', 'sans-serif']
+				heading: ['Kalam', 'sans-serif'],
+				body: ['Kadwa', 'serif']
 			}
 		}
 	},
