@@ -10,16 +10,17 @@
 	import svgCode from './func.js?raw';
 
 	let svg: SVGSVGElement;
-
 	let pos = new Spring({ x: 0, y: 0 });
 
 	onMount(() => {
-		svg.addEventListener('click', (e) => {
+		const handle = (e: MouseEvent) => {
 			const point = new DOMPoint(e.clientX, e.clientY);
 
-			const coordintes = point.matrixTransform(svg.getScreenCTM()?.inverse());
-			pos.set(coordintes);
-		});
+			pos.set(point.matrixTransform(svg.getScreenCTM()?.inverse()));
+		};
+
+		svg.addEventListener('click', handle);
+		return () => svg.removeEventListener('click', handle);
 	});
 </script>
 
