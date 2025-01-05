@@ -12,6 +12,14 @@
 	<li>
 		<BlogListItem
 			type="snippet"
+			href="/blog/svg-coordinates"
+			title="Getting the SVG coordinates of a click event"
+			excerpt="It's straight forward, but search results usually show an old method"
+		/>
+	</li>
+	<li>
+		<BlogListItem
+			type="snippet"
 			href="/blog/array-fill-snippet"
 			title="A utility function to fills gaps in arrays"
 			excerpt="Often helpful when dealing with analytics that have gaps in them"

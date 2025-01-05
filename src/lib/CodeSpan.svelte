@@ -1,5 +1,5 @@
 <script>
-	let { raw } = $props();
+	let { children } = $props();
 </script>
 
-<code>{raw.replace(/`/g, '')}</code>
+<code class="bg-card rounded-sm px-1">{@render children()}</code>
