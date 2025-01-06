@@ -11,7 +11,7 @@
 	<meta property="og:description" content="I like doing stuff." />
 </svelte:head>
 
-<div class="grid h-full w-full place-content-center">
+<div class="grid h-svh w-full place-content-center overflow-x-hidden">
 	<main class="flex flex-col items-center gap-4 p-4">
 		<div class="relative [&>#cheese-pointer]:hover:visible [&>#cheese-pointer]:hover:opacity-100">
 			<img

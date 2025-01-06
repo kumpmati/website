@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Nav from '../../lib/Nav.svelte';
-
 	let { children } = $props();
 </script>
 
@@ -8,7 +6,7 @@
 	<title>blog</title>
 </svelte:head>
 
-<header class="z-10 flex w-fit items-center justify-between p-4 sm:sticky sm:top-0 sm:p-6">
+<header class="z-10 flex w-fit items-center justify-between p-4 sm:p-6 md:sticky md:top-0">
 	<a href="/" class="flex items-center gap-2 font-heading text-base font-bold">
 		<img src="/cheese.webp" alt="a 3d render of cheese" class="size-6" /> mk
 	</a>

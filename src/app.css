@@ -2,12 +2,13 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-body,
 html {
 	height: 100%;
 }
 
 body {
+	min-height: 100%;
+
 	font-family: 'Kadwa', serif;
 	background-color: #faf9f3;
 	color: #5f481e;

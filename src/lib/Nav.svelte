@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 </script>
 
-<nav class="flex font-normal">
+<nav class="flex flex-wrap justify-center font-normal">
 	<a href="https://pieni.link/spotify" target="_blank" rel="noopener" class="hover:underline">
 		spotify
 	</a>
