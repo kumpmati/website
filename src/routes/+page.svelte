@@ -1,9 +1,10 @@
 <script>
+	import Projects from '$lib/Projects.svelte';
 	import Nav from '../lib/Nav.svelte';
 </script>
 
 <svelte:head>
-	<title>matias kumpulainen</title>
+	<title>Matias Kumpulainen</title>
 	<meta name="description" content="I like doing stuff." />
 
 	<meta property="og:type" content="website" />
@@ -11,7 +12,7 @@
 	<meta property="og:description" content="I like doing stuff." />
 </svelte:head>
 
-<div class="grid h-svh w-full place-content-center overflow-x-hidden">
+<div class="mt-16 grid h-svh min-h-[600px] w-full sm:mt-0 sm:place-content-center">
 	<main class="flex flex-col items-center gap-4 p-4">
 		<div class="relative [&>#cheese-pointer]:hover:visible [&>#cheese-pointer]:hover:opacity-100">
 			<img
@@ -29,7 +30,9 @@
 			/>
 		</div>
 
-		<h1 class="text-center text-3xl sm:text-5xl">i like doing stuff.</h1>
+		<h1 class="text-center text-3xl sm:text-5xl">Matias Kumpulainen</h1>
+
 		<Nav />
+		<Projects />
 	</main>
 </div>
