@@ -19,12 +19,6 @@
 			url: 'https://pieni.link/bubblewrap'
 		},
 		{
-			name: 'Eatable',
-			description: 'Is an episode/movie disgusting?',
-			image: '/eatable.png',
-			url: 'https://pieni.link/eatable'
-		},
-		{
 			name: 'Superactions',
 			description: 'Sveltekit data fetching library',
 			image: '/superactions.webp',
