@@ -22,7 +22,7 @@
 			name: 'Superactions',
 			description: 'Sveltekit data fetching library',
 			image: '/superactions.webp',
-			url: 'https://superactions.matsku.dev/'
+			url: 'https://pieni.link/sua'
 		},
 		{
 			name: 'pieni.link',
